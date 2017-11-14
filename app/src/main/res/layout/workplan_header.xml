@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="5"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/list_line">
+
+        <TextView
+            android:id="@+id/standard_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_1sdp"
+            android:layout_weight="1"
+            android:text="@string/workplanstandard"
+            android:textAlignment="center"
+            android:textColor="@color/scheduleheadertextcolor"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/class_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/homeworkClass"
+            android:textAlignment="center"
+            android:textColor="@color/scheduleheadertextcolor"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal"/>
+
+        <TextView
+            android:id="@+id/subject_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:text="@string/worksubject"
+            android:textAlignment="center"
+            android:textColor="@color/scheduleheadertextcolor"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal" />
+        <TextView
+            android:id="@+id/month_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/Month"
+            android:textColor="@color/scheduleheadertextcolor"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal" />
+        <TextView
+            android:id="@+id/view_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/scheduleheadertextcolor"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="normal" />
+    </LinearLayout>
+</LinearLayout>

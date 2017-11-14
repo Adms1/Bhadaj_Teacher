@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/_1sdp"
+        android:visibility="visible"
+        android:background="@drawable/list_line">
+
+        <TextView
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_170sdp"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="P"
+            android:textSize="@dimen/_11sdp"
+            android:textColor="@color/present_header"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_1sdp"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="A"
+            android:textSize="@dimen/_11sdp"
+            android:textColor="@color/absent_header"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="@dimen/_39sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_3sdp"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_11sdp"
+            android:text="L"
+            android:textColor="@color/orange"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

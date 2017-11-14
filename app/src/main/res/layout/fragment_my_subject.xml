@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/txtNoRecords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center"
+        android:text="No Records Found..."
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:textSize="@dimen/_11sdp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/header_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/my_subject_header" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/student_list_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="1dp">
+
+        <ListView
+            android:id="@+id/subject_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="0dp"
+            android:scrollbars="none"
+            android:divider="@color/gray"
+            android:dividerHeight="1dp"/>
+    </LinearLayout>
+</LinearLayout>

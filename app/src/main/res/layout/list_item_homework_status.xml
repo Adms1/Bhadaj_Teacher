@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp"
+            android:weightSum="1">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/close_btn"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_230sdp"
+                    android:background="@drawable/close_cancel"
+                    android:text="X"
+                    android:textSize="@dimen/_11sdp"
+                    android:textColor="@color/editTextcolor" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/header_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="gone">
+
+                <include layout="@layout/header_homework_status" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/txtNoRecordshomeworkstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativeLayout"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="No Records Found..."
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ListView
+                android:id="@+id/student_homework_status_list"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_380sdp"
+                android:scrollbars="none"
+                android:visibility="gone"></ListView>
+            <ImageView
+                android:id="@+id/insert_homework_status_img"
+                android:layout_width="@dimen/_38sdp"
+                android:layout_height="@dimen/_38sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="-45dp"
+                android:visibility="visible" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

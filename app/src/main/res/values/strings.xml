@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Bhadaj(Teacher)</string>
+
+
+    <!--App use String-->
+    <string name="UserName">User Name</string>
+    <string name="Password">Password</string>
+    <string name="checkbox">Remember Credentials</string>
+    <string name="Login">Login</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="totalstudent">Total Student</string>
+    <string name="present">Present :</string>
+    <string name="absent">Absent :</string>
+    <string name="leave">Leave :</string>
+    <string name="student_name">Megha Shah</string>
+    <string name="lecture">Lecture</string>
+    <string name="timing">Timing</string>
+    <string name="standard">Standard</string>
+    <string name="classes">Class</string>
+    <string name="subject">Subject</string>
+    <string name="srno">Sr No.</string>
+    <string name="testname">Test Name</string>
+    <string name="grade">Grade</string>
+    <string name="edit">Edit</string>
+    <string name="grno">GRNO</string>
+    <string name="percentage">(%)</string>
+    <string name="Marks">Marks</string>
+    <string name="view"><u>View</u></string>
+    <string name="testdate">Test Date :</string>
+    <string name="standardsubject">Standard-Subject :</string>
+    <string name="section">Section :</string>
+    <string name="test">Test :</string>
+    <string name="homeworkDate">Date</string>
+    <string name="homeworkStandard">std</string>
+    <string name="homeworkClass">class</string>
+    <string name="homeworkSubject">Subject :</string>
+    <string name="homework">Home Work :</string>
+    <string name="WorkPlan">Work Plan :</string>
+    <string name="ClassWork">Class Work :</string>
+    <string name="assessment">AssessmentQue :</string>
+    <string name="Month">Month</string>
+    <string name="plandate">Plan Date</string>
+    <string name="chapterno"> Chapter No.</string>
+    <string name="lessonchaptername">Chapter Name</string>
+    <string name="lessonpdf">PDF</string>
+    <string name="lessonword">WORD</string>
+    <string name="workplanstandard">Standard</string>
+    <string name="workplanmonth">Month</string>
+    <string name="workstatus">Status :</string>
+    <string name="workstartdate">Work Start Date :</string>
+    <string name="workenddate">Work End Date :</string>
+    <string name="works">Work :</string>
+    <string name="worksubject">Subject</string>
+
+
+    <string-array name="menuoption1">
+        <item>Home</item>
+        <item>My Profile</item>
+        <item>Attendance</item>
+        <item>Homework</item>
+        <item>Timetable</item>
+        <item>Unit Test</item>
+        <item>Results</item>
+        <item>Report Card</item>
+        <item>Fees</item>
+        <item>Imprest</item>
+        <item>Canteen</item>
+        <item>Appointment Requests</item>
+        <item>Message</item>
+        <item>Logout</item>
+    </string-array>
+    <string-array name="month">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

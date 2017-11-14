@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_1"
+        android:gravity="center"
+        tools:context=".Activities.LoginActivity">
+
+        <LinearLayout
+            android:id="@+id/Login_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:gravity="center|center_vertical"
+            android:orientation="vertical"
+            android:padding="@dimen/_20sdp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/TextLabel">
+
+                <EditText
+                    android:id="@+id/UserName_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/edit_line"
+                    android:drawableLeft="@drawable/user"
+                    android:hint="@string/UserName"
+                    android:maxLines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/editTextcolor"
+                    android:textColorHint="@color/editTextcolor"
+                    android:textSize="@dimen/_11sdp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:theme="@style/TextLabel">
+
+                <EditText
+                    android:id="@+id/Password_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/edit_line"
+                    android:drawableLeft="@drawable/password"
+                    android:hint="@string/Password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/editTextcolor"
+                    android:textColorHint="@color/editTextcolor"
+                    android:textSize="@dimen/_11sdp" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/Remember_chk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/Login_linear"
+            android:layout_alignStart="@+id/Login_linear"
+            android:layout_below="@+id/Login_linear"
+            android:layout_marginLeft="@dimen/_26sdp"
+            android:layout_marginStart="@dimen/_26sdp"
+            android:button="@drawable/checkbox_selector"
+            android:padding="@dimen/_10sdp"
+            android:text="Remember Credentials"
+            android:textAlignment="center"
+            android:textColor="@color/editTextcolor"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/Login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Remember_chk"
+            android:layout_margin="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/round_button"
+            android:onClick="login"
+            android:padding="@dimen/_12sdp"
+            android:text="@string/Login"
+            android:textAlignment="center"
+            android:textColor="@color/editTextcolor"
+            android:textSize="@dimen/_12sdp" />
+    </RelativeLayout>
+
+</layout>

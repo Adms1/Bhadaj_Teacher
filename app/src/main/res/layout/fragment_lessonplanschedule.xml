@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/_5sdp">
+        <RelativeLayout
+            android:id="@+id/date_rel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@+id/header"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fromDate"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/calendar_line"
+                android:gravity="center_vertical|center"
+                android:hint="DD/MM/YYYY"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_9sdp" />
+
+            <TextView
+                android:id="@+id/toDate"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_toRightOf="@+id/fromDate"
+                android:background="@drawable/calendar_line"
+                android:gravity="center_vertical|center"
+                android:hint="DD/MM/YYYY"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_9sdp" />
+
+            <Button
+                android:id="@+id/btnFilterlessonplan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignBottom="@+id/toDate"
+                    android:layout_alignTop="@+id/toDate"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_toRightOf="@+id/toDate"
+                    android:background="@drawable/profile_button"
+                    android:padding="@dimen/_3sdp"
+                    android:text="Filter"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/lesson_plan_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/date_rel"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="horizontal">
+
+            <include layout="@layout/list_homework_header" />
+        </LinearLayout>
+        <ExpandableListView
+            android:id="@+id/lvExplessonplan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lesson_plan_header"
+            android:layout_margin="@dimen/_5sdp"
+            android:childDivider="@android:color/transparent"
+            android:divider="@android:color/white"
+            android:dividerHeight="@dimen/_5sdp"
+            android:groupIndicator="@null"
+            android:scrollbars="none"/>
+    <TextView
+        android:id="@+id/txtNoRecordslesson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_rel"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center"
+        android:text="No Records Found..."
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:textSize="@dimen/_11sdp"
+        android:visibility="gone" />
+
+</LinearLayout>
