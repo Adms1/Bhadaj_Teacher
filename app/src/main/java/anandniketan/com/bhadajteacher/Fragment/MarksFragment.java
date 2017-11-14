@@ -2,6 +2,8 @@ package anandniketan.com.bhadajteacher.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import anandniketan.com.bhadajteacher.Activities.LoginActivity;
 import anandniketan.com.bhadajteacher.Adapter.ExpandableListAdapterMarks;
 import anandniketan.com.bhadajteacher.AsyncTasks.TeacherGetTestMarksAsyncTask;
 import anandniketan.com.bhadajteacher.Models.NewResponse.FinalArray;
@@ -39,7 +42,7 @@ import anandniketan.com.bhadajteacher.Utility.Utility;
 
 public class MarksFragment extends Fragment {
     private View rootView;
-    private Button btnMenu, btnBackMarks;
+    private Button btnLogout, btnBackMarks;
     private TextView txtNoRecordsMarks;
     private Context mContext;
     private ProgressDialog progressDialog = null;
@@ -75,6 +78,7 @@ public class MarksFragment extends Fragment {
     }
 
     public void initViews() {
+        btnLogout=(Button)rootView.findViewById(R.id.btnLogout);
         txtNoRecordsMarks = (TextView) rootView.findViewById(R.id.txtNoRecordsMarks);
         btnBackMarks = (Button) rootView.findViewById(R.id.btnBackMarks);
         lvExpMarks = (ExpandableListView) rootView.findViewById(R.id.lvExpMarks);
@@ -89,7 +93,37 @@ public class MarksFragment extends Fragment {
     }
 
     public void setListners() {
-
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
+                        .setCancelable(false)
+                        .setTitle("Logout")
+                        .setIcon(mContext.getResources().getDrawable(R.drawable.ic_launcher))
+                        .setMessage("Are you sure you want to logout? ")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Utility.setPref(mContext, "StaffID", "");
+                                Utility.setPref(mContext, "Emp_Code", "");
+                                Utility.setPref(mContext, "Emp_Name", "");
+                                Utility.setPref(mContext, "DepratmentID", "");
+                                Utility.setPref(mContext, "DesignationID", "");
+                                Utility.setPref(mContext, "DeviceId", "");
+                                Utility.setPref(mContext, "unm", "");
+                                Utility.setPref(mContext, "pwd", "");
+                                Intent i = new Intent(getActivity(), LoginActivity.class);
+                                getActivity().startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(R.drawable.ic_launcher)
+                        .show();
+            }
+        });
         btnBackMarks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

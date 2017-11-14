@@ -84,7 +84,9 @@ public class ExpandableListAdapterWorkPlan extends BaseExpandableListAdapter {
         work_name_txt.setText(childData.get(childPosition).getWork());
         startdate_txt.setText(childData.get(childPosition).getFromDate());
         enddate_txt.setText(childData.get(childPosition).getToDate());
-
+        if(childData.get(childPosition).getRemarks().equalsIgnoreCase("")){
+            childData.get(childPosition).setRemarks(".");
+        }
         status_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {

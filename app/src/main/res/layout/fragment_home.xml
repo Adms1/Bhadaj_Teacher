@@ -7,6 +7,8 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp"
         android:background="@color/editTextcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -127,12 +129,12 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="0.84"
+                    android:paddingTop="@dimen/_7sdp"
                     android:text="Notice board"
                     android:textColor="@color/editTextcolor"
                     android:textSize="@dimen/_11sdp"
-                    android:paddingTop="@dimen/_7sdp"
-                    android:textStyle="bold"
-                    android:layout_weight="0.84" />
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btn_notification"
@@ -142,7 +144,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_3sdp"
-                    android:background="@drawable/notification_image"/>
+                    android:background="@drawable/notification_image" />
             </LinearLayout>
         </LinearLayout>
 
@@ -153,12 +155,13 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_3sdp"
             android:layout_weight="1"
             android:paddingBottom="@dimen/_34sdp"
             android:scaleType="fitStart"
             android:src="@drawable/skool_360" />
+
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="@dimen/_20sdp"

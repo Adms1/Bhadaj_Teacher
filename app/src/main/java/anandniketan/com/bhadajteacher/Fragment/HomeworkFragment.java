@@ -2,6 +2,8 @@ package anandniketan.com.bhadajteacher.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -29,6 +31,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import anandniketan.com.bhadajteacher.Activities.LoginActivity;
 import anandniketan.com.bhadajteacher.Adapter.ExpandableListAdapterHomeWork;
 import anandniketan.com.bhadajteacher.Adapter.HomeWorkStatusListAdapter;
 import anandniketan.com.bhadajteacher.AsyncTasks.GetTeacherDailyWorkAsyncTask;
@@ -44,7 +47,7 @@ import anandniketan.com.bhadajteacher.Utility.Utility;
 
 public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     private View rootView;
-    private Button btnMenu, btnFilterHomework, btnBacktest_homework;
+    private Button btnMenu, btnFilterHomework, btnBacktest_homework,btnLogout;
     private static TextView fromDate, toDate;
     private TextView txtNoRecordshomework;
     private static String dateFinal;
@@ -101,6 +104,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
     }
 
     public void initViews() {
+        btnLogout=(Button)rootView.findViewById(R.id.btnLogout);
         fromDate = (TextView) rootView.findViewById(R.id.fromDate);
         toDate = (TextView) rootView.findViewById(R.id.toDate);
         btnFilterHomework = (Button) rootView.findViewById(R.id.btnFilterHomework);
@@ -123,6 +127,37 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
     }
 
     public void setListners() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
+                        .setCancelable(false)
+                        .setTitle("Logout")
+                        .setIcon(mContext.getResources().getDrawable(R.drawable.ic_launcher))
+                        .setMessage("Are you sure you want to logout? ")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Utility.setPref(mContext, "StaffID", "");
+                                Utility.setPref(mContext, "Emp_Code", "");
+                                Utility.setPref(mContext, "Emp_Name", "");
+                                Utility.setPref(mContext, "DepratmentID", "");
+                                Utility.setPref(mContext, "DesignationID", "");
+                                Utility.setPref(mContext, "DeviceId", "");
+                                Utility.setPref(mContext, "unm", "");
+                                Utility.setPref(mContext, "pwd", "");
+                                Intent i = new Intent(getActivity(), LoginActivity.class);
+                                getActivity().startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(R.drawable.ic_launcher)
+                        .show();
+            }
+        });
         fromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

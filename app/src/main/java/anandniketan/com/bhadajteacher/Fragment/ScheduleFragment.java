@@ -1,6 +1,8 @@
 package anandniketan.com.bhadajteacher.Fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,13 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import anandniketan.com.bhadajteacher.Activities.LoginActivity;
 import anandniketan.com.bhadajteacher.Adapter.SchedulepagerAdapter;
 import anandniketan.com.bhadajteacher.R;
+import anandniketan.com.bhadajteacher.Utility.Utility;
 
 
 public class ScheduleFragment extends Fragment {
     private View rootView;
-    private Button btnBackSchedule;
+    private Button btnBackSchedule, btnLogout;
 
     private TabLayout tabLayout_schedule;
     private ViewPager viewPager;
@@ -42,13 +46,13 @@ public class ScheduleFragment extends Fragment {
 
     public void init() {
 //Initializing the tablayout
-
+        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnBackSchedule = (Button) rootView.findViewById(R.id.btnBackSchedule);
         viewPager = (ViewPager) rootView.findViewById(R.id.pager);
 
 
         tabLayout_schedule = (TabLayout) rootView.findViewById(R.id.tabLayout_schedule);
-        tabLayout_schedule.addTab(tabLayout_schedule.newTab().setText("Today Schedule"),true);
+        tabLayout_schedule.addTab(tabLayout_schedule.newTab().setText("Today Schedule"), true);
 //        tabLayout_schedule.addTab(tabLayout_schedule.newTab().setText(Html.fromHtml("Lesson Plan \n Schedule")));
         tabLayout_schedule.setTabMode(TabLayout.MODE_FIXED);
         tabLayout_schedule.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -61,6 +65,37 @@ public class ScheduleFragment extends Fragment {
     }
 
     public void setListner() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
+                        .setCancelable(false)
+                        .setTitle("Logout")
+                        .setIcon(mContext.getResources().getDrawable(R.drawable.ic_launcher))
+                        .setMessage("Are you sure you want to logout? ")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Utility.setPref(mContext, "StaffID", "");
+                                Utility.setPref(mContext, "Emp_Code", "");
+                                Utility.setPref(mContext, "Emp_Name", "");
+                                Utility.setPref(mContext, "DepratmentID", "");
+                                Utility.setPref(mContext, "DesignationID", "");
+                                Utility.setPref(mContext, "DeviceId", "");
+                                Utility.setPref(mContext, "unm", "");
+                                Utility.setPref(mContext, "pwd", "");
+                                Intent i = new Intent(getActivity(), LoginActivity.class);
+                                getActivity().startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(R.drawable.ic_launcher)
+                        .show();
+            }
+        });
         btnBackSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

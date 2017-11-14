@@ -62,6 +62,7 @@ public class TestsyllabusListAdapter extends BaseAdapter implements DatePickerDi
     ArrayList<String> syllbusarray = new ArrayList<>();
 
     private ArrayList<String> editTestData = new ArrayList<String>();
+    private String editString = new String();
     private onEditTest onEditTest;
 
     // Constructor
@@ -198,10 +199,12 @@ public class TestsyllabusListAdapter extends BaseAdapter implements DatePickerDi
                                     }
                                 }
                                 text.add(txtstr);
-                                Log.d("join", "" + text.toString());
+                                String textstr = text.toString();
+                                Log.d("join", "" + textstr.toString());
+                                editString = textstr.toString();
                                 editTestData.add(test_syllabusModels.get(position).getTSMasterID() + "|" + test_syllabusModels.get(position).getTestID() + "|" +
                                         test_syllabusModels.get(position).getSubjectID() + "|" + test_syllabusModels.get(position).getSectionID() + "|" +
-                                        test_syllabusModels.get(position).getTestDate() + "|" + text);
+                                        test_syllabusModels.get(position).getTestDate());
                                 onEditTest.getEditTest();
                             }
                         });
@@ -259,8 +262,13 @@ public class TestsyllabusListAdapter extends BaseAdapter implements DatePickerDi
         }
         return convertView;
     }
+
     public ArrayList<String> getDataforEditTest() {
         return editTestData;
+    }
+
+    public String getEditStr() {
+        return editString;
     }
 }
 

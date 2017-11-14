@@ -193,7 +193,7 @@ public class HomeFragment extends Fragment {
                     } else {
                         new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
                                 .setCancelable(false)
-                                .setMessage("No Record Found.")
+                                .setMessage("You are not a Class Teacher.")
                                 .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         // do nothing
@@ -218,7 +218,7 @@ public class HomeFragment extends Fragment {
                     } else {
                         new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
                                 .setCancelable(false)
-                                .setMessage("No Record Found.")
+                                .setMessage("You are not a Class Teacher.")
                                 .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         // do nothing

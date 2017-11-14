@@ -61,9 +61,10 @@
             android:id="@+id/subject_txt"
             android:layout_width="0dp"
             android:layout_height="@dimen/_31sdp"
-            android:layout_weight="1"
+            android:layout_weight=".8"
             android:paddingTop="@dimen/_6sdp"
             android:text="@string/subject"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/_10sdp" />

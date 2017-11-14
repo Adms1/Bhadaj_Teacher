@@ -8,23 +8,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,14 +28,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.bhadajteacher.Activities.LoginActivity;
-import anandniketan.com.bhadajteacher.Adapter.ExpandableListAdapterHomeWork;
 import anandniketan.com.bhadajteacher.Adapter.ExpandableListAdapterWorkPlan;
-import anandniketan.com.bhadajteacher.AsyncTasks.GetTeacherDailyWorkAsyncTask;
 import anandniketan.com.bhadajteacher.AsyncTasks.GetTeacherWorkPlanAsyncTask;
 import anandniketan.com.bhadajteacher.AsyncTasks.TeacherUpdateWorkPlanCompletionAsyncTask;
-import anandniketan.com.bhadajteacher.Interfacess.onStudentHomeWorkStatus;
 import anandniketan.com.bhadajteacher.Interfacess.onWorkStatus;
-import anandniketan.com.bhadajteacher.Models.HomeworkModel;
 import anandniketan.com.bhadajteacher.Models.WorkPlanResponse.UpdateWorkStatusModel;
 import anandniketan.com.bhadajteacher.Models.WorkPlanResponse.WorkPlanDatum;
 import anandniketan.com.bhadajteacher.Models.WorkPlanResponse.WorkPlanMainResponseModel;
@@ -51,7 +42,7 @@ import anandniketan.com.bhadajteacher.Utility.Utility;
 public class WorkPlanFragment extends Fragment {
     private View rootView;
     private Context mContext;
-    private Button btnBack_workplan, btnFilterWorkPlan;
+    private Button btnBack_workplan, btnFilterWorkPlan, btnLogout;
     private TextView txtNoRecordsworkplan;
     private Spinner spinfromdate, spintodate;
     private LinearLayout workplan_header;
@@ -69,7 +60,8 @@ public class WorkPlanFragment extends Fragment {
     HashMap<String, ArrayList<WorkPlanDatum>> listDataChild;
     private TeacherUpdateWorkPlanCompletionAsyncTask teacherUpdateWorkPlanCompletionAsyncTask = null;
     private UpdateWorkStatusModel updateWorkStatusModel;
-    private String WorkIDstr, WorkPlanIDstr, TeacherWorkstr, CompleteStatusstr, FromDatestr, ToDatestr, Remark, getvalue;
+    private String WorkIDstr, WorkPlanIDstr, TeacherWorkstr, CompleteStatusstr, FromDatestr, ToDatestr, Remark, getvalue, selctedValuefrom = "", selctedValueTo = "";
+
 
     public WorkPlanFragment() {
     }
@@ -85,6 +77,7 @@ public class WorkPlanFragment extends Fragment {
     }
 
     public void initViews() {
+        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnBack_workplan = (Button) rootView.findViewById(R.id.btnBack_workplan);
         btnFilterWorkPlan = (Button) rootView.findViewById(R.id.btnFilterWorkPlan);
         txtNoRecordsworkplan = (TextView) rootView.findViewById(R.id.txtNoRecordsworkplan);
@@ -93,13 +86,43 @@ public class WorkPlanFragment extends Fragment {
         workplan_header = (LinearLayout) rootView.findViewById(R.id.workplan_header);
         lvExpworkplan = (ExpandableListView) rootView.findViewById(R.id.lvExpworkplan);
         date_rel = (RelativeLayout) rootView.findViewById(R.id.date_rel);
+
         fillSpinner();
-//        setSelection();
         setListner();
-//        getHomeworkData(SelectedMonthfrom, SelectedYearfrom, SelectedMonthto, SelectedYearto);
     }
 
     public void setListner() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
+                        .setCancelable(false)
+                        .setTitle("Logout")
+                        .setIcon(mContext.getResources().getDrawable(R.drawable.ic_launcher))
+                        .setMessage("Are you sure you want to logout? ")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Utility.setPref(mContext, "StaffID", "");
+                                Utility.setPref(mContext, "Emp_Code", "");
+                                Utility.setPref(mContext, "Emp_Name", "");
+                                Utility.setPref(mContext, "DepratmentID", "");
+                                Utility.setPref(mContext, "DesignationID", "");
+                                Utility.setPref(mContext, "DeviceId", "");
+                                Utility.setPref(mContext, "unm", "");
+                                Utility.setPref(mContext, "pwd", "");
+                                Intent i = new Intent(getActivity(), LoginActivity.class);
+                                getActivity().startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(R.drawable.ic_launcher)
+                        .show();
+            }
+        });
         btnBack_workplan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,14 +147,15 @@ public class WorkPlanFragment extends Fragment {
         btnFilterWorkPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getHomeworkData(SelectedMonthfrom, SelectedYearfrom, SelectedMonthto, SelectedYearto);
+                getHomeworkData();
             }
         });
         spinfromdate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selctedValue = adapterView.getItemAtPosition(i).toString();
-                String[] splitvalue = selctedValue.split("\\-");
+                selctedValuefrom = adapterView.getItemAtPosition(i).toString();
+                Log.d("fromdate", selctedValuefrom);
+                String[] splitvalue = selctedValuefrom.split("\\-");
 
                 SelectedMonthfrom = splitvalue[0];
                 SelectedYearfrom = splitvalue[1].replaceFirst(">", "");
@@ -145,12 +169,13 @@ public class WorkPlanFragment extends Fragment {
         spintodate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selctedValue = adapterView.getItemAtPosition(i).toString();
-                String[] splitvalue = selctedValue.split("\\-");
-
-                SelectedMonthto = splitvalue[0];
-                SelectedYearto = splitvalue[1].replaceFirst(">", "");
+                selctedValueTo = adapterView.getItemAtPosition(i).toString();
+                Log.d("Todate", selctedValueTo);
+                String[] splitvalueyear = selctedValueTo.split("\\-");
+                SelectedMonthto = splitvalueyear[0];
+                SelectedYearto = splitvalueyear[1].replaceFirst(">", "");
                 Log.d("SelectedMonthto", SelectedMonthto + "|" + SelectedYearto);
+
             }
 
             @Override
@@ -158,7 +183,6 @@ public class WorkPlanFragment extends Fragment {
             }
         });
     }
-
     public void fillSpinner() {
         final Calendar calendar = Calendar.getInstance();
         int currentyear = calendar.get(Calendar.YEAR);
@@ -186,9 +210,37 @@ public class WorkPlanFragment extends Fragment {
 
         ArrayAdapter<String> adapterMonthyearfrom = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, monthyear);
         spinfromdate.setAdapter(adapterMonthyearfrom);
+//        setDynamicHeight(spinfromdate);
 
         ArrayAdapter<String> adapterMonthyearto = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, monthyear);
         spintodate.setAdapter(adapterMonthyearto);
+    }
+
+    private void setDynamicHeight(Spinner spinner) {
+        SpinnerAdapter gridViewAdapter = spinner.getAdapter();
+        if (gridViewAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        int items = gridViewAdapter.getCount();
+        int rows = 0;
+
+        View listItem = gridViewAdapter.getView(0, null, spinner);
+        listItem.measure(0, 0);
+        totalHeight = listItem.getMeasuredHeight();
+
+        float x = 1;
+        if (items > 7) {
+            x = items / 7;
+            rows = (int) (x + 1);
+            totalHeight *= rows;
+        }
+
+        ViewGroup.LayoutParams params = spinner.getLayoutParams();
+        params.height = totalHeight;
+        spinner.setLayoutParams(params);
     }
 
     public void setSelection() {
@@ -202,18 +254,22 @@ public class WorkPlanFragment extends Fragment {
         for (int i = 0; i < getResources().getStringArray(R.array.month).length; i++) {
             months.add(getResources().getStringArray(R.array.month)[i]);
         }
-        spinfromdate.setSelection(months.indexOf(months.get(mm - 1)));
+//        spinfromdate.setSelection(months.indexOf(months.get(mm - 1)));
         Log.d("spinfromdate", "" + spinfromdate.getSelectedItem().toString());
         ArrayList<String> year2 = new ArrayList<>();
         for (int i = 0; i < year1.size(); i++) {
             year2.add(year1.get(i));
         }
-        String putvalue = months.indexOf(months.get(mm - 1)) + "->" + year2.indexOf(String.valueOf(yy));
-        spintodate.setSelection(Integer.parseInt(putvalue));
+        String putvalue = String.valueOf(months.indexOf(months.get(mm - 1)));
+        String putvalueyear = String.valueOf(year2.indexOf(year2.get(yy)));
+//        spintodate.setSelection(Integer.parseInt(putvalue));
         Log.d("putvalue", putvalue);
+        Log.d("putvalueyear", putvalueyear);
+        setmonthyear.add(putvalue + "->" + putvalueyear);
+        spinfromdate.setSelection(setmonthyear.indexOf(setmonthyear));
     }
 
-    public void getHomeworkData(final String SelectedMonthfrom, final String SelectedYearfrom, final String SelectedMonthto, final String SelectedYearto) {
+    public void getHomeworkData() {
         if (!SelectedMonthfrom.equalsIgnoreCase("") && !SelectedYearfrom.equalsIgnoreCase("")
                 && !SelectedMonthto.equalsIgnoreCase("") && !SelectedYearto.equalsIgnoreCase("")) {
             if (Utility.isNetworkConnected(mContext)) {
@@ -221,6 +277,7 @@ public class WorkPlanFragment extends Fragment {
                 progressDialog.setMessage("Please Wait...");
                 progressDialog.setCancelable(false);
                 progressDialog.show();
+
 
                 new Thread(new Runnable() {
                     @Override
@@ -232,7 +289,6 @@ public class WorkPlanFragment extends Fragment {
                             params.put("fromYear", SelectedYearfrom);
                             params.put("ToMonth", SelectedMonthto);
                             params.put("ToYear", SelectedYearto);
-
 
                             getTeacherWorkPlanAsyncTask = new GetTeacherWorkPlanAsyncTask(params);
                             workPlanMainResponseModel = getTeacherWorkPlanAsyncTask.execute().get();
@@ -263,17 +319,21 @@ public class WorkPlanFragment extends Fragment {
                                     }
                                 }
                             });
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 }).start();
+
             } else {
                 Utility.ping(mContext, "Network not available");
             }
         } else {
+            progressDialog.dismiss();
             Utility.ping(mContext, "Blank filed not allowed.");
         }
+
     }
 
     public void prepareList() {
@@ -326,58 +386,50 @@ public class WorkPlanFragment extends Fragment {
         ToDatestr = spiltvalue[5];
         Remark = spiltvalue[6];
         Log.d("ToDatestr", ToDatestr);
-//        if (!spiltvalue[6].equalsIgnoreCase("")) {
-//            spiltvalue[6] = spiltvalue[6].substring(0, spiltvalue.length - 1);
-//            Remark = spiltvalue[6];
-//        } else {
-//            Remark = "";
-//            spiltvalue[5] = spiltvalue[5].substring(0, spiltvalue.length - 1);
-//            ToDatestr = spiltvalue[5];
-//        }
+        Log.d("Remark", Remark);
+
+        Log.d("value", WorkIDstr + "," + WorkPlanIDstr + "," + TeacherWorkstr + "," + CompleteStatusstr + "," + FromDatestr + "," + ToDatestr + "," + Remark);
+        if (Utility.isNetworkConnected(mContext)) {
+            progressDialog = new ProgressDialog(mContext);
+            progressDialog.setMessage("Please Wait...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        HashMap<String, String> params = new HashMap<String, String>();
+                        params.put("WorkID", WorkIDstr);
+                        params.put("WorkPlanID", WorkPlanIDstr);
+                        params.put("TeacherWork", TeacherWorkstr);
+                        params.put("CompleteStatus", CompleteStatusstr);
+                        params.put("FromDate", FromDatestr);
+                        params.put("ToDate", ToDatestr);
+                        params.put("Remark", Remark);
 
 
-        Log.d("value", WorkIDstr + "," + WorkPlanIDstr + "," + TeacherWorkstr + "," + CompleteStatusstr + "," + FromDatestr + ToDatestr + "," + Remark);
-//        if (Utility.isNetworkConnected(mContext)) {
-//            progressDialog = new ProgressDialog(mContext);
-//            progressDialog.setMessage("Please Wait...");
-//            progressDialog.setCancelable(false);
-//            progressDialog.show();
-//
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        HashMap<String, String> params = new HashMap<String, String>();
-//                        params.put("WorkID", WorkIDstr);
-//                        params.put("WorkPlanID", WorkPlanIDstr);
-//                        params.put("TeacherWork", TeacherWorkstr);
-//                        params.put("CompleteStatus", CompleteStatusstr);
-//                        params.put("FromDate", FromDatestr);
-//                        params.put("ToDate", ToDatestr);
-//                        params.put("Remark", Remark);
-//
-//
-//                        teacherUpdateWorkPlanCompletionAsyncTask = new TeacherUpdateWorkPlanCompletionAsyncTask(params);
-//                        updateWorkStatusModel = teacherUpdateWorkPlanCompletionAsyncTask.execute().get();
-//                        getActivity().runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                progressDialog.dismiss();
-//                                if (updateWorkStatusModel.getSuccess().equalsIgnoreCase("True")) {
-//                                    progressDialog.dismiss();
-//                                    Utility.ping(mContext, "Update Status");
-//                                } else {
-//                                    progressDialog.dismiss();
-//                                }
-//                            }
-//                        });
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }).start();
-//        } else {
-//            Utility.ping(mContext, "Network not available");
-//        }
+                        teacherUpdateWorkPlanCompletionAsyncTask = new TeacherUpdateWorkPlanCompletionAsyncTask(params);
+                        updateWorkStatusModel = teacherUpdateWorkPlanCompletionAsyncTask.execute().get();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialog.dismiss();
+                                if (updateWorkStatusModel.getSuccess().equalsIgnoreCase("True")) {
+                                    progressDialog.dismiss();
+                                    Utility.ping(mContext, "Update Status");
+                                } else {
+                                    progressDialog.dismiss();
+                                }
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } else {
+            Utility.ping(mContext, "Network not available");
+        }
     }
 }

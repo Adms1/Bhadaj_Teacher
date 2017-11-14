@@ -7,17 +7,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_1sdp"
         android:orientation="horizontal"
+        android:weightSum="4"
         android:background="@drawable/list_line">
 
         <TextView
             android:id="@+id/txtLecture"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/txtSubject"
             android:layout_alignParentLeft="true"
             android:layout_alignTop="@+id/txtSubject"
             android:layout_toLeftOf="@+id/txtSubject"
-            android:layout_weight="1.2"
+            android:layout_weight="1"
             android:textAlignment="center"
             android:text="Lecture "
             android:layout_marginLeft="@dimen/_5sdp"
@@ -28,7 +29,7 @@
 
         <TextView
             android:id="@+id/txtSubject"
-            android:layout_width="@dimen/_90sdp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginLeft="@dimen/_5sdp"
@@ -43,7 +44,7 @@
 
         <TextView
             android:id="@+id/txtClass"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -54,7 +55,7 @@
             android:textSize="@dimen/_9sdp" />
         <ImageView
             android:id="@+id/delete_insert_img"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/txtSubject"
             android:layout_alignParentRight="true"
