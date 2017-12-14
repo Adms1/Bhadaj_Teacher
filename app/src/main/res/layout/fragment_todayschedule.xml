@@ -25,8 +25,7 @@
     <LinearLayout
         android:id="@+id/header_linear"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:layout_height="wrap_content">
 
         <include layout="@layout/todayschedule_header" />
     </LinearLayout>

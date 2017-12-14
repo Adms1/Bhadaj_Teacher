@@ -52,7 +52,8 @@
     <string name="workenddate">Work End Date :</string>
     <string name="works">Work :</string>
     <string name="worksubject">Subject</string>
-
+    <string name="chaptername">Chapter Name :</string>
+    <string name="objective">Objective :</string>
 
     <string-array name="menuoption1">
         <item>Home</item>

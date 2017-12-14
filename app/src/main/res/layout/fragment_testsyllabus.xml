@@ -20,7 +20,7 @@
             android:id="@+id/txtNoRecordstest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/header"
+            android:layout_below="@+id/headerRel"
             android:layout_marginTop="@dimen/_20sdp"
             android:gravity="center"
             android:text="No Records Found..."
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/header"
+            android:layout_below="@+id/headerRel"
             android:layout_margin="0dp">
 
             <include layout="@layout/list_test_header" />

@@ -15,75 +15,56 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <LinearLayout
-            android:id="@+id/header"
+        <RelativeLayout
+            android:id="@+id/headerRel"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="40dp"
-            android:background="@color/linear_color"
-            android:orientation="vertical">
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/hedar_1">
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/_1sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/logout_button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_37sdp"
+                android:text="MARKS"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="normal" />
 
             <Button
                 android:id="@+id/btnBackMarks"
                 android:layout_width="@dimen/_13sdp"
                 android:layout_height="@dimen/_13sdp"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_39sdp"
                 android:background="@drawable/back_btn" />
 
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="left"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:layout_weight="1"
-            android:paddingBottom="@dimen/_34sdp"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:scaleType="fitStart"
-            android:src="@drawable/skool_360" />
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/logout_button"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_25sdp"
-            android:text="Marks"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:textStyle="normal"
-            android:layout_alignTop="@+id/header"
-            android:layout_centerHorizontal="true" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/txtNoRecordsMarks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/header"
+            android:layout_below="@+id/headerRel"
             android:layout_marginTop="@dimen/_20sdp"
             android:gravity="center"
-            android:textSize="@dimen/_11sdp"
             android:text="No Records Found..."
             android:textColor="@android:color/holo_red_dark"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
             android:visibility="gone" />
 
@@ -91,7 +72,7 @@
             android:id="@+id/class_linear"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:layout_below="@+id/header"
+            android:layout_below="@+id/headerRel"
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
             android:visibility="gone">
@@ -105,15 +86,14 @@
                 android:layout_below="@+id/header"
                 android:layout_margin="@dimen/_10sdp"
                 android:background="@drawable/dropdown_button_1"
-                android:dropDownVerticalOffset="@dimen/_30sdp"
                 android:forceHasOverlappingRendering="false" />
 
             <ImageView
                 android:id="@+id/search_img"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="60dp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:src="@drawable/search_icon"
                 android:visibility="gone" />
         </LinearLayout>
@@ -123,24 +103,23 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_below="@+id/class_linear"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/search_edt"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
-                 android:background="@drawable/calendar_line"
                 android:layout_margin="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginRight="@dimen/_20sdp"
+                android:background="@drawable/calendar_line"
+                android:drawableRight="@drawable/search_icon"
                 android:gravity="left|center"
                 android:maxLines="1"
                 android:paddingLeft="@dimen/_7sdp"
-                android:textSize="@dimen/_10sdp"
-                android:drawableRight="@drawable/search_icon"
                 android:paddingRight="@dimen/_13sdp"
-                android:visibility="gone"/>
+                android:textSize="@dimen/_10sdp"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout

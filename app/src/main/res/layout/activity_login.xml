@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -13,9 +13,9 @@
             android:id="@+id/Login_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_80sdp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="167dp"
             android:gravity="center|center_vertical"
             android:orientation="vertical"
             android:padding="@dimen/_20sdp">
@@ -23,18 +23,19 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/TextLabel">
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <EditText
                     android:id="@+id/UserName_edt"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/edit_line"
                     android:drawableLeft="@drawable/user"
                     android:hint="@string/UserName"
                     android:maxLines="1"
                     android:padding="@dimen/_10sdp"
+                    android:singleLine="true"
                     android:textColor="@color/editTextcolor"
                     android:textColorHint="@color/editTextcolor"
                     android:textSize="@dimen/_11sdp" />
@@ -44,12 +45,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:theme="@style/TextLabel">
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
 
                 <EditText
                     android:id="@+id/Password_edt"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/edit_line"
                     android:drawableLeft="@drawable/password"
@@ -57,6 +58,7 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:padding="@dimen/_10sdp"
+                    android:singleLine="true"
                     android:textColor="@color/editTextcolor"
                     android:textColorHint="@color/editTextcolor"
                     android:textSize="@dimen/_11sdp" />
@@ -65,8 +67,8 @@
 
         <CheckBox
             android:id="@+id/Remember_chk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_alignLeft="@+id/Login_linear"
             android:layout_alignStart="@+id/Login_linear"
             android:layout_below="@+id/Login_linear"
@@ -80,21 +82,21 @@
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold" />
 
-
         <Button
             android:id="@+id/Login_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_240sdp"
+            android:layout_height="@dimen/_38sdp"
             android:layout_below="@+id/Remember_chk"
             android:layout_margin="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/round_button"
             android:onClick="login"
-            android:padding="@dimen/_12sdp"
+            android:padding="@dimen/_10sdp"
             android:text="@string/Login"
             android:textAlignment="center"
             android:textColor="@color/editTextcolor"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_11sdp" />
+
     </RelativeLayout>
 
 </layout>

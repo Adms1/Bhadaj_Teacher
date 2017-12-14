@@ -6,9 +6,9 @@
         </shape>
     </item>
     <item
-        android:bottom="5dp"
+        android:bottom="@dimen/_5sdp"
         android:drawable="@drawable/truesign_30x30"
-        android:left="5dp"
-        android:right="5dp"
-        android:top="5dp" />
+        android:left="@dimen/_5sdp"
+        android:right="@dimen/_5sdp"
+        android:top="@dimen/_5sdp" />
 </layer-list>

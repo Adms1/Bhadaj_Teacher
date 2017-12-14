@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -86,6 +87,23 @@ public class WorkPlanFragment extends Fragment {
         workplan_header = (LinearLayout) rootView.findViewById(R.id.workplan_header);
         lvExpworkplan = (ExpandableListView) rootView.findViewById(R.id.lvExpworkplan);
         date_rel = (RelativeLayout) rootView.findViewById(R.id.date_rel);
+
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinfromdate);
+            android.widget.ListPopupWindow popupWindow1 = (android.widget.ListPopupWindow) popup.get(spintodate);
+            // Set popupWindow height to 500px
+            popupWindow.setHeight(300);
+            popupWindow1.setHeight(300);
+        }
+        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
+
 
         fillSpinner();
         setListner();
@@ -216,32 +234,7 @@ public class WorkPlanFragment extends Fragment {
         spintodate.setAdapter(adapterMonthyearto);
     }
 
-    private void setDynamicHeight(Spinner spinner) {
-        SpinnerAdapter gridViewAdapter = spinner.getAdapter();
-        if (gridViewAdapter == null) {
-            // pre-condition
-            return;
-        }
 
-        int totalHeight = 0;
-        int items = gridViewAdapter.getCount();
-        int rows = 0;
-
-        View listItem = gridViewAdapter.getView(0, null, spinner);
-        listItem.measure(0, 0);
-        totalHeight = listItem.getMeasuredHeight();
-
-        float x = 1;
-        if (items > 7) {
-            x = items / 7;
-            rows = (int) (x + 1);
-            totalHeight *= rows;
-        }
-
-        ViewGroup.LayoutParams params = spinner.getLayoutParams();
-        params.height = totalHeight;
-        spinner.setLayoutParams(params);
-    }
 
     public void setSelection() {
         final Calendar calendar = Calendar.getInstance();

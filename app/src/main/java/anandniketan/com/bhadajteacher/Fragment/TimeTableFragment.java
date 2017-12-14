@@ -26,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -303,6 +304,32 @@ public class TimeTableFragment extends Fragment {
         edit_day_txt = (TextView) layout.findViewById(R.id.edit_day_txt);
         edit_day_lecture_txt = (TextView) layout.findViewById(R.id.edit_day_lecture_txt);
         edit_lecture_section_llListData = (LinearLayout) layout.findViewById(R.id.edit_lecture_section_llListData);
+
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(edit_grade_spinner);
+            android.widget.ListPopupWindow popupWindow1 = (android.widget.ListPopupWindow) popup.get(edit_subject_spinner);
+            android.widget.ListPopupWindow popupWindow2 = (android.widget.ListPopupWindow) popup.get(edit_Starttime_spinner);
+            android.widget.ListPopupWindow popupWindow3 = (android.widget.ListPopupWindow) popup.get(edit_Starttime1_spinner);
+            android.widget.ListPopupWindow popupWindow4 = (android.widget.ListPopupWindow) popup.get(edit_Endtime_spinner);
+            android.widget.ListPopupWindow popupWindow5 = (android.widget.ListPopupWindow) popup.get(edit_Endtime1_spinner);
+            // Set popupWindow height to 500px
+            popupWindow.setHeight(300);
+            popupWindow1.setHeight(200);
+            popupWindow2.setHeight(300);
+            popupWindow3.setHeight(300);
+            popupWindow4.setHeight(300);
+            popupWindow5.setHeight(300);
+        }
+        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
+
+
 
         setTodayschedule();
         fillStartEndTimeHourspinner();

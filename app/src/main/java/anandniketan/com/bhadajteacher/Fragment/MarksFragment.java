@@ -25,9 +25,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import anandniketan.com.bhadajteacher.Activities.LoginActivity;
@@ -192,19 +194,32 @@ public class MarksFragment extends Fragment {
                     search_edt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.search_icon, 0);
                 }
 
-                List<FinalArray> filterFinalArray = new ArrayList<FinalArray>();
-                String[] array = spinnerSelectedValue.split("->");
-                for (FinalArray arrayObj : response.getFinalArray()) {
-                    if (arrayObj.getStandardClass().equalsIgnoreCase(array[0].trim()) && arrayObj.getTestName().equalsIgnoreCase(array[1].trim())) {
-                        for (StudentDatum studentDatum : arrayObj.getStudentData()) {
-                            if (studentDatum.getStudentName().toLowerCase().contains(s.toString().toLowerCase())) {
-                                filterFinalArray.add(arrayObj);
+                if (count > 2) {
+                    List<StudentDatum> filterFinalArray = new ArrayList<StudentDatum>();
+                    String[] array = spinnerSelectedValue.split("->");
+                    Log.d("arrayString", Arrays.toString(array) + " == " + s.toString());
+                    for (FinalArray arrayObj : response.getFinalArray()) {
+                        if (arrayObj.getStandardClass().equalsIgnoreCase(array[0].trim()) && arrayObj.getTestName().equalsIgnoreCase(array[1].trim())) {
+                            for (int i = 0; i < arrayObj.getStudentData().size(); i++) {
+                                if (arrayObj.getStudentData().get(i).getStudentName().toLowerCase().contains(s.toString().toLowerCase())) {
+                                    filterFinalArray.add(arrayObj.getStudentData().get(i));
+                                }
                             }
                         }
                     }
-
+                    Log.d("FilterArray", "" + filterFinalArray.size());
+                    setSearchExpandableListView(filterFinalArray);
+                } else {
+                    String[] array = spinnerSelectedValue.split("->");
+                    Log.d("Array", Arrays.toString(array));
+                    List<FinalArray> filterFinalArray = new ArrayList<FinalArray>();
+                    for (FinalArray arrayObj : response.getFinalArray()) {
+                        if (arrayObj.getStandardClass().equalsIgnoreCase(array[0].trim()) && arrayObj.getTestName().equalsIgnoreCase(array[1].trim())) {
+                            filterFinalArray.add(arrayObj);
+                        }
+                    }
+                    setExpandableListView(filterFinalArray);
                 }
-                setExpandableListView(filterFinalArray);
             }
 
             @Override
@@ -279,12 +294,48 @@ public class MarksFragment extends Fragment {
         listAdapterMarks = new ExpandableListAdapterMarks(getActivity(), listDataHeader, listDataChild, listDatafooter);
         lvExpMarks.setAdapter(listAdapterMarks);
     }
-
+    private void setSearchExpandableListView(List<StudentDatum> array) {
+        listDataHeader = new ArrayList<>();
+        listDataChild.clear();
+        listDatafooter.clear();
+        for (int i = 0; i < array.size(); i++) {
+            if (array.size() > 0) {
+                Marks_header.setVisibility(View.VISIBLE);
+                search_edt.setVisibility(View.VISIBLE);
+                for (int j = 0; j < array.size(); j++) {
+                    listDataHeader.add(array.get(j).getStudentName() + "|" + array.get(j).getGRNO() + "|" + array.get(j).getPercentage());
+                    listDataChild.put(array.get(j).getStudentName() + "|" + array.get(j).getGRNO() + "|" + array.get(j).getPercentage(), array.get(j).getSubjectMarks());
+                    listDatafooter.put(array.get(j).getStudentName() + "|" + array.get(j).getGRNO() + "|" + array.get(j).getPercentage(), String.valueOf(array.get(j).getTotalGainedMarks()) + "/" + String.valueOf(array.get(j).getTotalMarks()));
+                }
+            } else {
+                Marks_header.setVisibility(View.GONE);
+                search_edt.setVisibility(View.GONE);
+            }
+        }
+        listAdapterMarks = new ExpandableListAdapterMarks(getActivity(), listDataHeader, listDataChild, listDatafooter);
+        lvExpMarks.setAdapter(listAdapterMarks);
+    }
     public void fillspinner() {
         ArrayList<String> row = new ArrayList<String>();
 
         for (int z = 0; z < response.getFinalArray().size(); z++) {
             row.add(response.getFinalArray().get(z).getStandardClass() + " -> " + response.getFinalArray().get(z).getTestName());
+        }
+        HashSet hs = new HashSet();
+        hs.addAll(row);
+        row.clear();
+        row.addAll(hs);
+        Log.d("marks", "" + row);
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(class_spinner);
+
+            popupWindow.setHeight(row.size() > 5 ? 500 : row.size() * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
         }
         ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, row);
         class_spinner.setAdapter(adapterYear);

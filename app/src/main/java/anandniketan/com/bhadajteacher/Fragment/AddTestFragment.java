@@ -28,9 +28,11 @@ import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import anandniketan.com.bhadajteacher.Adapter.AddTestDetalisListAdapter;
 import anandniketan.com.bhadajteacher.AsyncTasks.GetTeacherAssignedSubjectAsyncTask;
@@ -104,6 +106,7 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
         txtNoRecords = (TextView) rootView.findViewById(R.id.txtNoRecordstest);
         checkbox_linear = (LinearLayout) rootView.findViewById(R.id.checkbox_linear);
         main_linear_add = (LinearLayout) rootView.findViewById(R.id.main_linear_add);
+
         setUserVisibleHint(true);
         test_date.setText(Utility.getTodaysDate());
 
@@ -409,10 +412,23 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
             row.add(teacherAssignedSubjectModels.get(z).getStandard() + " -> " + teacherAssignedSubjectModels.get(z).getSubject());
         }
 
-//        HashSet<String> duplicates = new HashSet<String>();
-//        duplicates.add(String.valueOf(row));
-//        row.clear();
-//        row.addAll(duplicates);
+        HashSet hs = new HashSet();
+        hs.addAll(row);
+        row.clear();
+        row.addAll(hs);
+        Log.d("gfdgfdgfgfd",""+row);
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(standard_subject_spinner);
+
+            popupWindow.setHeight(row.size() > 5 ? 500 : row.size() * 100);
+        }
+        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
         ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, row);
         standard_subject_spinner.setAdapter(adapterYear);
 
@@ -484,6 +500,24 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
         for (int k = 0; k < teacherGetTestNameModels.size(); k++) {
             rowtest.add(teacherGetTestNameModels.get(k).getTestName() + teacherGetTestNameModels.get(k).getTestID());
         }
+        HashSet hs = new HashSet();
+        hs.addAll(rowtest);
+        rowtest.clear();
+        rowtest.addAll(hs);
+
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(test_spinner);
+
+            popupWindow.setHeight(rowtest.size() > 5 ? 500 : rowtest.size() * 100);
+        }
+        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
         ArrayAdapter<String> adaptertest = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, rowtest);
         test_spinner.setAdapter(adaptertest);
     }

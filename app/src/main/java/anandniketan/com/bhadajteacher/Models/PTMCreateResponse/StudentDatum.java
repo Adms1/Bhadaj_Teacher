@@ -17,7 +17,9 @@ public class StudentDatum {
     @SerializedName("GRNO")
     @Expose
     private String gRNO;
-
+    @SerializedName("CheckboxStatus")
+    @Expose
+    private String check;
     public Integer getStudentID() {
         return studentID;
     }
@@ -42,4 +44,11 @@ public class StudentDatum {
         this.gRNO = gRNO;
     }
 
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check;
+    }
 }

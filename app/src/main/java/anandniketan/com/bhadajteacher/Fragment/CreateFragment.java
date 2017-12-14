@@ -27,10 +27,12 @@ import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import anandniketan.com.bhadajteacher.Adapter.ListAdapterCreate;
@@ -72,6 +74,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
     MainPtmSentMessageResponse mainPtmSentMessageResponse;
     String finalStudentArray;
     private static String dateFinal;
+
     public CreateFragment() {
     }
 
@@ -100,6 +103,20 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
         Create_class_spinner = (Spinner) rootView.findViewById(R.id.Create_class_spinner);
         lvCreate = (ListView) rootView.findViewById(R.id.lvCreate);
         insert_message_img = (ImageView) rootView.findViewById(R.id.insert_message_img);
+
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(Create_class_spinner);
+
+            popupWindow.setHeight(200);
+
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
 
         setUserVisibleHint(true);
     }
@@ -203,21 +220,25 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                 insert_message_img.setVisibility(View.GONE);
             }
         }
+        for (int k = 0; k < arrayList.size(); k++) {
+            arrayList.get(k).setCheck("0");
+        }
         listAdapterCreate = new ListAdapterCreate(getActivity(), arrayList, getActivity().getFragmentManager(), new onCheckBoxChnage() {
             @Override
             public void getChecked() {
-                for (int i = 0; i <= lvCreate.getChildCount(); i++) {
-                    View view = lvCreate.getChildAt(i);
-                    if (view != null) {
-                        CheckBox ch = (CheckBox) view.findViewById(R.id.create_Checkbox);
-                        if (ch.isChecked()) {
-                            insert_message_img.setVisibility(View.VISIBLE);
-                            return;
-                        } else {
-                            insert_message_img.setVisibility(View.GONE);
-//                            return;
-                        }
+                insert_message_img.setVisibility(View.GONE);
+                ArrayList<StudentDatum> updatedData = listAdapterCreate.getDatas();
+                Boolean data = false;
+                for (int i = 0; i < updatedData.size(); i++) {
+                    if (updatedData.get(i).getCheck().equalsIgnoreCase("1")) {
+                        data = true;
+                        Log.d("Position , Checked or not", "" + i + " : " + updatedData.get(i).getCheck());
                     }
+                }
+                if (data) {
+                    insert_message_img.setVisibility(View.VISIBLE);
+                } else {
+                    insert_message_img.setVisibility(View.GONE);
                 }
             }
         });
@@ -233,6 +254,22 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
             row.add(response.getFinalArraycreate().get(z).getStandard() + "-" +
                     response.getFinalArraycreate().get(z).getClassname() + "->" +
                     response.getFinalArraycreate().get(z).getSubject());
+        }
+        HashSet hs = new HashSet();
+        hs.addAll(row);
+        row.clear();
+        row.addAll(hs);
+        Log.d("marks", "" + row);
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(Create_class_spinner);
+
+            popupWindow.setHeight(row.size() > 5 ? 500 : row.size() * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
         }
         ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, row);
         Create_class_spinner.setAdapter(adapterYear);
@@ -331,7 +368,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                                         @Override
                                         public void run() {
                                             progressDialog.dismiss();
-                                            if (mainPtmSentMessageResponse.getFinalArray().size() >=0) {
+                                            if (mainPtmSentMessageResponse.getFinalArray().size() >= 0) {
                                                 Utility.ping(mContext, "Send Sucessfully");
                                                 alertDialogAndroid.dismiss();
                                             } else {

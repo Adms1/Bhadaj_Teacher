@@ -10,6 +10,6 @@
         android:endColor="@color/gray"
         android:angle="270" />
     <size
-        android:width="25dp"
-        android:height="25dp" />
+        android:width="@dimen/_23sdp"
+        android:height="@dimen/_23sdp" />
 </shape>

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="1dp"
+        android:paddingBottom="@dimen/_1sdp"
         android:visibility="visible"
         android:weightSum="5"
         android:padding="@dimen/_5sdp"
