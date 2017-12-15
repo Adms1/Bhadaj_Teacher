@@ -23,6 +23,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -88,25 +89,9 @@ public class WorkPlanFragment extends Fragment {
         lvExpworkplan = (ExpandableListView) rootView.findViewById(R.id.lvExpworkplan);
         date_rel = (RelativeLayout) rootView.findViewById(R.id.date_rel);
 
-        try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
-            popup.setAccessible(true);
-
-            // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinfromdate);
-            android.widget.ListPopupWindow popupWindow1 = (android.widget.ListPopupWindow) popup.get(spintodate);
-            // Set popupWindow height to 500px
-            popupWindow.setHeight(300);
-            popupWindow1.setHeight(300);
-        }
-        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-            // silently fail...
-        }
-
-
-
         fillSpinner();
         setListner();
+//        getHomeworkData();
     }
 
     public void setListner() {
@@ -201,7 +186,10 @@ public class WorkPlanFragment extends Fragment {
             }
         });
     }
+
     public void fillSpinner() {
+
+        String compare;
         final Calendar calendar = Calendar.getInstance();
         int currentyear = calendar.get(Calendar.YEAR);
         int nextyear = calendar.get(Calendar.YEAR) + 1;
@@ -213,6 +201,10 @@ public class WorkPlanFragment extends Fragment {
         int yy = calendar.get(Calendar.YEAR);
         int mm = calendar.get(Calendar.MONTH) + 1;
         int dd = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+        compare = getResources().getStringArray(R.array.month)[calendar.get(Calendar.MONTH)] + "->" + yy;
+        Log.d("compare", compare);
 
         ArrayList<String> months = new ArrayList<>();
         for (int i = 0; i < getResources().getStringArray(R.array.month).length; i++) {
@@ -226,43 +218,41 @@ public class WorkPlanFragment extends Fragment {
         }
         Log.d("monthyear", "" + monthyear);
 
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinfromdate);
+            android.widget.ListPopupWindow popupWindow1 = (android.widget.ListPopupWindow) popup.get(spintodate);
+
+            popupWindow.setHeight(monthyear.size() > 5 ? 500 : monthyear.size() * 100);
+            popupWindow1.setHeight(monthyear.size() > 5 ? 500 : monthyear.size() * 100);
+
+
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
         ArrayAdapter<String> adapterMonthyearfrom = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, monthyear);
         spinfromdate.setAdapter(adapterMonthyearfrom);
 //        setDynamicHeight(spinfromdate);
 
         ArrayAdapter<String> adapterMonthyearto = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, monthyear);
         spintodate.setAdapter(adapterMonthyearto);
+
+        for (int m = 0; m < monthyear.size(); m++) {
+            if (compare.equalsIgnoreCase(monthyear.get(m))) {
+                Log.d("monthyearValue", monthyear.get(m));
+                int index = m;
+                Log.d("indexOf", String.valueOf(index));
+                spinfromdate.setSelection(index);
+                spintodate.setSelection(index);
+            }
+        }
+
     }
 
-
-
-    public void setSelection() {
-        final Calendar calendar = Calendar.getInstance();
-        int yy = calendar.get(Calendar.YEAR);
-        int mm = calendar.get(Calendar.MONTH) + 1;
-        int dd = calendar.get(Calendar.DAY_OF_MONTH);
-
-        ArrayList<String> setmonthyear = new ArrayList<>();
-        ArrayList<String> months = new ArrayList<>();
-        for (int i = 0; i < getResources().getStringArray(R.array.month).length; i++) {
-            months.add(getResources().getStringArray(R.array.month)[i]);
-        }
-//        spinfromdate.setSelection(months.indexOf(months.get(mm - 1)));
-        Log.d("spinfromdate", "" + spinfromdate.getSelectedItem().toString());
-        ArrayList<String> year2 = new ArrayList<>();
-        for (int i = 0; i < year1.size(); i++) {
-            year2.add(year1.get(i));
-        }
-        String putvalue = String.valueOf(months.indexOf(months.get(mm - 1)));
-        String putvalueyear = String.valueOf(year2.indexOf(year2.get(yy)));
-//        spintodate.setSelection(Integer.parseInt(putvalue));
-        Log.d("putvalue", putvalue);
-        Log.d("putvalueyear", putvalueyear);
-        setmonthyear.add(putvalue + "->" + putvalueyear);
-        spinfromdate.setSelection(setmonthyear.indexOf(setmonthyear));
-    }
-
-    
     public void getHomeworkData() {
         if (!SelectedMonthfrom.equalsIgnoreCase("") && !SelectedYearfrom.equalsIgnoreCase("")
                 && !SelectedMonthto.equalsIgnoreCase("") && !SelectedYearto.equalsIgnoreCase("")) {
