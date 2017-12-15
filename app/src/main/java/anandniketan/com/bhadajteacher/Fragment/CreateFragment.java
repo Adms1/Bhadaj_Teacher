@@ -31,6 +31,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -260,6 +261,9 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
         row.clear();
         row.addAll(hs);
         Log.d("marks", "" + row);
+
+        Collections.sort(row);
+        System.out.println("Sorted ArrayList in Java - Ascending order : " + row);
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);

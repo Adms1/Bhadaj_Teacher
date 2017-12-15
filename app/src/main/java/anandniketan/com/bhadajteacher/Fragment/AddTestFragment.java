@@ -31,6 +31,7 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -417,6 +418,8 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
         row.clear();
         row.addAll(hs);
         Log.d("gfdgfdgfgfd",""+row);
+        Collections.sort(row);
+        System.out.println("Sorted ArrayList in Java - Ascending order : " + row);
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);

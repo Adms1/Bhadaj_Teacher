@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import anandniketan.com.bhadajteacher.Fragment.My_subjectFragment;
 import anandniketan.com.bhadajteacher.Fragment.StudentAssignesubject;
+import anandniketan.com.bhadajteacher.Utility.AppConfiguration;
 
 
 /**
@@ -33,7 +34,7 @@ public class SubjectpagerAdapter extends FragmentStatePagerAdapter {
                 return tab1;
             case 1:
                 StudentAssignesubject tab2 = new StudentAssignesubject();
-                return tab2;
+                    return tab2;
             default:
                 return null;
         }

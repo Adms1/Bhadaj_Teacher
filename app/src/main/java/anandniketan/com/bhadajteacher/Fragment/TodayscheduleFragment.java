@@ -2,11 +2,15 @@ package anandniketan.com.bhadajteacher.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import anandniketan.com.bhadajteacher.Activities.LoginActivity;
 import anandniketan.com.bhadajteacher.Adapter.TodayscheduleAdapter;
 import anandniketan.com.bhadajteacher.AsyncTasks.GetTeacherTodayScheduleAsyncTask;
 import anandniketan.com.bhadajteacher.Models.TeacherTodayScheduleModel;
@@ -37,7 +42,7 @@ public class TodayscheduleFragment extends Fragment {
     private ListView schedule_list;
     private LinearLayout header_linear;
     private TextView txtNoRecords;
-
+    private Button btnBackSchedule, btnLogout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,8 +57,8 @@ public class TodayscheduleFragment extends Fragment {
     }
 
     public void init() {
-
-
+        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
+        btnBackSchedule = (Button) rootView.findViewById(R.id.btnBackSchedule);
         header_linear = (LinearLayout) rootView.findViewById(R.id.header_linear);
         txtNoRecords = (TextView) rootView.findViewById(R.id.txtNoRecords);
         schedule_list = (ListView) rootView.findViewById(R.id.schedule_list);
@@ -62,6 +67,49 @@ public class TodayscheduleFragment extends Fragment {
     }
 
     public void setListner() {
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
+                        .setCancelable(false)
+                        .setTitle("Logout")
+                        .setIcon(mContext.getResources().getDrawable(R.drawable.ic_launcher))
+                        .setMessage("Are you sure you want to logout? ")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Utility.setPref(mContext, "StaffID", "");
+                                Utility.setPref(mContext, "Emp_Code", "");
+                                Utility.setPref(mContext, "Emp_Name", "");
+                                Utility.setPref(mContext, "DepratmentID", "");
+                                Utility.setPref(mContext, "DesignationID", "");
+                                Utility.setPref(mContext, "DeviceId", "");
+                                Utility.setPref(mContext, "unm", "");
+                                Utility.setPref(mContext, "pwd", "");
+                                Intent i = new Intent(getActivity(), LoginActivity.class);
+                                getActivity().startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(R.drawable.ic_launcher)
+                        .show();
+            }
+        });
+        btnBackSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new HomeFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(0, 0)
+                        .replace(R.id.frame_container, fragment).commit();
+            }
+        });
+
     }
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

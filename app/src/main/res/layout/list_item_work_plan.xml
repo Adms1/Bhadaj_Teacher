@@ -21,7 +21,7 @@
                 android:id="@+id/work_txt_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.59"
+                android:layout_weight="0.39"
                 android:paddingLeft="@dimen/_5sdp"
                 android:text="@string/works"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -51,7 +51,7 @@
                 android:id="@+id/startdate_txt_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.59"
+                android:layout_weight="0.39"
                 android:paddingLeft="@dimen/_5sdp"
                 android:text="@string/workstartdate"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -82,7 +82,7 @@
                 android:id="@+id/enddate_txt_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.59"
+                android:layout_weight="0.39"
                 android:paddingLeft="@dimen/_5sdp"
                 android:text="@string/workenddate"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -111,7 +111,7 @@
             <TextView
                 android:id="@+id/status_txt_view"
                 android:layout_width="0dp"
-                android:layout_weight="0.59"
+                android:layout_weight="0.39"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/_5sdp"
                 android:text="@string/workstatus"
@@ -133,7 +133,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".3"
                     android:text="Done"
-                    android:textSize="@dimen/_9sdp"/>
+                    android:textSize="@dimen/_9sdp" />
+
                 <RadioButton
                     android:id="@+id/pendding_rdb"
                     android:layout_width="0dp"

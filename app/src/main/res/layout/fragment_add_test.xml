@@ -46,7 +46,7 @@
                     android:text="@string/testdate"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
                 <Button
                     android:id="@+id/test_date"
                     android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                     android:text="@string/standardsubject"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
                 <Spinner
                     android:id="@+id/standard_subject_spinner"
@@ -117,11 +117,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center"
-                    android:layout_marginLeft="@dimen/_80sdp"
+                    android:layout_marginLeft="@dimen/_77sdp"
                     android:text="@string/test"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
                 <Spinner
                     android:id="@+id/test_spinner"
@@ -155,11 +155,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center"
-                    android:layout_marginLeft="@dimen/_70sdp"
+                    android:layout_marginLeft="@dimen/_63sdp"
                     android:text="@string/section"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
                 <LinearLayout
                     android:id="@+id/checkbox_linear"

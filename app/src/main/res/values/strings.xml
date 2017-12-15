@@ -33,7 +33,7 @@
     <string name="test">Test :</string>
     <string name="homeworkDate">Date</string>
     <string name="homeworkStandard">std</string>
-    <string name="homeworkClass">class</string>
+    <string name="homeworkClass">Class</string>
     <string name="homeworkSubject">Subject :</string>
     <string name="homework">Home Work :</string>
     <string name="WorkPlan">Work Plan :</string>
@@ -48,8 +48,8 @@
     <string name="workplanstandard">Standard</string>
     <string name="workplanmonth">Month</string>
     <string name="workstatus">Status :</string>
-    <string name="workstartdate">Work Start Date :</string>
-    <string name="workenddate">Work End Date :</string>
+    <string name="workstartdate">StartDate :</string>
+    <string name="workenddate">EndDate :</string>
     <string name="works">Work :</string>
     <string name="worksubject">Subject</string>
     <string name="chaptername">Chapter Name :</string>

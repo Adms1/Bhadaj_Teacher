@@ -71,7 +71,7 @@
                     android:forceHasOverlappingRendering="false"
                     android:gravity="left|center_vertical"
                     android:paddingBottom="@dimen/_1sdp"
-                    android:paddingLeft="@dimen/_35sdp"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp" />
@@ -149,7 +149,7 @@
                     android:forceHasOverlappingRendering="false"
                     android:gravity="left|center_vertical"
                     android:paddingBottom="@dimen/_1sdp"
-                    android:paddingLeft="@dimen/_35sdp"
+                    android:paddingLeft="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp"/>

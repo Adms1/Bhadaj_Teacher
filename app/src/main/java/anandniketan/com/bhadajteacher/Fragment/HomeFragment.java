@@ -178,29 +178,29 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    fragment = new ScheduleFragment();
+                    fragment = new TodayscheduleFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 1) {
-                    if (userProfileModels.get(0).getGetclassDetailsArrayList().size() > 0) {
+//                    if (userProfileModels.get(0).getGetclassDetailsArrayList().size() > 0) {
                         fragment = new SubjectFragment();
                         fragmentManager = getFragmentManager();
                         fragmentManager.beginTransaction()
                                 .setCustomAnimations(0, 0)
                                 .replace(R.id.frame_container, fragment).commit();
-                    } else {
-                        new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
-                                .setCancelable(false)
-                                .setMessage("You are not a Class Teacher.")
-                                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // do nothing
-                                    }
-                                })
-                                .show();
-                    }
+//                    } else {
+//                        new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
+//                                .setCancelable(false)
+//                                .setMessage("No Class Details are Found.")
+//                                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        // do nothing
+//                                    }
+//                                })
+//                                .show();
+//                    }
                 } else if (position == 2) {
                     fragment = new TimeTableFragment();
                     fragmentManager = getFragmentManager();

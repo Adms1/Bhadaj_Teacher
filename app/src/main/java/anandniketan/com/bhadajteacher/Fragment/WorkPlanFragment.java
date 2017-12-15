@@ -262,6 +262,7 @@ public class WorkPlanFragment extends Fragment {
         spinfromdate.setSelection(setmonthyear.indexOf(setmonthyear));
     }
 
+    
     public void getHomeworkData() {
         if (!SelectedMonthfrom.equalsIgnoreCase("") && !SelectedYearfrom.equalsIgnoreCase("")
                 && !SelectedMonthto.equalsIgnoreCase("") && !SelectedYearto.equalsIgnoreCase("")) {

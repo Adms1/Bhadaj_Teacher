@@ -2,6 +2,7 @@ package anandniketan.com.bhadajteacher.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -44,7 +45,7 @@ public class StudentAssignesubject extends Fragment {
     private GetTeacherGetAssignStudentSubjectAsyncTask getTeacherGetAssignStudentSubjectAsyncTask = null;
     StudentAssignesubjectAdapter studentAssignesubjectAdapter = null;
     private ListView studentassignesubject_list;
-    private LinearLayout header_linear;
+    private LinearLayout header_linear,standard_linear,linear_class;
     private TextView txtNoRecords, standard_txt, class_txt;
     private LinearLayout class_checkbox_linear, standard_checkbox_linear;
     MainResponseStudentSubject mainResponseStudentSubject;
@@ -78,7 +79,8 @@ public class StudentAssignesubject extends Fragment {
     }
 
     public void init() {
-
+        standard_linear= (LinearLayout) rootView.findViewById(R.id.standard_linear);
+        linear_class= (LinearLayout) rootView.findViewById(R.id.linear_class);
         header_linear = (LinearLayout) rootView.findViewById(R.id.header_linear);
         txtNoRecords = (TextView) rootView.findViewById(R.id.txtNoRecords);
         studentassignesubject_list = (ListView) rootView.findViewById(R.id.studentassignesubject_list);
@@ -95,8 +97,22 @@ public class StudentAssignesubject extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && rootView != null) {
-            setStandardandClass();
-            setTodayschedule();
+            if(AppConfiguration.rows.size()>0) {
+                standard_linear.setVisibility(View.VISIBLE);
+                linear_class.setVisibility(View.VISIBLE);
+                setStandardandClass();
+                setTodayschedule();
+            }else{
+                new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
+                                .setCancelable(false)
+                                .setMessage("No Class Details are Found.")
+                                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // do nothing
+                                    }
+                                })
+                                .show();
+            }
         }
         // execute your data loading logic.
     }
