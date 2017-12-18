@@ -21,6 +21,7 @@
             android:layout_weight=".3"
             android:paddingTop="@dimen/_3sdp"
             android:textAlignment="center"
+           android:button="@drawable/check_uncheck"
             android:textSize="@dimen/_9sdp" />
 
         <TextView

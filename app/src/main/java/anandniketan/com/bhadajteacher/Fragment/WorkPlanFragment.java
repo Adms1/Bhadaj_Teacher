@@ -63,7 +63,7 @@ public class WorkPlanFragment extends Fragment {
     private TeacherUpdateWorkPlanCompletionAsyncTask teacherUpdateWorkPlanCompletionAsyncTask = null;
     private UpdateWorkStatusModel updateWorkStatusModel;
     private String WorkIDstr, WorkPlanIDstr, TeacherWorkstr, CompleteStatusstr, FromDatestr, ToDatestr, Remark, getvalue, selctedValuefrom = "", selctedValueTo = "";
-
+    String compare;
 
     public WorkPlanFragment() {
     }
@@ -91,7 +91,6 @@ public class WorkPlanFragment extends Fragment {
 
         fillSpinner();
         setListner();
-//        getHomeworkData();
     }
 
     public void setListner() {
@@ -189,7 +188,6 @@ public class WorkPlanFragment extends Fragment {
 
     public void fillSpinner() {
 
-        String compare;
         final Calendar calendar = Calendar.getInstance();
         int currentyear = calendar.get(Calendar.YEAR);
         int nextyear = calendar.get(Calendar.YEAR) + 1;
@@ -250,7 +248,11 @@ public class WorkPlanFragment extends Fragment {
                 spintodate.setSelection(index);
             }
         }
-
+        SelectedMonthfrom = getResources().getStringArray(R.array.month)[calendar.get(Calendar.MONTH)];
+        SelectedYearfrom = String.valueOf(yy);
+        SelectedMonthto = getResources().getStringArray(R.array.month)[calendar.get(Calendar.MONTH)];
+        SelectedYearto = String.valueOf(yy);
+        getHomeworkData();
     }
 
     public void getHomeworkData() {
@@ -333,6 +335,7 @@ public class WorkPlanFragment extends Fragment {
             for (int j = 0; j < workPlanMainResponseModel.getFinalArray().get(i).getData().size(); j++) {
                 rows.add(workPlanMainResponseModel.getFinalArray().get(i).getData().get(j));
             }
+
             listDataChild.put(listDataHeader.get(i), rows);
         }
     }
@@ -340,7 +343,7 @@ public class WorkPlanFragment extends Fragment {
     public void Dialog() {
         new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
                 .setCancelable(false)
-                .setTitle("Logout")
+                .setTitle("Update")
                 .setIcon(mContext.getResources().getDrawable(R.drawable.ic_launcher))
                 .setMessage("Are you sure you want to update status ? ")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

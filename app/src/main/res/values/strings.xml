@@ -47,10 +47,10 @@
     <string name="lessonword">WORD</string>
     <string name="workplanstandard">Standard</string>
     <string name="workplanmonth">Month</string>
-    <string name="workstatus">Status :</string>
-    <string name="workstartdate">StartDate :</string>
-    <string name="workenddate">EndDate :</string>
-    <string name="works">Work :</string>
+    <string name="workstatus">Status</string>
+    <string name="workstartdate">StartDate</string>
+    <string name="workenddate">EndDate</string>
+    <string name="works">Work</string>
     <string name="worksubject">Subject</string>
     <string name="chaptername">Chapter Name :</string>
     <string name="objective">Objective :</string>

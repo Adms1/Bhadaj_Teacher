@@ -90,7 +90,7 @@ public class StudentAssignesubject extends Fragment {
         standard_checkbox_linear = (LinearLayout) rootView.findViewById(R.id.standard_checkbox_linear);
         insert_subject_img = (ImageView) rootView.findViewById(R.id.insert_subject_img);
 
-        setUserVisibleHint(true);
+        setUserVisibleHint(false);
 
     }
 

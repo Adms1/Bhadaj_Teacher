@@ -65,7 +65,7 @@ public class SentFragment extends Fragment {
         txtNoRecordsSent = (TextView) rootView.findViewById(R.id.txtNoRecordsSent);
         lvExpSent = (ExpandableListView) rootView.findViewById(R.id.lvExpSent);
         Sent_header = (LinearLayout) rootView.findViewById(R.id.Sent_header);
-        setUserVisibleHint(true);
+        setUserVisibleHint(false);
 
     }
 
@@ -112,7 +112,7 @@ public class SentFragment extends Fragment {
                             @Override
                             public void run() {
                                 progressDialog.dismiss();
-                                if (response.getFinalArray().size()>=0) {
+                                if (response.getFinalArray().size() >= 0) {
                                     txtNoRecordsSent.setVisibility(View.GONE);
                                     setExpandableListData();
                                     expandableListAdapterSent = new ExpandableListAdapterSent(getActivity(), listDataHeader, listDataChild, new onDeleteButton() {
@@ -191,17 +191,16 @@ public class SentFragment extends Fragment {
         for (int j = 0; j < response.getFinalArray().size(); j++) {
             listDataHeader.add(response.getFinalArray().get(j).getUserName() + "|" +
                     response.getFinalArray().get(j).getMeetingDate() + "|" +
-                    response.getFinalArray().get(j).getSubjectLine());
+                    response.getFinalArray().get(j).getSubjectLine() + "|" + response.getFinalArray().get(j).getReadStatus());
 
             ArrayList<FinalArrayInbox> rows = new ArrayList<FinalArrayInbox>();
             rows.add(response.getFinalArray().get(j));
             listDataChild.put(listDataHeader.get(j), rows);
         }
-        if(listDataChild.size()>0)
-        {
+        if (listDataChild.size() > 0) {
             Sent_header.setVisibility(View.VISIBLE);
             txtNoRecordsSent.setVisibility(View.GONE);
-        }else{
+        } else {
             Sent_header.setVisibility(View.GONE);
             txtNoRecordsSent.setVisibility(View.VISIBLE);
         }
