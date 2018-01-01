@@ -2,6 +2,7 @@ package anandniketan.com.bhadajteacher.Adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,13 +90,11 @@ public class ExpandableListAdapterHomeWork extends BaseExpandableListAdapter {
         splitFont3 = "";
         FontStyle = childData.get(childPosition).getFont();
 
-        String object = childData.get(childPosition).getWorkPlan().replace("&nbsp;", "");
-        String homeworkname = childData.get(childPosition).getHomeWork().replace("&nbsp;", "");
-        String chaptername = childData.get(childPosition).getClassWork().replace("&nbsp;", "");
 
-        homwork_name_txt.setText((homeworkname.trim()));
-        chapter_name_txt.setText((object.trim()));
-        objective_txt.setText(chaptername.trim());
+
+        homwork_name_txt.setText(Html.fromHtml(childData.get(childPosition).getHomeWork().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+        chapter_name_txt.setText(Html.fromHtml(childData.get(childPosition).getClassWork().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
+        objective_txt.setText(Html.fromHtml(childData.get(childPosition).getWorkPlan().replaceAll("\\<.*?\\>", "").replaceAll("\\n", "").trim()));
 
 //        if (!FontStyle.equalsIgnoreCase("-|-|-|-")) {
 //            String[] splitFontStyle = FontStyle.split("\\|");

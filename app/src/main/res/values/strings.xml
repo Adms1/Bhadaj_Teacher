@@ -35,10 +35,10 @@
     <string name="homeworkStandard">std</string>
     <string name="homeworkClass">Class</string>
     <string name="homeworkSubject">Subject :</string>
-    <string name="homework">Home Work :</string>
+    <string name="homework">Home Work</string>
     <string name="WorkPlan">Work Plan :</string>
     <string name="ClassWork">Class Work :</string>
-    <string name="assessment">AssessmentQue :</string>
+    <string name="assessment">Assessment Question</string>
     <string name="Month">Month</string>
     <string name="plandate">Plan Date</string>
     <string name="chapterno"> Chapter No.</string>
@@ -52,8 +52,8 @@
     <string name="workenddate">EndDate</string>
     <string name="works">Work</string>
     <string name="worksubject">Subject</string>
-    <string name="chaptername">Chapter Name :</string>
-    <string name="objective">Objective :</string>
+    <string name="chaptername">Chapter Name</string>
+    <string name="objective">Objective</string>
 
     <string-array name="menuoption1">
         <item>Home</item>

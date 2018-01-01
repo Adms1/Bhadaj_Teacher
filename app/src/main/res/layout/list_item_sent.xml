@@ -44,7 +44,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/profile_button"
                 android:text="Delete"
-                android:textAllCaps="true"
+                android:textAllCaps="false"
                 android:textColor="@color/editTextcolor"
                 android:textSize="@dimen/_11sdp" />
         </LinearLayout>

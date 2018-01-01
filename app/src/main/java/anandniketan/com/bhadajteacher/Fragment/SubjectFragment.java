@@ -24,7 +24,7 @@ import anandniketan.com.bhadajteacher.Utility.Utility;
 public class SubjectFragment extends Fragment {
     private View rootView;
     private Button btnLogout, btnBackSubject;
-
+    View view;
     private TabLayout tabLayout_subject;
     private ViewPager viewPager;
     private Context mContext;
@@ -51,7 +51,7 @@ public class SubjectFragment extends Fragment {
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnBackSubject = (Button) rootView.findViewById(R.id.btnBackSubject);
         viewPager = (ViewPager) rootView.findViewById(R.id.pager);
-
+        view = (View) rootView.findViewById(R.id.view);
 
         tabLayout_subject = (TabLayout) rootView.findViewById(R.id.tabLayout_subject);
         tabLayout_subject.addTab(tabLayout_subject.newTab().setText("My Subject"), true);
@@ -67,6 +67,11 @@ public class SubjectFragment extends Fragment {
 //Adding adapter to pager
         viewPager.setAdapter(adapter);
 //        tabLayout_schedule.setupWithViewPager(viewPager);
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            view.setVisibility(View.GONE);
+        } else {
+            view.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setListner() {

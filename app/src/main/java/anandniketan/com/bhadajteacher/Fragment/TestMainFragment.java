@@ -23,7 +23,7 @@ import anandniketan.com.bhadajteacher.Utility.Utility;
 public class TestMainFragment extends Fragment {
     private View rootView;
     private Button btnLogout, btnBacktest_main;
-
+    View view;
     private TabLayout tabLayout_test_main;
     private ViewPager viewPager;
     private Context mContext;
@@ -49,7 +49,7 @@ public class TestMainFragment extends Fragment {
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnBacktest_main = (Button) rootView.findViewById(R.id.btnBacktest_main);
         viewPager = (ViewPager) rootView.findViewById(R.id.pager);
-
+        view = (View) rootView.findViewById(R.id.view);
 
         tabLayout_test_main = (TabLayout) rootView.findViewById(R.id.tabLayout_test_main);
         tabLayout_test_main.addTab(tabLayout_test_main.newTab().setText("Edit Test"), true);
@@ -62,6 +62,11 @@ public class TestMainFragment extends Fragment {
 //Adding adapter to pager
         viewPager.setAdapter(adapter);
 //        adapter.notifyDataSetChanged();
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            view.setVisibility(View.GONE);
+        } else {
+            view.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setListner() {

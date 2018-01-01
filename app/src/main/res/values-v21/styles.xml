@@ -1,6 +1,5 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="windowNoTitle">true</item>
@@ -13,6 +12,7 @@
         <item name="android:textSize">20sp</item>
         <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
     </style>
+
     <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/editTextcolor</item>
     </style>

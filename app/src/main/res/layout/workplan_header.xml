@@ -63,6 +63,7 @@
             android:layout_weight="1"
             android:textColor="@color/scheduleheadertextcolor"
             android:textSize="@dimen/_10sdp"
+            android:text="View"
             android:textStyle="normal" />
     </LinearLayout>
 </LinearLayout>

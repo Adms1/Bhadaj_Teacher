@@ -69,9 +69,9 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/dropdown_button"
                     android:forceHasOverlappingRendering="false"
+                    android:overlapAnchor="false"
                     android:gravity="left|center_vertical"
                     android:paddingBottom="@dimen/_1sdp"
-                    android:paddingLeft="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp" />
@@ -147,9 +147,9 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/dropdown_button"
                     android:forceHasOverlappingRendering="false"
+                    android:overlapAnchor="false"
                     android:gravity="left|center_vertical"
                     android:paddingBottom="@dimen/_1sdp"
-                    android:paddingLeft="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp"/>
@@ -262,9 +262,9 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/dropdown_button"
                     android:forceHasOverlappingRendering="false"
+                    android:overlapAnchor="false"
                     android:gravity="left|center_vertical"
                     android:paddingBottom="@dimen/_1sdp"
-                    android:paddingLeft="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp" />
@@ -279,9 +279,9 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/dropdown_button"
                     android:forceHasOverlappingRendering="false"
+                    android:overlapAnchor="false"
                     android:gravity="left|center_vertical"
                     android:paddingBottom="@dimen/_1sdp"
-                    android:paddingLeft="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp"/>
@@ -318,9 +318,9 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/dropdown_button"
                     android:forceHasOverlappingRendering="false"
+                    android:overlapAnchor="false"
                     android:gravity="left|center_vertical"
                     android:paddingBottom="@dimen/_1sdp"
-                    android:paddingLeft="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp" />
@@ -335,9 +335,9 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/dropdown_button"
                     android:forceHasOverlappingRendering="false"
+                    android:overlapAnchor="false"
                     android:gravity="left|center_vertical"
                     android:paddingBottom="@dimen/_1sdp"
-                    android:paddingLeft="@dimen/_5sdp"
                     android:paddingTop="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp" />
@@ -352,7 +352,8 @@
                 android:layout_marginBottom="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/round_button"
-                android:text="ADD"
+                android:text="Add"
+                android:textAllCaps="false"
                 android:textColor="@color/editTextcolor"
                 android:textSize="@dimen/_11sdp"  />
         </LinearLayout>

@@ -198,7 +198,7 @@
             android:layout_marginLeft="@dimen/_1sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/round_button"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:text="Add"
             android:textColor="@color/editTextcolor"
             android:textSize="@dimen/_11sdp"   />
