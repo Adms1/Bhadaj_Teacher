@@ -114,6 +114,7 @@ public class SentFragment extends Fragment {
                                 progressDialog.dismiss();
                                 if (response.getFinalArray().size() >= 0) {
                                     txtNoRecordsSent.setVisibility(View.GONE);
+                                    Sent_header.setVisibility(View.VISIBLE);
                                     setExpandableListData();
                                     expandableListAdapterSent = new ExpandableListAdapterSent(getActivity(), listDataHeader, listDataChild, new onDeleteButton() {
                                         @Override
@@ -170,7 +171,7 @@ public class SentFragment extends Fragment {
                                 } else {
                                     progressDialog.dismiss();
                                     txtNoRecordsSent.setVisibility(View.VISIBLE);
-//                                    Sent_header.setVisibility(View.GONE);
+                                    Sent_header.setVisibility(View.GONE);
                                 }
                             }
                         });

@@ -34,6 +34,7 @@
             android:layout_margin="0dp"
             android:layout_marginTop="@dimen/_5sdp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:background="@drawable/shadow_box">
             <include layout="@layout/inbox_header" />
         </LinearLayout>

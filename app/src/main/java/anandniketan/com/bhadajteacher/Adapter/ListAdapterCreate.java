@@ -105,6 +105,7 @@ public class ListAdapterCreate extends BaseAdapter {
                 }else{
                     viewHolder.create_Checkbox.setChecked(false);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

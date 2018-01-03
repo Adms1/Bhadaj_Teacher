@@ -76,7 +76,7 @@
                 android:layout_gravity="center_vertical|center"
                 android:layout_marginLeft="@dimen/_6sdp"
                 android:background="@drawable/calendar_line"
-                android:layout_weight="2"
+                android:layout_weight="1.3"
                 android:text="hello"
                 android:paddingTop="@dimen/_8sdp"
                 android:textAlignment="center"

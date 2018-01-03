@@ -153,7 +153,7 @@
                 android:layout_toLeftOf="@+id/btnLogout"
                 android:layout_toRightOf="@+id/textView2"
                 android:layout_toEndOf="@+id/textView2"
-                android:layout_marginTop="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginBottom="@dimen/_2sdp"/>
         </RelativeLayout>
 

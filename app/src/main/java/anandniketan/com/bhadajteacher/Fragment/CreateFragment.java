@@ -352,6 +352,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                                     params.put("MeetingDate", messageDate);
                                     params.put("SubjectLine", messageSubject);
                                     params.put("Description", messageMessageLine);
+                                    params.put("Flag","Staff");
 
                                     getPTMTeacherStudentInsertDetailAsyncTask = new PTMTeacherStudentInsertDetailAsyncTask(params);
                                     mainPtmSentMessageResponse = getPTMTeacherStudentInsertDetailAsyncTask.execute().get();
