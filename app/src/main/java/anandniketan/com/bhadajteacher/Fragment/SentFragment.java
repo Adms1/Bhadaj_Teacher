@@ -104,7 +104,7 @@ public class SentFragment extends Fragment {
                     try {
                         HashMap<String, String> params = new HashMap<String, String>();
                         params.put("UserID", Utility.getPref(mContext, "StaffID"));
-                        params.put("UserType", "staff");
+                        params.put("UserType", "Staff");
                         params.put("MessgaeType", "Sent");
                         ptmTeacherStudentGetDetailAsyncTask = new PTMTeacherStudentGetDetailAsyncTask(params);
                         response = ptmTeacherStudentGetDetailAsyncTask.execute().get();

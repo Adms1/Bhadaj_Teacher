@@ -106,7 +106,7 @@ public class InboxFragment extends Fragment {
                     try {
                         HashMap<String, String> params = new HashMap<String, String>();
                         params.put("UserID", Utility.getPref(mContext, "StaffID"));
-                        params.put("UserType", "staff");
+                        params.put("UserType", "Staff");
                         params.put("MessgaeType", "Inbox");
                         ptmTeacherStudentGetDetailAsyncTask = new PTMTeacherStudentGetDetailAsyncTask(params);
                         response = ptmTeacherStudentGetDetailAsyncTask.execute().get();
@@ -148,6 +148,7 @@ public class InboxFragment extends Fragment {
                                                             params.put("MeetingDate", messageDatestr);
                                                             params.put("SubjectLine", messageSubjectstr);
                                                             params.put("Description", messageMessageLinestr);
+                                                            params.put("Flag", "Student");
 
                                                             getPTMTeacherStudentInsertDetailAsyncTask = new PTMTeacherStudentInsertDetailAsyncTask(params);
                                                             mainPtmSentMessageResponse = getPTMTeacherStudentInsertDetailAsyncTask.execute().get();
@@ -197,7 +198,8 @@ public class InboxFragment extends Fragment {
         for (int j = 0; j < response.getFinalArray().size(); j++) {
             listDataHeader.add(response.getFinalArray().get(j).getUserName() + "|" +
                     response.getFinalArray().get(j).getMeetingDate() + "|" +
-                    response.getFinalArray().get(j).getSubjectLine());
+                    response.getFinalArray().get(j).getSubjectLine() + "|" +
+                    response.getFinalArray().get(j).getReadStatus());
 
             ArrayList<FinalArrayInbox> rows = new ArrayList<FinalArrayInbox>();
             rows.add(response.getFinalArray().get(j));

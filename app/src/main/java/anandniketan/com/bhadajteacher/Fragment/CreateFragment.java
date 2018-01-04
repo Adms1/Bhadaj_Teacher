@@ -319,9 +319,11 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
             public void onClick(View v) {
                 ArrayList<String> id = new ArrayList<>();
                 final String messageDate, messageSubject, messageMessageLine;
-                ArrayList<String> array = listAdapterCreate.getData();
+                ArrayList<StudentDatum> array = listAdapterCreate.getDatas();
                 for (int j = 0; j < array.size(); j++) {
-                    id.add(array.get(j).toString());
+                    if (array.get(j).getCheck().equalsIgnoreCase("1")) {
+                        id.add(array.get(j).getStudentID().toString());
+                    }
                 }
                 finalStudentArray = String.valueOf(id);
                 finalStudentArray = finalStudentArray.substring(1, finalStudentArray.length() - 1);

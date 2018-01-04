@@ -81,7 +81,8 @@
                 android:layout_marginLeft="@dimen/_15sdp"
                 android:layout_marginRight="@dimen/_15sdp"
                 android:background="@drawable/shadow"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:elevation="@dimen/_5sdp">
 
                 <GridView
                     android:id="@+id/grid_view"
