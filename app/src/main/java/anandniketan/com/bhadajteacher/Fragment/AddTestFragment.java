@@ -81,7 +81,8 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
     private static String dateFinal;
     String checknamestr, checkidstr;
     AddTestDetalisListAdapter addTestDetalisListAdapter;
-
+    HashMap<Integer, String> spinnerTestIdNameMap;
+String []spinnertestnameIdArray;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -417,7 +418,7 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
         hs.addAll(row);
         row.clear();
         row.addAll(hs);
-        Log.d("gfdgfdgfgfd",""+row);
+        Log.d("gfdgfdgfgfd", "" + row);
         Collections.sort(row);
         System.out.println("Sorted ArrayList in Java - Ascending order : " + row);
         try {
@@ -428,8 +429,7 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(standard_subject_spinner);
 
             popupWindow.setHeight(row.size() > 5 ? 500 : row.size() * 100);
-        }
-        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
         ArrayAdapter<String> adapterYear = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, row);
@@ -498,15 +498,29 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
     }
 
     public void fillTestSpinner() {
-        ArrayList<String> rowtest = new ArrayList<String>();
+        ArrayList<Integer> testId = new ArrayList<Integer>();
+        ArrayList<String> testname = new ArrayList<String>();
+
+        for (int j = 0; j < teacherGetTestNameModels.size(); j++) {
+            testId.add(Integer.parseInt(teacherGetTestNameModels.get(j).getTestID()));
+        }
 
         for (int k = 0; k < teacherGetTestNameModels.size(); k++) {
-            rowtest.add(teacherGetTestNameModels.get(k).getTestName() + teacherGetTestNameModels.get(k).getTestID());
+            testname.add(teacherGetTestNameModels.get(k).getTestName());
         }
-        HashSet hs = new HashSet();
-        hs.addAll(rowtest);
-        rowtest.clear();
-        rowtest.addAll(hs);
+        String[] spinnertestIdArray = new String[testId.size()];
+        spinnertestnameIdArray = new String[testname.size()];
+
+        spinnerTestIdNameMap = new HashMap<Integer, String>();
+        for (int i = 0; i < testId.size(); i++) {
+            spinnerTestIdNameMap.put(i, String.valueOf(testId.get(i)));
+            spinnertestnameIdArray[i] = testname.get(i).trim();
+        }
+        Log.d("TestArray", "" + testname);
+//        HashSet hs = new HashSet();
+//        hs.addAll(testname);
+//        testname.clear();
+//        testname.addAll(hs);
 
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
@@ -515,13 +529,12 @@ public class AddTestFragment extends Fragment implements DatePickerDialog.OnDate
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(test_spinner);
 
-            popupWindow.setHeight(rowtest.size() > 5 ? 500 : rowtest.size() * 100);
-        }
-        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            popupWindow.setHeight(spinnertestnameIdArray.length > 5 ? 500 : spinnertestnameIdArray.length * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
 
-        ArrayAdapter<String> adaptertest = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, rowtest);
+        ArrayAdapter<String> adaptertest = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertestnameIdArray);
         test_spinner.setAdapter(adaptertest);
     }
 

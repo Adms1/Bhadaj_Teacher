@@ -323,7 +323,7 @@ public class StudentAssignesubject extends Fragment {
                                 public void run() {
                                     progressDialog.dismiss();
                                     if (teacherInsertSubjectMainResponse.getFinalArray().size() >= 0) {
-                                        Utility.ping(mContext, "Save Sucessfully");
+                                        Utility.ping(mContext, "Subjects Added Successfully..!!");
 //                                        setTodayschedule();
                                     } else {
                                         progressDialog.dismiss();

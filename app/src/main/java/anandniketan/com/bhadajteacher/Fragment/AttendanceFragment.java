@@ -24,7 +24,7 @@ import anandniketan.com.bhadajteacher.Utility.Utility;
 public class AttendanceFragment extends Fragment {
     private View rootView;
     private Button btnBackAttendance,btnLogout;
-
+    View view;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Context mContext;
@@ -50,6 +50,7 @@ public class AttendanceFragment extends Fragment {
         btnBackAttendance = (Button) rootView.findViewById(R.id.btnBackAttendance);
         btnLogout=(Button)rootView.findViewById(R.id.btnLogout);
         viewPager = (ViewPager) rootView.findViewById(R.id.pager);
+        view = (View) rootView.findViewById(R.id.view);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
@@ -57,6 +58,11 @@ public class AttendanceFragment extends Fragment {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);
 
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            view.setVisibility(View.GONE);
+        } else {
+            view.setVisibility(View.VISIBLE);
+        }
     }
 
     public void setListner() {

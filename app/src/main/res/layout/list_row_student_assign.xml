@@ -31,5 +31,6 @@
         android:layout_height="@dimen/_120sdp"
         android:layout_below="@+id/student_linear"
         android:numColumns="3"
+        android:layout_marginLeft="@dimen/_3sdp"
         android:scrollbars="none" />
 </LinearLayout>

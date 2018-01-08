@@ -29,7 +29,7 @@
             android:padding="@dimen/_5sdp"
             android:text="Standard :"
             android:textAlignment="textEnd"
-            android:textColor="@color/black"
+            android:textColor="@color/linear_color"
             android:textSize="@dimen/_11sdp"
             android:layout_weight="0.12" />
 
@@ -62,7 +62,7 @@
             android:padding="@dimen/_5sdp"
             android:text="Class :"
             android:textAlignment="textEnd"
-            android:textColor="@color/black"
+            android:textColor="@color/linear_color"
             android:textSize="@dimen/_11sdp" />
 
         <LinearLayout

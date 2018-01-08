@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/center"
-            android:layout_marginTop="-40dp">
+            android:layout_marginTop="-46dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,10 +88,10 @@
                     android:id="@+id/grid_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_margin="@dimen/_8sdp"
                     android:columnWidth="0dp"
                     android:gravity="center"
-                    android:horizontalSpacing="@dimen/_10sdp"
+                    android:horizontalSpacing="@dimen/_7sdp"
                     android:listSelector="#00000000"
                     android:numColumns="3"
                     android:scrollbars="none"
@@ -133,29 +133,28 @@
                 android:id="@+id/textView2"
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
                 android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginRight="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_toLeftOf="@+id/btnLogout"
+                android:layout_toStartOf="@+id/btnLogout"
                 android:layout_weight="0.84"
                 android:paddingTop="@dimen/_1sdp"
                 android:text="Notice board"
                 android:textColor="@color/editTextcolor"
                 android:textSize="@dimen/_11sdp"
-                android:textStyle="bold"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/btnLogout"
-                android:layout_toStartOf="@+id/btnLogout"
-                android:layout_alignTop="@+id/btn_notification" />
+                android:textStyle="bold" />
             <Button
                 android:id="@+id/btn_notification"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:background="@drawable/notification_image"
-                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_toEndOf="@+id/textView2"
                 android:layout_toLeftOf="@+id/btnLogout"
                 android:layout_toRightOf="@+id/textView2"
-                android:layout_toEndOf="@+id/textView2"
-                android:layout_marginTop="@dimen/_1sdp"
-                android:layout_marginBottom="@dimen/_2sdp"/>
+                android:background="@drawable/notification_image"/>
         </RelativeLayout>
 
         <LinearLayout

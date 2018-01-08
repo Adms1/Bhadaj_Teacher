@@ -15,8 +15,8 @@
             android:layout_height="@dimen/_30sdp">
             <RadioButton
                 android:id="@+id/standard_checkbox"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_width="@dimen/_27sdp"
+                android:layout_height="@dimen/_27sdp"
                 android:layout_gravity="center|center_horizontal"
                 android:layout_marginLeft="@dimen/_3sdp"
                 android:layout_marginTop="@dimen/_1sdp"

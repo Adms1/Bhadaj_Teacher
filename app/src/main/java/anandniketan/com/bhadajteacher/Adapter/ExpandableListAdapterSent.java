@@ -128,9 +128,9 @@ public class ExpandableListAdapterSent extends BaseExpandableListAdapter {
         subject_inbox_txt = (TextView) convertView.findViewById(R.id.subject_inbox_txt);
         view_inbox_txt = (TextView) convertView.findViewById(R.id.view_inbox_txt);
 
-        Student_name_inbox_txt.setText(headerTitle1);
-        date_inbox_txt.setText(headerTitle2);
-        subject_inbox_txt.setText(headerTitle3);
+        Student_name_inbox_txt.setText(headerTitle1.trim());
+        date_inbox_txt.setText(headerTitle2.trim());
+        subject_inbox_txt.setText(headerTitle3.trim());
 
         if (headerTitle4.equalsIgnoreCase("Pending")) {
             Student_name_inbox_txt.setTypeface(null, Typeface.BOLD);

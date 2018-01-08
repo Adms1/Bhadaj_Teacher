@@ -97,6 +97,7 @@
                     android:scrollbars="none"
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="@dimen/_10sdp" />
+
             </LinearLayout>
 
         </RelativeLayout>
@@ -141,21 +142,21 @@
                 android:textColor="@color/editTextcolor"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold"
-                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_3sdp"
                 android:layout_toLeftOf="@+id/btnLogout"
                 android:layout_toStartOf="@+id/btnLogout"
-                android:layout_alignTop="@+id/btn_notification" />
+                android:layout_marginTop="@dimen/_35sdp" />
             <Button
                 android:id="@+id/btn_notification"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:background="@drawable/notification_image"
-                android:layout_alignParentBottom="true"
+
                 android:layout_toLeftOf="@+id/btnLogout"
                 android:layout_toRightOf="@+id/textView2"
                 android:layout_toEndOf="@+id/textView2"
-                android:layout_marginTop="@dimen/_1sdp"
-                android:layout_marginBottom="@dimen/_2sdp"/>
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginBottom="@dimen/_3sdp"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -164,7 +165,7 @@
             android:layout_height="@dimen/_43sdp"
             android:layout_below="@+id/headerRel"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="-50dp"
+            android:layout_marginTop="-53dp"
             android:background="@drawable/circleshape"
             android:orientation="horizontal">
 

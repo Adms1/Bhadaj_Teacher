@@ -106,7 +106,7 @@ public class InboxFragment extends Fragment {
                     try {
                         HashMap<String, String> params = new HashMap<String, String>();
                         params.put("UserID", Utility.getPref(mContext, "StaffID"));
-                        params.put("UserType", "Staff");
+                        params.put("UserType", "staff");
                         params.put("MessgaeType", "Inbox");
                         ptmTeacherStudentGetDetailAsyncTask = new PTMTeacherStudentGetDetailAsyncTask(params);
                         response = ptmTeacherStudentGetDetailAsyncTask.execute().get();

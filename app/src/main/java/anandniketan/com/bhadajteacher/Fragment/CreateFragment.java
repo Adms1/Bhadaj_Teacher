@@ -291,6 +291,8 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
         insert_message_Message_txt = (EditText) layout.findViewById(R.id.insert_message_Message_txt);
         send_btn = (Button) layout.findViewById(R.id.send_message_btn);
         close_btn = (Button) layout.findViewById(R.id.close_btn);
+        final Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis() - 1000);
 
         insert_message_date_txt.setText(Utility.getTodaysDate());
 
@@ -311,6 +313,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                 datePickerDialog.showYearPickerFirst(false);
                 datePickerDialog.setAccentColor(Color.parseColor("#1B88C8"));
                 datePickerDialog.setTitle("Select Date From DatePickerDialog");
+                datePickerDialog.setMinDate(c);
                 datePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
             }
         });

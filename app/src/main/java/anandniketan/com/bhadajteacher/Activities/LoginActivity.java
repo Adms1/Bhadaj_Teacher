@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                                     finish();
                                                 } else {
-                                                    Utility.pong(mContext, "Invalid Credentials. Please try again...");
+                                                    Utility.pong(mContext, "Invalid Username/Password");
                                                 }
                                             }
                                         });
@@ -118,11 +118,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } else {
                         binding.PasswordEdt.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.shake));
-                        Utility.ping(mContext, "Enter Password");
+                        Utility.ping(mContext, "Please Enter Password");
                     }
                 } else {
                     binding.UserNameEdt.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.shake));
-                    Utility.ping(mContext, "Enter Username");
+                    Utility.ping(mContext, "Please Enter Username");
                 }
             } else {
                 Utility.ping(mContext, "Network not available");

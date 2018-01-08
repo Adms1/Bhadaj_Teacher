@@ -27,10 +27,10 @@
     <string name="percentage">(%)</string>
     <string name="Marks">Marks</string>
     <string name="view"><u>View</u></string>
-    <string name="testdate">Test Date :</string>
-    <string name="standardsubject">Standard-Subject :</string>
-    <string name="section">Section :</string>
-    <string name="test">Test :</string>
+    <string name="testdate">Test Date</string>
+    <string name="standardsubject">Standard-Subject</string>
+    <string name="section">Section</string>
+    <string name="test">Test</string>
     <string name="homeworkDate">Date</string>
     <string name="homeworkStandard">std</string>
     <string name="homeworkClass">Class</string>
@@ -52,8 +52,8 @@
     <string name="workenddate">EndDate</string>
     <string name="works">Work</string>
     <string name="worksubject">Subject</string>
-    <string name="chaptername">Chapter Name</string>
-    <string name="objective">Objective</string>
+    <string name="chaptername">Work Plan</string>
+    <string name="objective">Class Work</string>
 
     <string-array name="menuoption1">
         <item>Home</item>

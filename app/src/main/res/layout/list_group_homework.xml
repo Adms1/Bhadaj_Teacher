@@ -13,8 +13,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shadow_box1"
             android:padding="@dimen/_5sdp"
-            android:background="@drawable/shadow_box"
             android:weightSum="5">
 
             <TextView
