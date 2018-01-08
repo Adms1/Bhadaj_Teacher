@@ -79,13 +79,13 @@
 
             <Spinner
                 android:id="@+id/class_spinner"
-                android:layout_width="@dimen/_130sdp"
+                android:layout_width="@dimen/_150sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignEnd="@+id/textView3"
                 android:layout_alignRight="@+id/textView3"
                 android:layout_below="@+id/header"
                 android:layout_margin="@dimen/_10sdp"
-                android:background="@drawable/dropdown_button_1"
+                android:background="@drawable/dropdown_button"
                 android:forceHasOverlappingRendering="false"
                 android:overlapAnchor="false"/>
 
