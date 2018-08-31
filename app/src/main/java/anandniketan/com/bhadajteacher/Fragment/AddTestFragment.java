@@ -1,11 +1,10 @@
 package anandniketan.com.bhadajteacher.Fragment;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -19,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -39,9 +37,9 @@ import anandniketan.com.bhadajteacher.Adapter.AddTestDetalisListAdapter;
 import anandniketan.com.bhadajteacher.AsyncTasks.GetTeacherAssignedSubjectAsyncTask;
 import anandniketan.com.bhadajteacher.AsyncTasks.TeacherGetTestNameGradeWiseAsyncTask;
 import anandniketan.com.bhadajteacher.AsyncTasks.TeacherInsertTestDetailAsyncTask;
-import anandniketan.com.bhadajteacher.Models.TeacherAssignedSubjectModel;
-import anandniketan.com.bhadajteacher.Models.TeacherGetTestNameModel;
-import anandniketan.com.bhadajteacher.Models.TeacherInsertTestDetailModel;
+import anandniketan.com.bhadajteacher.Models.StudentAssignSubjectResponse.TeacherAssignedSubjectModel;
+import anandniketan.com.bhadajteacher.Models.TestModel.TeacherGetTestNameModel;
+import anandniketan.com.bhadajteacher.Models.TestModel.TeacherInsertTestDetailModel;
 import anandniketan.com.bhadajteacher.R;
 import anandniketan.com.bhadajteacher.Utility.Utility;
 
@@ -197,6 +195,7 @@ String []spinnertestnameIdArray;
         alertDialogAndroid.show();
         Window window = alertDialogAndroid.getWindow();
         window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        alertDialogAndroid.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         WindowManager.LayoutParams wlp = window.getAttributes();
 
         wlp.gravity = Gravity.CENTER;
@@ -272,11 +271,13 @@ String []spinnertestnameIdArray;
                                 HashMap<String, String> params = new HashMap<String, String>();
                                 params.put("StaffID", Utility.getPref(mContext, "StaffID"));
                                 params.put("TSMasterID", "0");
-                                params.put("TestID", addTest.AddTestID);
+                                //params.put("TestID", addTest.AddTestID);
                                 params.put("TestDate", add_test_date_txt.getText().toString());
                                 params.put("SubjectID", addTest.SubjectID);
                                 params.put("SectionID", finalclassIdStr);
                                 params.put("Arydetail", finalTxtstr);
+                                params.put("StandardID",standardId);
+                                params.put("TestName",add_test_txt.getText().toString());
 
                                 teacherInsertTestDetailAsyncTask = new TeacherInsertTestDetailAsyncTask(params);
                                 insertTest = teacherInsertTestDetailAsyncTask.execute().get();

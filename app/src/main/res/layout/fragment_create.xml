@@ -18,16 +18,16 @@
 
         <TextView
             android:id="@+id/txtNoRecordsCreate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headerRel"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_below="@+id/date_rel"
             android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:text="No Records Found..."
+            android:layout_centerInParent="true"
+            android:background="@drawable/norecordfound"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
-            android:visibility="gone" />
+            android:visibility="gone"  />
 
         <LinearLayout
             android:id="@+id/Create_class_linear"
@@ -36,13 +36,15 @@
             android:layout_below="@+id/headerRel"
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
+            android:weightSum="1"
             android:visibility="visible">
 
             <Spinner
                 android:id="@+id/Create_class_spinner"
-                android:layout_width="@dimen/_150sdp"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_margin="@dimen/_20sdp"
+                android:layout_weight="0.6"
                 android:spinnerMode="dropdown"
                 android:background="@drawable/dropdown_button"
                 android:forceHasOverlappingRendering="false"
@@ -74,16 +76,16 @@
             android:scrollbars="none" />
         <TextView
             android:id="@+id/txtNoRecordsCreateStudent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Create_class_linear"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_below="@+id/date_rel"
             android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:text="No Records of Student..."
+            android:layout_centerInParent="true"
+            android:background="@drawable/norecordfound"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
-            android:visibility="gone" />
+            android:visibility="gone"  />
 
         <LinearLayout
             android:layout_width="match_parent"

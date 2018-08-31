@@ -1,5 +1,6 @@
 package anandniketan.com.bhadajteacher.Adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.IdRes;
@@ -107,6 +108,7 @@ public class AttendanceListAdapter extends BaseAdapter {
 
 
                 viewHolder.attendance_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                         RadioButton rb = (RadioButton) group.findViewById(checkedId);

@@ -79,9 +79,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginRight="@dimen/_15sdp"
-                android:background="@drawable/linear_dropshadow"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/home_shadow"
                 android:orientation="horizontal"
                 android:elevation="@dimen/_5sdp">
 

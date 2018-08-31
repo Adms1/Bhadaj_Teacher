@@ -10,13 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.bhadajteacher.Interfacess.onDeleteButton;
-import anandniketan.com.bhadajteacher.Models.PTMInboxResponse.FinalArrayInbox;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.FinalArrayInbox;
 import anandniketan.com.bhadajteacher.R;
 
 /**
@@ -70,11 +69,6 @@ public class ExpandableListAdapterSent extends BaseExpandableListAdapter {
         txtSubject = (TextView) convertView.findViewById(R.id.txtSubject);
         delete_btn = (Button) convertView.findViewById(R.id.delete_btn);
 
-//        if (childData.get(childPosition).getReadStatus().equalsIgnoreCase("Pending")) {
-//            txtSubject.setTypeface(null, Typeface.BOLD);
-//        } else {
-//            txtSubject.setTypeface(null, Typeface.NORMAL);
-//        }
         txtSubject.setText(childData.get(childPosition).getDescription());
         delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override

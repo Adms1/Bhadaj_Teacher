@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import anandniketan.com.bhadajteacher.Models.TeacherGetTestNameModel;
+import anandniketan.com.bhadajteacher.Models.TestModel.TeacherGetTestNameModel;
 import anandniketan.com.bhadajteacher.Utility.AppConfiguration;
 import anandniketan.com.bhadajteacher.Utility.ParseJSON;
 import anandniketan.com.bhadajteacher.WebServicesCall.WebServicesCall;

@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
                 android:background="@color/orange"
-                android:elevation="@dimen/_4sdp"
+                android:elevation="@dimen/_5sdp"
                 android:minHeight="?attr/actionBarSize"
                 app:tabIndicatorColor="@color/editTextcolor"
                 app:tabIndicatorHeight="@dimen/_3sdp"

@@ -2,6 +2,7 @@ package anandniketan.com.bhadajteacher.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.bhadajteacher.R;
+import anandniketan.com.bhadajteacher.Utility.AppConfiguration;
 
 
 /**
@@ -19,15 +24,20 @@ import anandniketan.com.bhadajteacher.R;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
-    public Integer[] mThumbIds = {
-            R.drawable.myschedule, R.drawable.mysubjects, R.drawable.timetable,
-            R.drawable.attendance, R.drawable.workplan, R.drawable.dailywork,
-            R.drawable.test, R.drawable.marks,
-            R.drawable.ptm
+    public String[] mThumbIds = {
+            AppConfiguration.DOMAIN_LIVE_IMAGES +"Schedule.png",
+            AppConfiguration.DOMAIN_LIVE_IMAGES +"Subjects.png",
+            AppConfiguration.DOMAIN_LIVE_IMAGES +"Time%20Table.png",
+            AppConfiguration.DOMAIN_LIVE_IMAGES +"Attendance.png",
+//            AppConfiguration.DOMAIN_LIVE_IMAGES +"Work%20Plan.png",
+            AppConfiguration.DOMAIN_LIVE_IMAGES +"Daily%20Work.png",
+            AppConfiguration.DOMAIN_LIVE_IMAGES +"Test_Syllabus.png",
+            AppConfiguration.DOMAIN_LIVE_IMAGES +"Marks.png",
+            AppConfiguration.DOMAIN_LIVE_IMAGES +"Leave%20Details.png"
     };
 
-    public String[] mThumbNames = {"Schedule", "Subjects", "Time table", "Attendence", "Work Plan", "Daily Work",
-            "Test/Syllabus", "Marks", "PTM"};
+    public String[] mThumbNames = {"Schedule", "Subjects", "Time table", "Attendence", /*"Work Plan",*/ "Daily Work",
+            "Test/Syllabus", "Marks","Leave Details" /*"PTM"*/};
 
     // Constructor
     public ImageAdapter(Context c) {
@@ -60,7 +70,13 @@ public class ImageAdapter extends BaseAdapter {
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
 
-        imgGridOptions.setImageResource(mThumbIds[position]);
+        String url = mThumbIds[position];
+        Log.d("url", url);
+
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .into(imgGridOptions);
         txtGridOptionsName.setText(mThumbNames[position]);
         return convertView;
     }

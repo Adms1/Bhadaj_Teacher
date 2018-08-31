@@ -37,6 +37,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import anandniketan.com.bhadajteacher.Activities.DashBoardActivity;
 import anandniketan.com.bhadajteacher.Activities.LoginActivity;
 import anandniketan.com.bhadajteacher.Activities.MyBounceInterpolator;
 import anandniketan.com.bhadajteacher.Adapter.ImageAdapter;
@@ -86,8 +87,8 @@ public class HomeFragment extends Fragment {
         initViews();
         setListners();
         if (Utility.isNetworkConnected(mContext)) {
-            getVersionUpdateInfo();
-//            getUserProfile();
+            //getVersionUpdateInfo();
+            getUserProfile();
         } else {
             Utility.ping(mContext, "Network not available");
 
@@ -107,7 +108,6 @@ public class HomeFragment extends Fragment {
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         grid_view = (GridView) rootView.findViewById(R.id.grid_view);
         grid_view.setAdapter(new ImageAdapter(mContext));
-//        grid_view.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.bounce));
         student_name_txt = (TextView) rootView.findViewById(R.id.student_name_txt);
         student_classname_txt = (TextView) rootView.findViewById(R.id.student_classname_txt);
         header = (LinearLayout) rootView.findViewById(R.id.header);
@@ -183,31 +183,24 @@ public class HomeFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 1;
                 } else if (position == 1) {
-//                    if (userProfileModels.get(0).getGetclassDetailsArrayList().size() > 0) {
                         fragment = new SubjectFragment();
                         fragmentManager = getFragmentManager();
                         fragmentManager.beginTransaction()
                                 .setCustomAnimations(0, 0)
                                 .replace(R.id.frame_container, fragment).commit();
-//                    } else {
-//                        new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
-//                                .setCancelable(false)
-//                                .setMessage("No Class Details are Found.")
-//                                .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        // do nothing
-//                                    }
-//                                })
-//                                .show();
-//                    }
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 2;
                 } else if (position == 2) {
                     fragment = new TimeTableFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 3;
                 } else if (position == 3) {
                     if (userProfileModels.get(0).getGetclassDetailsArrayList().size() > 0) {
                         fragment = new AttendanceFragment();
@@ -215,6 +208,8 @@ public class HomeFragment extends Fragment {
                         fragmentManager.beginTransaction()
                                 .setCustomAnimations(0, 0)
                                 .replace(R.id.frame_container, fragment).commit();
+                        AppConfiguration.firsttimeback = true;
+                        AppConfiguration.position = 4;
                     } else {
                         new android.app.AlertDialog.Builder(new android.view.ContextThemeWrapper(getActivity(), R.style.AppTheme))
                                 .setCancelable(false)
@@ -226,41 +221,48 @@ public class HomeFragment extends Fragment {
                                 })
                                 .show();
                     }
-
-                } else if (position == 4) {
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 4;
+                } /*else if (position == 4) {
                     fragment = new WorkPlanFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                } else if (position == 5) {
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 5;
+                }*/ else if (position == 4) {
                     fragment = new HomeworkFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-
-                } else if (position == 6) {
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 6;
+                } else if (position == 5) {
                     fragment = new TestMainFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-
-                } else if (position == 7) {
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 7;
+                } else if (position == 6) {
                     fragment = new MarksFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-
-                } else if (position == 8) {
-                    fragment = new PTMMainFragment();
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 8;
+                } else if (position == 7) {
+                    fragment = new ShowLeaveFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-
+                    AppConfiguration.firsttimeback = true;
+                    AppConfiguration.position = 9;
                 }
             }
         });

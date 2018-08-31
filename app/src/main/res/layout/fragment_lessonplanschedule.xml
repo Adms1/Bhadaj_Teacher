@@ -48,7 +48,7 @@
             android:layout_alignTop="@+id/toDate"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_toRightOf="@+id/toDate"
-            android:background="@drawable/profile_button"
+            android:background="@drawable/round_button"
             android:padding="@dimen/_3sdp"
             android:text="Filter"
             android:textColor="@android:color/white"

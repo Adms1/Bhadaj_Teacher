@@ -1,15 +1,11 @@
 package anandniketan.com.bhadajteacher.Adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.annotation.IdRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -18,9 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import anandniketan.com.bhadajteacher.Interfacess.onStudentHomeWorkStatus;
 import anandniketan.com.bhadajteacher.Interfacess.onWorkStatus;
-import anandniketan.com.bhadajteacher.Models.HomeworkModel;
 import anandniketan.com.bhadajteacher.Models.WorkPlanResponse.WorkPlanDatum;
 import anandniketan.com.bhadajteacher.R;
 

@@ -12,9 +12,9 @@
         android:orientation="horizontal"
         android:paddingBottom="@dimen/_1sdp"
         android:visibility="visible"
-        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
         android:layout_marginRight="@dimen/_15sdp"
-        android:weightSum="4"
+        android:weightSum="3"
         android:background="@drawable/list_line">
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:text="Lecture "
-            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_1sdp"
             android:paddingLeft="@dimen/_8sdp"
             android:gravity="center"
             android:textColor="@color/scheduleheadertextcolor"

@@ -18,16 +18,16 @@
 
         <TextView
             android:id="@+id/txtNoRecordstest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headerRel"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_below="@+id/date_rel"
             android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:text="No Records Found..."
+            android:layout_centerInParent="true"
+            android:background="@drawable/norecordfound"
             android:textColor="@android:color/holo_red_dark"
-            android:textStyle="bold"
             android:textSize="@dimen/_11sdp"
-            android:visibility="gone" />
+            android:textStyle="bold"
+            android:visibility="gone"  />
 
         <LinearLayout
             android:id="@+id/test_header"

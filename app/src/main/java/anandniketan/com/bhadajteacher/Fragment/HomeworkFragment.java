@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,10 +25,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,24 +43,17 @@ import anandniketan.com.bhadajteacher.AsyncTasks.GetTeacherDailyWorkAsyncTask;
 import anandniketan.com.bhadajteacher.AsyncTasks.TeacherStudentHomeworkStatusAsynctask;
 import anandniketan.com.bhadajteacher.AsyncTasks.TeacherStudentHomeworkStatusInsertUpdateAsyncTask;
 import anandniketan.com.bhadajteacher.Interfacess.onStudentHomeWorkStatus;
-import anandniketan.com.bhadajteacher.Models.HomeworkModel;
-import anandniketan.com.bhadajteacher.Models.HomeworkStatusInsertUpdateModel;
-import anandniketan.com.bhadajteacher.Models.TeacherStudentHomeworkStatusModel;
+import anandniketan.com.bhadajteacher.Models.HomeWorkResponse.HomeworkModel;
+import anandniketan.com.bhadajteacher.Models.HomeWorkResponse.HomeworkStatusInsertUpdateModel;
+import anandniketan.com.bhadajteacher.Models.HomeWorkResponse.TeacherStudentHomeworkStatusModel;
 import anandniketan.com.bhadajteacher.R;
 import anandniketan.com.bhadajteacher.Utility.Utility;
 
 
 public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
-    private View rootView;
-    private Button btnMenu, btnFilterHomework, btnBacktest_homework,btnLogout;
     private static TextView fromDate, toDate;
-    private TextView txtNoRecordshomework;
     private static String dateFinal;
-    private Context mContext;
-    private ProgressDialog progressDialog = null;
     private static boolean isFromDate = false;
-    private int lastExpandedPosition = -1;
-    private DatePickerDialog datePickerDialog;
     int Year, Month, Day;
     Calendar calendar;
     int mYear, mMonth, mDay;
@@ -63,30 +61,34 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
     ExpandableListAdapterHomeWork listAdapter;
     List<String> listDataHeader;
     HashMap<String, ArrayList<HomeworkModel.HomeworkData>> listDataChild;
+    TeacherStudentHomeworkStatusModel teacherStudentHomeworkStatusResponse;
+    HomeWorkStatusListAdapter homeWorkStatusListAdapter = null;
+    String DateStr, TermIdStr, StandardIdStr, ClassIdStr, SubjectIdStr, spiltStr, classNameStr, standardNameStr;
+    HomeworkStatusInsertUpdateModel homeworkStatusInsertUpdateModelResponse;
+    String homeworkIdstr;
+    String homeworkdetailidstr = "";
+    private View rootView;
+    private Button btnMenu, btnFilterHomework, btnBacktest_homework, btnLogout;
+    private TextView txtNoRecordshomework;
+    private Context mContext;
+    private ProgressDialog progressDialog = null;
+    private int lastExpandedPosition = -1;
+    private DatePickerDialog datePickerDialog;
     private GetTeacherDailyWorkAsyncTask getTecherHomeworkAsyncTask = null;
     private ArrayList<HomeworkModel> homeWorkModels = new ArrayList<>();
     private RelativeLayout date_rel;
     private LinearLayout homework_header;
-
     //use for homeworkstatus
     private AlertDialog alertDialogAndroid = null;
     private Button close_btn;
     private ImageView insert_homework_status_img;
     private LinearLayout header_linear;
     private ListView student_homework_status_list;
-    private TextView txtNoRecordshomeworkstatus;
-
+    private TextView txtNoRecordshomeworkstatus, standard_txt;
     //use for fillstudentlist listview
     private TeacherStudentHomeworkStatusAsynctask teacherStudentHomeworkStatusAsynctask = null;
-    TeacherStudentHomeworkStatusModel teacherStudentHomeworkStatusResponse;
-    HomeWorkStatusListAdapter homeWorkStatusListAdapter = null;
-    String DateStr, TermIdStr, StandardIdStr, ClassIdStr, SubjectIdStr, spiltStr;
-
     //use for inserthomeworkstatus
     private TeacherStudentHomeworkStatusInsertUpdateAsyncTask teacherStudentHomeworkStatusInsertUpdateAsyncTask = null;
-    HomeworkStatusInsertUpdateModel homeworkStatusInsertUpdateModelResponse;
-    String homeworkIdstr;
-    String homeworkdetailidstr = "";
 
     public HomeworkFragment() {
     }
@@ -104,7 +106,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
     }
 
     public void initViews() {
-        btnLogout=(Button)rootView.findViewById(R.id.btnLogout);
+        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         fromDate = (TextView) rootView.findViewById(R.id.fromDate);
         toDate = (TextView) rootView.findViewById(R.id.toDate);
         btnFilterHomework = (Button) rootView.findViewById(R.id.btnFilterHomework);
@@ -191,9 +193,11 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
             public void onClick(View v) {
                 if (!fromDate.getText().toString().equalsIgnoreCase("")) {
                     if (!toDate.getText().toString().equalsIgnoreCase("")) {
-
-                        getHomeworkData(fromDate.getText().toString(), toDate.getText().toString());
-
+                        if (Utility.CheckDates(fromDate.getText().toString(), toDate.getText().toString()) == true) {
+                            getHomeworkData(fromDate.getText().toString(), toDate.getText().toString());
+                        }else{
+                            Utility.pong(mContext, "Please select proper date.");
+                        }
                     } else {
                         Utility.pong(mContext, "You need to select a to date");
                     }
@@ -225,6 +229,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
             }
         });
     }
+
     public void getHomeworkData(final String fromDate, final String toDate) {
         if (Utility.isNetworkConnected(mContext)) {
             progressDialog = new ProgressDialog(mContext);
@@ -336,10 +341,11 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
         alertDialogAndroid.setCancelable(false);
         alertDialogAndroid.show();
         Window window = alertDialogAndroid.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        alertDialogAndroid.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         WindowManager.LayoutParams wlp = window.getAttributes();
 
-        wlp.gravity = Gravity.CENTER_HORIZONTAL;
+        wlp.gravity = Gravity.CENTER;
         wlp.flags = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
         window.setAttributes(wlp);
         alertDialogAndroid.show();
@@ -349,7 +355,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
         header_linear = (LinearLayout) layout.findViewById(R.id.header_linear);
         student_homework_status_list = (ListView) layout.findViewById(R.id.student_homework_status_list);
         txtNoRecordshomeworkstatus = (TextView) layout.findViewById(R.id.txtNoRecordshomeworkstatus);
-
+        standard_txt = (TextView) layout.findViewById(R.id.standard_txt);
         getStudentHomeworkStatus();
         close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -379,8 +385,11 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
         ClassIdStr = splitValue[1];
         SubjectIdStr = splitValue[2];
         TermIdStr = splitValue[3];
-        Log.d("value", TermIdStr + "" + StandardIdStr + "" + ClassIdStr + "" + SubjectIdStr);
+        standardNameStr = splitValue[4];
+        classNameStr = splitValue[5];
 
+        Log.d("value", TermIdStr + "" + StandardIdStr + "" + ClassIdStr + "" + SubjectIdStr + "" + classNameStr + "" + standardNameStr);
+        standard_txt.setText("Standard : " + standardNameStr + " - " + classNameStr);
 
         if (Utility.isNetworkConnected(mContext)) {
             progressDialog = new ProgressDialog(mContext);

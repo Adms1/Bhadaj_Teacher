@@ -54,6 +54,12 @@
     <string name="worksubject">Subject</string>
     <string name="chaptername">Work Plan</string>
     <string name="objective">Class Work</string>
+    <string name="leave_date">Leave Date</string>
+    <string name="approve_day">Approve Day</string>
+    <string name="reason">Reason</string>
+    <string name="cl">CL</string>
+    <string name="pl">PL</string>
+    <string name="approve_by">Approve By</string>
 
     <string-array name="menuoption1">
         <item>Home</item>

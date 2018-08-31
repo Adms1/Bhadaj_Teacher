@@ -57,16 +57,16 @@
 
         <TextView
             android:id="@+id/txtNoRecordsMarks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headerRel"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_below="@+id/date_rel"
             android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center"
-            android:text="No Records Found..."
+            android:layout_centerInParent="true"
+            android:background="@drawable/norecordfound"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
-            android:visibility="gone" />
+            android:visibility="gone"  />
 
         <LinearLayout
             android:id="@+id/class_linear"
@@ -79,8 +79,8 @@
 
             <Spinner
                 android:id="@+id/class_spinner"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_alignEnd="@+id/textView3"
                 android:layout_alignRight="@+id/textView3"
                 android:layout_below="@+id/header"
@@ -88,7 +88,6 @@
                 android:background="@drawable/dropdown_button"
                 android:forceHasOverlappingRendering="false"
                 android:overlapAnchor="false"/>
-
             <ImageView
                 android:id="@+id/search_img"
                 android:layout_width="@dimen/_20sdp"
@@ -117,6 +116,7 @@
                 android:drawableRight="@drawable/search_icon"
                 android:gravity="left|center"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:paddingLeft="@dimen/_7sdp"
                 android:paddingRight="@dimen/_13sdp"
                 android:textSize="@dimen/_10sdp"

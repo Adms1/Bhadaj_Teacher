@@ -16,8 +16,8 @@ import java.util.List;
 
 import anandniketan.com.bhadajteacher.AsyncTasks.PTMTeacherStudentInsertDetailAsyncTask;
 import anandniketan.com.bhadajteacher.Interfacess.onInboxRead;
-import anandniketan.com.bhadajteacher.Models.MainPtmSentMessageResponse;
-import anandniketan.com.bhadajteacher.Models.PTMInboxResponse.FinalArrayInbox;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.MainPtmSentMessageResponse;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.FinalArrayInbox;
 import anandniketan.com.bhadajteacher.R;
 
 /**
@@ -28,12 +28,9 @@ public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<String> _listDataHeader; // header titles
-    // child data in format of header title, child title
     private HashMap<String, List<FinalArrayInbox>> listChildData;
     private onInboxRead onInboxRead;
     String messageId, FromId, Toid, messageDate, messageSubject, messageMessageLine;
-    private PTMTeacherStudentInsertDetailAsyncTask getPTMTeacherStudentInsertDetailAsyncTask = null;
-    MainPtmSentMessageResponse mainPtmSentMessageResponse;
     private ArrayList<String> staffattendaceModel = new ArrayList<>();
 
     public ExpandableListAdapterInbox(Context context, List<String> listDataHeader,

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import anandniketan.com.bhadajteacher.Interfacess.CallBack;
 import anandniketan.com.bhadajteacher.Interfacess.onCheckBoxChnage;
-import anandniketan.com.bhadajteacher.Models.PTMCreateResponse.StudentDatum;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.StudentDatum;
 import anandniketan.com.bhadajteacher.R;
 
 /**

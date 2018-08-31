@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 
-import anandniketan.com.bhadajteacher.Models.MainPtmSentMessageResponse;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.MainPtmSentMessageResponse;
 import anandniketan.com.bhadajteacher.Utility.AppConfiguration;
 import anandniketan.com.bhadajteacher.WebServicesCall.WebServicesCall;
 

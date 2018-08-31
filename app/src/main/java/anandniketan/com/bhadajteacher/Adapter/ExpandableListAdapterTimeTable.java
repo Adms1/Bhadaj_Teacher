@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.bhadajteacher.Interfacess.onDeleteLecture;
-import anandniketan.com.bhadajteacher.Models.TeacherGetTimetableModel;
+import anandniketan.com.bhadajteacher.Models.TimeTable.TeacherGetTimetableModel;
 import anandniketan.com.bhadajteacher.R;
 
 /**

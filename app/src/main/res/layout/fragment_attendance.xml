@@ -67,16 +67,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
                 android:background="@color/orange"
+                android:elevation="@dimen/_5sdp"
                 android:minHeight="?attr/actionBarSize"
                 app:tabIndicatorColor="@color/editTextcolor"
                 app:tabIndicatorHeight="@dimen/_3sdp"
                 app:tabMaxWidth="0dp"
-                app:tabPaddingStart="@dimen/_10sdp"
                 app:tabPaddingEnd="@dimen/_10sdp"
-                app:tabTextAppearance="@style/MyCustomTabText"
+                app:tabPaddingStart="@dimen/_10sdp"
                 app:tabSelectedTextColor="@color/editTextcolor"
-                app:tabTextColor="@color/editTextcolor"
-                android:elevation="@dimen/_5sdp"/>
+                app:tabTextAppearance="@style/MyCustomTabText"
+                app:tabTextColor="@color/editTextcolor" />
              
             <View
                 android:id="@+id/view"

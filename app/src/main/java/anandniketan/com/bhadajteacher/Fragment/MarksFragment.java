@@ -39,6 +39,7 @@ import anandniketan.com.bhadajteacher.AsyncTasks.TeacherGetTestMarksAsyncTask;
 import anandniketan.com.bhadajteacher.Models.NewResponse.FinalArray;
 import anandniketan.com.bhadajteacher.Models.NewResponse.MainResponse;
 import anandniketan.com.bhadajteacher.Models.NewResponse.StudentDatum;
+import anandniketan.com.bhadajteacher.Models.NewResponse.SubjectMark;
 import anandniketan.com.bhadajteacher.R;
 import anandniketan.com.bhadajteacher.Utility.Utility;
 
@@ -60,7 +61,7 @@ public class MarksFragment extends Fragment {
     ExpandableListAdapterMarks listAdapterMarks;
     ExpandableListView lvExpMarks;
     List<String> listDataHeader = new ArrayList<>();
-    HashMap<String, List<anandniketan.com.bhadajteacher.Models.NewResponse.SubjectMark>> listDataChild = new HashMap<>();
+    HashMap<String, List<SubjectMark>> listDataChild = new HashMap<>();
     HashMap<String, String> listDatafooter = new HashMap<>();
     String spinnerSelectedValue, value;
     MainResponse response;

@@ -34,7 +34,7 @@ public class ExpandableListAdapterMarks  extends BaseExpandableListAdapter {
     }
 
     @Override
-    public anandniketan.com.bhadajteacher.Models.NewResponse.SubjectMark getChild(int groupPosition, int childPosititon) {
+    public SubjectMark getChild(int groupPosition, int childPosititon) {
         return this.listChildData.get(this._listDataHeader.get(groupPosition))
                 .get(childPosititon);
     }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import anandniketan.com.bhadajteacher.Models.TeacherAssignedSubjectModel;
+import anandniketan.com.bhadajteacher.Models.StudentAssignSubjectResponse.TeacherAssignedSubjectModel;
 import anandniketan.com.bhadajteacher.R;
 
 /**
@@ -62,12 +62,9 @@ public class MysubjectAdapetr extends BaseAdapter {
             viewHolder.subject_txt = (TextView) convertView.findViewById(R.id.subject_txt);
 
             try {
-
-
                 viewHolder.standard_txt.setText(teacherAssignedSubjectModels.get(position).getStandard());
                 viewHolder.class_txt.setText(teacherAssignedSubjectModels.get(position).getClassname());
                 viewHolder.subject_txt.setText(teacherAssignedSubjectModels.get(position).getSubject());
-
 
             } catch (Exception e) {
                 e.printStackTrace();

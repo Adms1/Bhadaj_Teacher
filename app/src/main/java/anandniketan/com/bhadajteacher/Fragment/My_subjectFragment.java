@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 import anandniketan.com.bhadajteacher.Adapter.MysubjectAdapetr;
 import anandniketan.com.bhadajteacher.AsyncTasks.GetTeacherAssignedSubjectAsyncTask;
-import anandniketan.com.bhadajteacher.Models.TeacherAssignedSubjectModel;
+import anandniketan.com.bhadajteacher.Models.StudentAssignSubjectResponse.TeacherAssignedSubjectModel;
 import anandniketan.com.bhadajteacher.R;
 import anandniketan.com.bhadajteacher.Utility.Utility;
 

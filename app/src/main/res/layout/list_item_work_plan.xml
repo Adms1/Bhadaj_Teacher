@@ -44,7 +44,7 @@
                 android:layout_marginLeft="@dimen/_1sdp"
                 android:layout_weight="1.4"
                 android:gravity="left"
-                android:paddingBottom="@dimen/_5sdp"
+
                 android:paddingTop="@dimen/_5sdp"
                 android:text="hiiii"
                 android:textSize="@dimen/_9sdp" />
@@ -83,7 +83,6 @@
                 android:layout_marginLeft="@dimen/_1sdp"
                 android:layout_weight="1.4"
                 android:gravity="left"
-                android:paddingBottom="@dimen/_5sdp"
                 android:paddingTop="@dimen/_5sdp"
                 android:text="hiiii"
                 android:textSize="@dimen/_9sdp" />
@@ -123,7 +122,6 @@
                 android:layout_marginLeft="@dimen/_1sdp"
                 android:layout_weight="1.4"
                 android:gravity="left"
-                android:paddingBottom="@dimen/_5sdp"
                 android:paddingTop="@dimen/_5sdp"
                 android:text="hiiii"
                 android:textSize="@dimen/_9sdp" />
@@ -133,6 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_2sdp"
             android:weightSum="3">
 
             <TextView

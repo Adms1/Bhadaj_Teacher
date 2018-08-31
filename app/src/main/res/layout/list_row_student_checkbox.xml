@@ -14,6 +14,6 @@
         android:textColor="#000000"
         android:padding="@dimen/_2sdp"
         android:button="@drawable/check_uncheck"
-        android:textSize="@dimen/_9sdp"
+        android:textSize="@dimen/_10sdp"
         android:typeface="normal" />
 </LinearLayout>

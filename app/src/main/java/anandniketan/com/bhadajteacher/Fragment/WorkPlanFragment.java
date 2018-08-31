@@ -402,11 +402,15 @@ public class WorkPlanFragment extends Fragment {
                             @Override
                             public void run() {
                                 progressDialog.dismiss();
-                                if (updateWorkStatusModel.getSuccess().equalsIgnoreCase("True")) {
-                                    progressDialog.dismiss();
-                                    Utility.ping(mContext, "Update Status");
-                                } else {
-                                    progressDialog.dismiss();
+                                if (!updateWorkStatusModel.equals("")) {
+                                    if (updateWorkStatusModel.getSuccess().equalsIgnoreCase("True")) {
+                                        progressDialog.dismiss();
+                                        Utility.ping(mContext, "Update Status");
+                                    } else {
+                                        progressDialog.dismiss();
+                                    }
+                                }else{
+                                    Utility.ping(mContext, "Server Down");
                                 }
                             }
                         });

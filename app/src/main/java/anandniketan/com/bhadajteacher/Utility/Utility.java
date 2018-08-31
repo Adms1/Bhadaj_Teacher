@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -24,7 +25,12 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import anandniketan.com.bhadajteacher.Activities.LoginActivity;
+import anandniketan.com.bhadajteacher.R;
 
 /**
  * Created by Megha on 15-Sep-16.
@@ -153,72 +159,26 @@ public class Utility {
         return pdfFile;
     }
 
-
-    public static final int REQUEST_PERMISSIONS_Internet = 1;
-    public static final int REQUEST_PERMISSIONS_ACCESS_NETWORK_STATE = 2;
-    public static final int REQUEST_PERMISSIONS_ACCESS_WIFI_STATE = 3;
-    public static final int REQUEST_PERMISSIONS_READ_EXTERNAL_STORAGE = 4;
-    public static final int REQUEST_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 5;
-
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static boolean checkPermission(final Context context) {
-        int currentAPIVersion = Build.VERSION.SDK_INT;
-        if (currentAPIVersion >= android.os.Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.INTERNET) &&
-                        ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.ACCESS_NETWORK_STATE) &&
-                        ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.ACCESS_WIFI_STATE) &&
-                        ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.READ_EXTERNAL_STORAGE) &&
-                        ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-
-                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
-                    alertBuilder.setCancelable(false);
-                    alertBuilder.setTitle("Permission necessary");
-                    alertBuilder.setMessage("External storage permission is necessary");
-                    alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                        public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions((Activity) context,
-                                    new String[]{Manifest.permission.INTERNET}, REQUEST_PERMISSIONS_Internet);
-                            ActivityCompat.requestPermissions((Activity) context,
-                                    new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, REQUEST_PERMISSIONS_ACCESS_NETWORK_STATE);
-                            ActivityCompat.requestPermissions((Activity) context,
-                                    new String[]{Manifest.permission.ACCESS_WIFI_STATE}, REQUEST_PERMISSIONS_ACCESS_WIFI_STATE);
-                            ActivityCompat.requestPermissions((Activity) context,
-                                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS_READ_EXTERNAL_STORAGE);
-                            ActivityCompat.requestPermissions((Activity) context,
-                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
-
-                        }
-                    });
-                    AlertDialog alert = alertBuilder.create();
-                    alert.show();
-
-                } else {
-                    ActivityCompat.requestPermissions((Activity) context,
-                            new String[]{Manifest.permission.INTERNET}, REQUEST_PERMISSIONS_Internet);
-                    ActivityCompat.requestPermissions((Activity) context,
-                            new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, REQUEST_PERMISSIONS_ACCESS_NETWORK_STATE);
-                    ActivityCompat.requestPermissions((Activity) context,
-                            new String[]{Manifest.permission.ACCESS_WIFI_STATE}, REQUEST_PERMISSIONS_ACCESS_WIFI_STATE);
-                    ActivityCompat.requestPermissions((Activity) context,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS_READ_EXTERNAL_STORAGE);
-                    ActivityCompat.requestPermissions((Activity) context,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
-                }
-                return false;
-            } else {
-                return true;
+    static SimpleDateFormat dfDate  = new SimpleDateFormat("dd/MM/yyyy");
+    public static boolean CheckDates(String startdate,String enddate)   {
+        boolean b = true;
+        try {
+            if(dfDate.parse(enddate).before(dfDate.parse(startdate)))
+            {
+                b = false;//If start date is before end date
             }
-        } else {
-            return true;
+            else if(dfDate.parse(enddate).equals(dfDate.parse(startdate)))
+            {
+                b = true;//If two dates are equal
+            }
+            else
+            {
+                b = true; //If start date is after the end date
+            }
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+        return b;
     }
-
 }

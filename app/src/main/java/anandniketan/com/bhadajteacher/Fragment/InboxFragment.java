@@ -22,9 +22,9 @@ import anandniketan.com.bhadajteacher.Adapter.ExpandableListAdapterInbox;
 import anandniketan.com.bhadajteacher.AsyncTasks.PTMTeacherStudentGetDetailAsyncTask;
 import anandniketan.com.bhadajteacher.AsyncTasks.PTMTeacherStudentInsertDetailAsyncTask;
 import anandniketan.com.bhadajteacher.Interfacess.onInboxRead;
-import anandniketan.com.bhadajteacher.Models.MainPtmSentMessageResponse;
-import anandniketan.com.bhadajteacher.Models.PTMInboxResponse.FinalArrayInbox;
-import anandniketan.com.bhadajteacher.Models.PTMInboxResponse.MainPtmInboxResponse;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.MainPtmSentMessageResponse;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.FinalArrayInbox;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.MainPtmInboxResponse;
 import anandniketan.com.bhadajteacher.R;
 import anandniketan.com.bhadajteacher.Utility.Utility;
 

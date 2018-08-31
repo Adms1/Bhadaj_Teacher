@@ -21,9 +21,9 @@ import anandniketan.com.bhadajteacher.Adapter.ExpandableListAdapterSent;
 import anandniketan.com.bhadajteacher.AsyncTasks.PTMDeleteMeetingAsyncTask;
 import anandniketan.com.bhadajteacher.AsyncTasks.PTMTeacherStudentGetDetailAsyncTask;
 import anandniketan.com.bhadajteacher.Interfacess.onDeleteButton;
-import anandniketan.com.bhadajteacher.Models.MainPtmSentDeleteResponse;
-import anandniketan.com.bhadajteacher.Models.PTMInboxResponse.FinalArrayInbox;
-import anandniketan.com.bhadajteacher.Models.PTMInboxResponse.MainPtmInboxResponse;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.MainPtmSentDeleteResponse;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.FinalArrayInbox;
+import anandniketan.com.bhadajteacher.Models.PTMResponse.MainPtmInboxResponse;
 import anandniketan.com.bhadajteacher.R;
 import anandniketan.com.bhadajteacher.Utility.Utility;
 
