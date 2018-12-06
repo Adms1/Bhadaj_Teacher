@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        android:padding="@dimen/_4sdp"
+        android:paddingBottom="1dp"
+        android:visibility="visible"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/Student_name_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:padding="@dimen/_5sdp"
+            android:text="Student Name"
+            android:textColor="@color/textblack"
+            android:textSize="@dimen/_11sdp" />
+
+        <TextView
+            android:id="@+id/gr_no_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_4sdp"
+            android:layout_weight=".5"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/grno"
+            android:textAlignment="center"
+            android:textColor="@color/textblack"
+            android:textSize="@dimen/_11sdp" />
+
+        <EditText
+            android:id="@+id/Marks_txt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text"
+            android:hint="@string/Marks"
+            android:padding="@dimen/_5sdp"
+            android:singleLine="true"
+            android:text="10"
+            android:textAlignment="center"
+            android:textColor="@color/textblack"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/_11sdp" />
+
+
+    </LinearLayout>
+</LinearLayout>

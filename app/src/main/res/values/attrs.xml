@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NotificationBadge">
+        <attr name="android:textSize"/>
+        <attr name="android:textColor"/>
+        <attr name="nbBackground" format="reference" />
+        <attr name="nbAnimationEnabled" format="boolean" />
+        <attr name="nbAnimationDuration" format="integer" />
+        <attr name="nbMaxTextLength" format="integer" />
+        <attr name="nbEllipsizeText" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ShowHidePasswordEditText">
+        <attr name="drawable_hide" format="integer"/>
+        <attr name="drawable_show" format="integer"/>
+        <attr name="tint_color" format="color"/>
+        <attr name="additionalTouchTargetSize" format="dimension"/>
+    </declare-styleable>
+
+
+</resources>

@@ -21,4 +21,7 @@
     <color name="notification">#33000000</color>
     <color name="workchild">#ECEBF1</color>
     <color name="textblack">#A6000000</color>
+    <color name="txt_blue">#1D94D9</color>
+    <color name="brush_textColorPurple">#443488</color>
+    <color name="brush_textColorPink">#F6448D</color>
 </resources>

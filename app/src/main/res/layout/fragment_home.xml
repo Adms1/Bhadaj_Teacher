@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -59,7 +60,7 @@
                     android:layout_alignTop="@+id/student_name_txt"
                     android:layout_marginLeft="@dimen/_110sdp"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:text="class:"
+                    android:text="Section"
                     android:textColor="@color/editTextcolor"
                     android:textSize="@dimen/_11sdp"
                     android:textStyle="normal" />
@@ -109,6 +110,8 @@
             android:background="@drawable/hedar_orange_1"
             android:layout_marginTop="@dimen/_5sdp">
 
+
+
             <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="@dimen/_20sdp"
@@ -129,14 +132,16 @@
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:background="@drawable/back_btn"
                 android:visibility="gone" />
+
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_7sdp"
                 android:layout_marginRight="@dimen/_7sdp"
-                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:gravity="center"
                 android:layout_toLeftOf="@+id/btnLogout"
                 android:layout_toStartOf="@+id/btnLogout"
                 android:layout_weight="0.84"
@@ -145,25 +150,40 @@
                 android:textColor="@color/editTextcolor"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toEndOf="@+id/textView2"
+                android:layout_toLeftOf="@+id/btnLogout"
+                android:layout_toRightOf="@+id/textView2">
+
+
             <Button
                 android:id="@+id/btn_notification"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
                 android:layout_marginTop="@dimen/_35sdp"
-                android:layout_toEndOf="@+id/textView2"
-                android:layout_toLeftOf="@+id/btnLogout"
-                android:layout_toRightOf="@+id/textView2"
                 android:background="@drawable/notification_image"/>
+
+
+
+            </LinearLayout>
+
         </RelativeLayout>
+
+
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_43sdp"
-            android:layout_below="@+id/headerRel"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/LL_header"
+            android:layout_gravity="center"
             android:layout_marginTop="-30dp"
+            android:layout_centerHorizontal="true"
             android:background="@drawable/circleshape"
             android:orientation="horizontal">
 
@@ -182,5 +202,61 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/LL_header"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/headerRel"
+            android:background="@color/orange"
+            android:orientation="vertical">
+
+
+            <!-- other child views -->
+
+            <TextView
+                android:id="@+id/tv_notification_empty_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/mdtp_white"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="No Notification Found"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_notificationlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+               />
+
+
+        </LinearLayout>
+
     </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:id="@+id/view_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_25sdp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="@dimen/_40sdp"/>
+
+    <anandniketan.com.anbcteacher.Utility.NotificationBadge
+        android:id="@+id/notification_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:layout_marginRight="@dimen/_2sdp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/mdtp_white"
+        app:nbAnimationEnabled="true"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:visibility="gone"
+        app:nbAnimationDuration="2"
+        app:nbEllipsizeText="5" />
+
+
+
+</RelativeLayout>

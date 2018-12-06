@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -77,6 +78,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
@@ -160,13 +162,45 @@
                 android:layout_marginBottom="@dimen/_3sdp"/>
         </RelativeLayout>
 
+
+
+
+        <LinearLayout
+            android:id="@+id/LL_header"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/headerRel"
+            android:background="@color/orange"
+            android:orientation="vertical">
+
+
+
+        <TextView
+            android:id="@+id/tv_notification_empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/mdtp_white"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="No Notification Found"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_notificationlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/orange"/>
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_43sdp"
             android:layout_below="@+id/headerRel"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="-53dp"
+            android:layout_marginTop="-23dp"
             android:background="@drawable/circleshape"
             android:orientation="horizontal">
 
@@ -184,6 +218,20 @@
                 android:paddingLeft="@dimen/_5sdp" />
 
         </LinearLayout>
+        <anandniketan.com.anbcteacher.Utility.NotificationBadge
+            android:id="@+id/notification_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/mdtp_white"
+            app:nbAnimationEnabled="true"
+            android:layout_marginTop="@dimen/_35sdp"
+
+            android:visibility="visible"
+            app:nbAnimationDuration="2"
+            app:nbEllipsizeText="5" />
 
     </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

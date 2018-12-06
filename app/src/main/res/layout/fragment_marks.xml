@@ -15,46 +15,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
-        <RelativeLayout
-            android:id="@+id/headerRel"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/hedar_1">
-
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="@dimen/_1sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@drawable/logout_button" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_37sdp"
-                android:text="MARKS"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="normal" />
-
-            <Button
-                android:id="@+id/btnBackMarks"
-                android:layout_width="@dimen/_13sdp"
-                android:layout_height="@dimen/_13sdp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_39sdp"
-                android:background="@drawable/back_btn" />
-
-        </RelativeLayout>
-
         <TextView
             android:id="@+id/txtNoRecordsMarks"
             android:layout_width="@dimen/_180sdp"
@@ -79,7 +39,7 @@
 
             <Spinner
                 android:id="@+id/class_spinner"
-                android:layout_width="@dimen/_160sdp"
+                android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_alignEnd="@+id/textView3"
                 android:layout_alignRight="@+id/textView3"
