@@ -155,7 +155,21 @@ public class AddDailyWorkFragment extends Fragment {
                 homeworkStr = homework_add_edt.getText().toString();
                 classworkStr = classwork_add_edt.getText().toString();
                 if (!classworkStr.equalsIgnoreCase("")) {
-                        getInsertdailywork();
+                    if(!homeworkStr.equalsIgnoreCase("")){
+
+                        if(!classworkStr.contains("\\|")){
+                            if(!homeworkStr.contains("\\|")){
+                                getInsertdailywork();
+                            }else{
+                                homework_add_edt.setError("Character | not allowed in homework");
+                            }
+                        }else{
+                            classwork_add_edt.setError("Character | not allowed in classwork");
+                        }
+                    }else{
+                        homework_add_edt.setError("Please enter homework");
+                    }
+
                 } else {
                     classwork_add_edt.setError("Please enter classwork");
                 }

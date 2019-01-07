@@ -58,44 +58,12 @@ public class AddMarksAdapter extends BaseAdapter {
             LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.add_marks_items, null);
             viewHolder.Student_name_txt = (TextView) convertView.findViewById(R.id.Student_name_txt);
-            viewHolder.gr_no_txt = (TextView) convertView.findViewById(R.id.gr_no_txt);
-            viewHolder.Marks_txt = (EditText) convertView.findViewById(R.id.Marks_txt);
-
+            viewHolder.gr_no_txt = (TextView)convertView.findViewById(R.id.gr_no_txt);
+            viewHolder.Marks_txt = (EditText)convertView.findViewById(R.id.Marks_txt);
 
             try {
                 viewHolder.Student_name_txt.setText(marksResponse.getFinalArray().get(position).getStudentName());
                 viewHolder.gr_no_txt.setText(marksResponse.getFinalArray().get(position).getGRNO());
-                viewHolder.Marks_txt.setText(marksResponse.getFinalArray().get(position).getMark());
-
-
-
-                viewHolder.Marks_txt.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                        if (editable.length() > 0) {
-                            marksResponse.getFinalArray().get(position).setCheckStatus("1");
-                            marksResponse.getFinalArray().get(position).setMark(viewHolder.Marks_txt.getText().toString());
-                        } else {
-                            marksResponse.getFinalArray().get(position).setCheckStatus("0");
-                        }
-                    }
-                });
-                if (!viewHolder.Marks_txt.getText().toString().equalsIgnoreCase("")){
-                    marksResponse.getFinalArray().get(position).setCheckStatus("1");
-                    marksResponse.getFinalArray().get(position).setMark(viewHolder.Marks_txt.getText().toString());
-                }else{
-                    marksResponse.getFinalArray().get(position).setCheckStatus("0");
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -103,6 +71,41 @@ public class AddMarksAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        if(viewHolder.Marks_txt != null) {
+
+            viewHolder.Marks_txt.setText(marksResponse.getFinalArray().get(position).getMark());
+
+            if (!viewHolder.Marks_txt.getText().toString().equalsIgnoreCase("")) {
+                marksResponse.getFinalArray().get(position).setCheckStatus("1");
+                marksResponse.getFinalArray().get(position).setMark(viewHolder.Marks_txt.getText().toString());
+            } else {
+                marksResponse.getFinalArray().get(position).setCheckStatus("0");
+            }
+
+            viewHolder.Marks_txt.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (editable.toString().length() > 0) {
+                        marksResponse.getFinalArray().get(position).setCheckStatus("1");
+                        marksResponse.getFinalArray().get(position).setMark(viewHolder.Marks_txt.getText().toString());
+                    } else {
+                        marksResponse.getFinalArray().get(position).setCheckStatus("0");
+                    }
+                }
+            });
+        }
+
         return convertView;
     }
 

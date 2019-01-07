@@ -102,6 +102,7 @@ public class LeaveListAdapter extends BaseExpandableListAdapter {
         if(childData.getStatus().equalsIgnoreCase("Rejected")){
             reject_linear.setVisibility(View.VISIBLE);
             rejectText.setText(childData.getARBy());
+            reason_linear.setVisibility(View.GONE);
 
         }else{
             reject_linear.setVisibility(View.GONE);

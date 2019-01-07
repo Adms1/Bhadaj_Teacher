@@ -39,6 +39,7 @@
                 android:layout_marginTop="@dimen/_37sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:text="Marks"
+                android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="normal" />

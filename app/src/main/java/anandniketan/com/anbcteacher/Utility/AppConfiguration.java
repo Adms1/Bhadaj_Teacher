@@ -19,6 +19,21 @@ public class AppConfiguration {
     static Domain domain = Domain.LOCAL;//only Change this for changing environment
 
 
+    public static String getBaseUrl() {
+        String url = "";
+        switch (domain) {
+            case LIVE:
+                url = DOMAIN_LIVE ;
+                break;
+            case LOCAL:
+                url = DOMAIN_LOCAL;
+                break;
+            default:
+                break;
+        }
+        return url;
+    }
+
     public static String getUrl(String methodName) {
         String url = "";
         switch (domain) {
@@ -44,15 +59,15 @@ public class AppConfiguration {
 
     //Image Url
     //Local
-    public static String DOMAIN_LIVE_IMAGES = "http://192.168.1.19:8086/skool360-Category-Images/Teacher/";
+    //public static String DOMAIN_LIVE_IMAGES = "http://192.168.1.19:8086/skool360-Category-Images/Teacher/";
     //Live
-    //public static String DOMAIN_LIVE_IMAGES = LIVE_BASE_URL+"skool360-Category-Images/Teacher/";
+    public static String DOMAIN_LIVE_IMAGES = LIVE_BASE_URL+"skool360-Category-Images/Teacher/";
 
     //ICONS URL
     //Local
-    public static String DOMAIN_LIVE_ICONS = "http://192.168.1.19:8086/skool360-Design-Icons/Teacher/";
+    //public static String DOMAIN_LIVE_ICONS = "http://192.168.1.19:8086/skool360-Design-Icons/Teacher/";
     //Live
-    //public static String DOMAIN_LIVE_ICONS = LIVE_BASE_URL+"skool360-Design-Icons/Teacher/";
+    public static String DOMAIN_LIVE_ICONS = LIVE_BASE_URL+"skool360-Design-Icons/Teacher/";
 
 
     public static String GetStaffLogin = "StaffLogin";

@@ -149,8 +149,8 @@ public class HomeFragment extends Fragment implements UserBirthdayListAdapter.On
 
         onNotificationCountRef = (UserBirthdayListAdapter.OnNotificationCount)this;
         if (Utility.isNetworkConnected(mContext)) {
-          //  getVersionUpdateInfo();
-            getUserProfile();
+            getVersionUpdateInfo();
+           // getUserProfile();
         } else {
             Utility.ping(mContext, "Network not available");
 

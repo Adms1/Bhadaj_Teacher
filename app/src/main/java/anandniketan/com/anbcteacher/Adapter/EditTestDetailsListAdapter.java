@@ -2,6 +2,8 @@ package anandniketan.com.anbcteacher.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,11 +63,10 @@ public class EditTestDetailsListAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.list_edittext, null);
             viewHolder.syllbus_edt = (EditText) convertView.findViewById(R.id.syllabus_txt);
 
-            String value=syllbusarrayList.get(position).toString();
+            String value = syllbusarrayList.get(position).toString();
 
             try {
                 viewHolder.syllbus_edt.setText(value);
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -74,6 +75,29 @@ public class EditTestDetailsListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        try {
+
+            viewHolder.syllbus_edt.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    syllbusarrayList.set(position, s.toString());
+
+                }
+            });
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
         return convertView;
     }
 }

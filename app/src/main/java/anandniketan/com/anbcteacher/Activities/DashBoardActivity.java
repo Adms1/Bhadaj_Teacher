@@ -40,7 +40,6 @@ public class DashBoardActivity extends FragmentActivity {
     private String notificationMsg,notificationType;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -239,6 +238,7 @@ public class DashBoardActivity extends FragmentActivity {
             if (AppConfiguration.position != 0) {
                 if (AppConfiguration.position==11){
                     fragment = new HomeworkFragment();
+
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)

@@ -118,7 +118,7 @@ public class ProfileAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View view) {
                     oldPassword = Utility.getPref(mContext, "pwd");
-                    currentPasswordStr = changePassowrdItemListBinding.txtcurrentPassword.getText().toString().trim();
+                    currentPasswordStr = changePassowrdItemListBinding.edtcurrentPassword.getText().toString().trim();
                     newPasswordStr = changePassowrdItemListBinding.edtnewPassword.getText().toString();
                     confirmPasswordStr = changePassowrdItemListBinding.edtconfirmPassword.getText().toString();
 

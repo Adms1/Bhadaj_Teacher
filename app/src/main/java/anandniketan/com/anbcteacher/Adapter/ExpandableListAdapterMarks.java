@@ -164,6 +164,7 @@ public class ExpandableListAdapterMarks  extends BaseExpandableListAdapter {
             listChildData = listChildData1;
             _listDataHeader = _listDataHeader1;
             listfooterDate = listfooterDate1;
+            notifyDataSetChanged();
         }
         else {
                 List<String> headerListNew = new ArrayList<String>();
@@ -189,7 +190,9 @@ public class ExpandableListAdapterMarks  extends BaseExpandableListAdapter {
                     }
                 }
             listChildData = childDataListNew;
-            _listDataHeader = headerListNew;
+                _listDataHeader = headerListNew;
+            listfooterDate = footerListNew;
+            notifyDataSetChanged();
 
 
 
@@ -197,7 +200,6 @@ public class ExpandableListAdapterMarks  extends BaseExpandableListAdapter {
         }
 
 
-        notifyDataSetChanged();
 
     }
 

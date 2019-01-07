@@ -29,7 +29,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_37sdp"
-            android:text="CREATE LEAVE APPLICATION"
+            android:text="Apply Leave"
+            android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_12sdp"
             android:textStyle="normal" />

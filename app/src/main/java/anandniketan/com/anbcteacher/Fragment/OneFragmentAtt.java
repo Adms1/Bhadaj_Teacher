@@ -123,6 +123,8 @@ public class OneFragmentAtt extends Fragment implements DatePickerDialog.OnDateS
                 datePickerDialog.showYearPickerFirst(false);
                 datePickerDialog.setAccentColor(Color.parseColor("#1B88C8"));
                 datePickerDialog.setTitle("Select Date From DatePickerDialog");
+                datePickerDialog.setMaxDate(calendar);
+
                 datePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
             }
         });
@@ -202,7 +204,7 @@ public class OneFragmentAtt extends Fragment implements DatePickerDialog.OnDateS
     }
 
     public void prepareList() {
-        total_student_txt.setText(Html.fromHtml("Total Student : " + "<font color='#1B88C8'>" + "<b>" + staffNewAttendenceModelResponse.getFinalArray().get(0).getTotal() + "</b>"));
+        total_student_txt.setText(Html.fromHtml("Total Students : " + "<font color='#1B88C8'>" + "<b>" + staffNewAttendenceModelResponse.getFinalArray().get(0).getTotal() + "</b>"));
         present_txt.setText(Html.fromHtml("Present : " + "<font color='#a4c639'>" + "<b>" + staffNewAttendenceModelResponse.getFinalArray().get(0).getTotalPresent() + "</b>"));
         absent_txt.setText(Html.fromHtml("Absent : " + "<font color='#ff0000'>" + "<b>" + staffNewAttendenceModelResponse.getFinalArray().get(0).getTotalAbsent() + "</b>"));
         leave_txt.setText(Html.fromHtml("Leave : " + "<font color='#ff9623'>" + "<b>" + staffNewAttendenceModelResponse.getFinalArray().get(0).getTotalLeave() + "</b>"));
@@ -308,10 +310,10 @@ public class OneFragmentAtt extends Fragment implements DatePickerDialog.OnDateS
 
     public void updateAttendace() {
         for (int i = 0; i < staffInsertAttendenceModelResponse.getFinalArray().size(); i++) {
-            total_student_txt.setText(Html.fromHtml("Total Student : " + "<fonts color='#1B88C8'>" + "<b>" + String.valueOf(staffInsertAttendenceModelResponse.getFinalArray().get(0).getTotal())));
-            present_txt.setText(Html.fromHtml("Present : " + "<fonts color='#a4c639'>" + "<b>" + String.valueOf(staffInsertAttendenceModelResponse.getFinalArray().get(0).getTotalPresent())));
-            absent_txt.setText(Html.fromHtml("Absent : " + "<fonts color='#ff0000'>" + "<b>" + String.valueOf(staffInsertAttendenceModelResponse.getFinalArray().get(0).getTotalAbsent())));
-            leave_txt.setText(Html.fromHtml("Leave : " + "<fonts color='#ff9623'>" + "<b>" + String.valueOf(staffInsertAttendenceModelResponse.getFinalArray().get(0).getTotalLeave())));
+            total_student_txt.setText(Html.fromHtml("Total Students : " + "<font color='#1B88C8'>" + "<b>" + String.valueOf(staffInsertAttendenceModelResponse.getFinalArray().get(0).getTotal())));
+            present_txt.setText(Html.fromHtml("Present : " + "<font color='#a4c639'>" + "<b>" + String.valueOf(staffInsertAttendenceModelResponse.getFinalArray().get(0).getTotalPresent())));
+            absent_txt.setText(Html.fromHtml("Absent : " + "<font color='#ff0000'>" + "<b>" + String.valueOf(staffInsertAttendenceModelResponse.getFinalArray().get(0).getTotalAbsent())));
+            leave_txt.setText(Html.fromHtml("Leave : " + "<font color='#ff9623'>" + "<b>" + String.valueOf(staffInsertAttendenceModelResponse.getFinalArray().get(0).getTotalLeave())));
 
         }
     }

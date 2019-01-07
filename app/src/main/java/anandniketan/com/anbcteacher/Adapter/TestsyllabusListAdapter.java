@@ -105,7 +105,17 @@ public class TestsyllabusListAdapter extends BaseAdapter {
                     .into(viewHolder.edit_txt);
             try {
                 String sr = String.valueOf(position + 1);
-                viewHolder.srno_txt.setText(sr);
+                try {
+                    String date= test_syllabusModels.get(position).getTestDate();
+                    SimpleDateFormat spf=new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
+                    Date newDate=spf.parse(date);
+                    spf= new SimpleDateFormat("dd,MMM");
+                    date = spf.format(newDate);
+                    viewHolder.srno_txt.setText(date);
+                }catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
                 viewHolder.test_name_txt.setText(test_syllabusModels.get(position).getTestName().trim());
                 viewHolder.grade_txt.setText(test_syllabusModels.get(position).getStandardClass());
                 viewHolder.subject_txt.setText(test_syllabusModels.get(position).getSubject());

@@ -187,6 +187,7 @@ public class DailyWorkStatusFragment extends Fragment {
                         params.put("StandardID", HWStandardId);//StandardIdStr
                         params.put("ClassID", HWClassId);
                         params.put("SubjectID", HWSubjectId);
+                        params.put("TeacherID",Utility.getPref(getActivity(),"StaffID"));
 
                         teacherStudentHomeworkStatusAsynctask = new TeacherStudentHomeworkStatusAsynctask(params);
                         teacherStudentHomeworkStatusResponse = teacherStudentHomeworkStatusAsynctask.execute().get();

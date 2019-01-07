@@ -37,7 +37,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_20sdp"
                             android:layout_margin="@dimen/_5sdp"
-                            android:text="Department Detail"
+                            android:text="Department Details"
                             android:textColor="@color/linear_color"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold" />

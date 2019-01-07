@@ -507,6 +507,7 @@ public class LeaveFragment extends Fragment implements View.OnClickListener, com
                 datePickerDialog.setOkText("Done");
                 datePickerDialog.showYearPickerFirst(false);
                 datePickerDialog.setAccentColor(Color.parseColor("#1B88C8"));
+                datePickerDialog.setMinDate(calendar);
                 datePickerDialog.setTitle("Select Date");
                 datePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
                 break;

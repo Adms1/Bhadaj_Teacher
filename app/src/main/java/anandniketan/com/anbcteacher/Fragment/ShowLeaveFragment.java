@@ -355,7 +355,7 @@ public class ShowLeaveFragment extends Fragment implements View.OnClickListener 
                             public void run() {
                                 progressDialog.dismiss();
                                 if (leaveDataResponse.getSuccess().equalsIgnoreCase("True")) {
-                                    Utility.ping(mContext, "Leave delete succesfully");
+                                    Utility.ping(mContext, "Leave deleted successfully");
                                     getLeaveDetail();
                                 } else {
                                     progressDialog.dismiss();

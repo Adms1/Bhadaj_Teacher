@@ -11,26 +11,41 @@ import java.util.List;
 
 public class UpdateTestDetailModel {
 
-    @SerializedName("Success")
-    @Expose
-    private String success;
-    @SerializedName("FinalArray")
-    @Expose
-    private List<Object> finalArray = null;
 
-    public String getSuccess() {
-        return success;
-    }
 
-    public void setSuccess(String success) {
-        this.success = success;
-    }
+        @SerializedName("Success")
+        @Expose
+        private String success;
+        @SerializedName("Message")
+        @Expose
+        private String message;
+        @SerializedName("FinalArray")
+        @Expose
+        private List<Object> finalArray = null;
 
-    public List<Object> getFinalArray() {
-        return finalArray;
-    }
+        public String getSuccess() {
+            return success;
+        }
 
-    public void setFinalArray(List<Object> finalArray) {
-        this.finalArray = finalArray;
-    }
+        public void setSuccess(String success) {
+            this.success = success;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public List<Object> getFinalArray() {
+            return finalArray;
+        }
+
+        public void setFinalArray(List<Object> finalArray) {
+            this.finalArray = finalArray;
+        }
+
+
 }

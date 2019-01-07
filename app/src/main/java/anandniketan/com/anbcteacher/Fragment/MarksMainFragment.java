@@ -14,10 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import anandniketan.com.anbcteacher.Activities.LoginActivity;
 import anandniketan.com.anbcteacher.Adapter.MarksMainAdapter;
-import anandniketan.com.anbcteacher.Adapter.TestMainAdapter;
 import anandniketan.com.anbcteacher.R;
 import anandniketan.com.anbcteacher.Utility.Utility;
 
@@ -54,15 +52,14 @@ public class MarksMainFragment extends Fragment {
         view = (View) rootView.findViewById(R.id.view);
 
         tabLayout_marks_main = (TabLayout) rootView.findViewById(R.id.tabLayout_marks_main);
-        tabLayout_marks_main.addTab(tabLayout_marks_main.newTab().setText("View Marks"), true);
-        tabLayout_marks_main.addTab(tabLayout_marks_main.newTab().setText(Html.fromHtml("Add Marks")));
+        tabLayout_marks_main.addTab(tabLayout_marks_main.newTab().setText("Add Marks"), true);
+        tabLayout_marks_main.addTab(tabLayout_marks_main.newTab().setText(Html.fromHtml("View Marks")));
         tabLayout_marks_main.setTabMode(TabLayout.MODE_FIXED);
         tabLayout_marks_main.setTabGravity(TabLayout.GRAVITY_FILL);
-
-
-        adapter = new MarksMainAdapter(getFragmentManager(), tabLayout_marks_main.getTabCount());
+        adapter = new MarksMainAdapter(getFragmentManager(),tabLayout_marks_main.getTabCount());
 //Adding adapter to pager
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(0);
 //        adapter.notifyDataSetChanged();
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             view.setVisibility(View.GONE);
@@ -115,8 +112,7 @@ public class MarksMainFragment extends Fragment {
             }
         });
 
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(
-                tabLayout_marks_main));
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout_marks_main));
         tabLayout_marks_main.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

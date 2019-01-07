@@ -27,7 +27,7 @@
             android:layout_gravity="center|center_horizontal"
             android:layout_marginLeft="@dimen/_1sdp"
             android:padding="@dimen/_5sdp"
-            android:text="Standard"
+            android:text="Grade"
             android:textAlignment="textStart"
             android:textColor="@color/linear_color"
             android:textSize="@dimen/_11sdp"
@@ -70,7 +70,7 @@
             android:layout_marginLeft="@dimen/_1sdp"
             android:layout_weight="0.6"
             android:padding="@dimen/_5sdp"
-            android:text="Class"
+            android:text="Section"
             android:textAlignment="textStart"
             android:textColor="@color/linear_color"
             android:textSize="@dimen/_11sdp" />
@@ -105,11 +105,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_3sdp"
-            android:paddingBottom="@dimen/_20sdp"
-            android:scrollbars="none"
             android:descendantFocusability="afterDescendants"
             android:divider="@color/gray"
-            android:dividerHeight="1dp"/>
+            android:dividerHeight="1dp"
+            android:paddingBottom="@dimen/_20sdp"
+            android:scrollbars="none" />
     </LinearLayout>
 
     <LinearLayout

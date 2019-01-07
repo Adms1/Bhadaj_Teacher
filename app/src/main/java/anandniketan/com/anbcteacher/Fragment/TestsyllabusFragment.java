@@ -325,7 +325,7 @@ public class TestsyllabusFragment extends Fragment implements DatePickerDialog.O
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        TestDatestr = output.format(d);
+        TestDatestr = edit_test_date_txt.getText().toString();
         TSMasterIDstr = splitarrayvalue[0];
         TestNamestr = splitarrayvalue[1];
         SubjectIDstr = splitarrayvalue[2];
@@ -356,19 +356,22 @@ public class TestsyllabusFragment extends Fragment implements DatePickerDialog.O
                         params.put("SectionID", SectionIDstr);
                         params.put("Arydetail", finalTxtstr);
                         params.put("StandardID", StandardIDStr);
-
                         updateTestDetailAsyncTask = new TeacherUpdateTestDetailAsyncTask(params);
                         updateTestDetailModel = updateTestDetailAsyncTask.execute().get();
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if (updateTestDetailModel.getSuccess().equalsIgnoreCase("True")) {
-                                    progressDialog.dismiss();
-                                    alertDialogAndroid.dismiss();
-                                    getTestSyllabusData();
-                                } else {
-                                    progressDialog.dismiss();
-                                    Utility.ping(mContext, "Something error");
+                                if(updateTestDetailModel != null) {
+                                    if (updateTestDetailModel.getSuccess().equalsIgnoreCase("True")) {
+                                        progressDialog.dismiss();
+                                        alertDialogAndroid.dismiss();
+                                        getTestSyllabusData();
+                                    } else {
+                                        progressDialog.dismiss();
+                                        Utility.ping(mContext, updateTestDetailModel.getMessage());
+                                    }
+                                }else{
+                                    Utility.ping(mContext, updateTestDetailModel.getMessage());
                                 }
                             }
                         });

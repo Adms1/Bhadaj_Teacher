@@ -26,10 +26,10 @@ public class MarksMainAdapter extends FragmentStatePagerAdapter {
 //Returning the current tabs
         switch (position) {
             case 0:
-                MarksFragment tab1 = new MarksFragment();
+                AddMarksFragment tab1 = new AddMarksFragment();
                 return tab1;
             case 1:
-                AddMarksFragment tab2 = new AddMarksFragment();
+                MarksFragment tab2 = new MarksFragment();
                 return tab2;
             default:
                 return null;

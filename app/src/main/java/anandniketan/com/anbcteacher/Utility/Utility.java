@@ -3,11 +3,13 @@ package anandniketan.com.anbcteacher.Utility;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -17,6 +19,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -46,6 +52,7 @@ public class Utility {
     public static String childAnnouncementFolderName = "Pdf";
     public static String childCircularFolderName = "Word";
     private static final int MEGABYTE = 1024 * 1024;
+    public static Dialog dialog;
 
     public static boolean isNetworkConnected(Context ctxt) {
         ConnectivityManager cm = (ConnectivityManager) ctxt
@@ -305,6 +312,51 @@ public class Utility {
                 })
                 .setIcon(R.drawable.ic_launcher)
                 .show();
+    }
+
+
+    public static void showCustomDialog(String title, String str, Activity activity) {
+        // custom dialog
+        android.app.AlertDialog.Builder dialogBuilder = new android.app.AlertDialog.Builder(activity);
+// ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.custom_simple_dailog_ok, null);
+
+        dialogBuilder.setView(dialogView);
+
+        TextView txt_message_dialog = (TextView) dialogView.findViewById(R.id.txt_message_dialog);
+        txt_message_dialog.setText(str);
+
+        TextView txt_title_dialog = (TextView) dialogView.findViewById(R.id.txt_title_dialog);
+        txt_title_dialog.setText(title);
+
+        TextView btn_ok = (TextView) dialogView.findViewById(R.id.btn_ok);
+
+
+        final android.app.AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+    }
+
+    public static void showDialog(Context context) {
+        dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.progressbar_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    public static void dismissDialog() {
+        if (dialog != null)
+            dialog.dismiss();
     }
 
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.IdRes;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +80,7 @@ public class AttendanceListAdapter extends BaseAdapter {
             viewHolder.absent_chk = (RadioButton) convertView.findViewById(R.id.absent_chk);
             viewHolder.leave_chk = (RadioButton) convertView.findViewById(R.id.leave_chk);
             viewHolder.attendance_group = (RadioGroup) convertView.findViewById(R.id.attendance_group);
-            imageLoader = ImageLoader.getInstance();
+
 
 
             final StudentDetailAttedance detail = staffNewAttendenceModel.getFinalArray().get(0).getStudentDetail().get(position);
@@ -101,11 +102,15 @@ public class AttendanceListAdapter extends BaseAdapter {
 //                imageLoader.init(config.createDefault(mContext));
 //                imageLoader.displayImage(detail.getStudentImage(), viewHolder.profile_image);
 
-                RequestOptions requestOptions = new RequestOptions();
-                requestOptions.placeholder(R.drawable.profile_pic_holder);
-                requestOptions.error(android.R.drawable.stat_notify_error);
+                if(!TextUtils.isEmpty(detail.getStudentImage())) {
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions.placeholder(R.drawable.profile_pic_holder);
+                    requestOptions.error(R.drawable.profile_pic_holder);
+                    Glide.with(mContext).setDefaultRequestOptions(requestOptions).load(detail.getStudentImage()).into(viewHolder.profile_image);
+                }else{
+                    Glide.with(mContext).load(R.drawable.profile_pic_holder).into(viewHolder.profile_image);
 
-                Glide.with(mContext).setDefaultRequestOptions(requestOptions).load(detail.getStudentImage()).into(viewHolder.profile_image);
+                }
 
                 viewHolder.student_name_txt.setText(detail.getStudentName().trim());
 

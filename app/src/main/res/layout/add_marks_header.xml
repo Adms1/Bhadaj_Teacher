@@ -45,7 +45,7 @@
             android:layout_marginRight="@dimen/_4sdp"
             android:layout_weight="1"
             android:padding="@dimen/_5sdp"
-            android:text="@string/Marks"
+            android:text="Marks Gained"
             android:textAlignment="center"
             android:textColor="@color/scheduleheadertextcolor"
             android:textSize="@dimen/_11sdp" />

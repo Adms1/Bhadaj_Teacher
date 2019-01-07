@@ -180,9 +180,7 @@ public class ShowHidePasswordEditText extends android.support.v7.widget.AppCompa
         Drawable bottom = existingDrawables[3];
 
         if (show) {
-            Drawable original = isShowingPassword ?
-                    ContextCompat.getDrawable(getContext(), visibilityIndicatorHide) :
-                    ContextCompat.getDrawable(getContext(), visibilityIndicatorShow);
+            Drawable original = isShowingPassword ? ContextCompat.getDrawable(getContext(), visibilityIndicatorShow) : ContextCompat.getDrawable(getContext(), visibilityIndicatorHide);
             original.mutate();
 
             if (tintColor == 0) {

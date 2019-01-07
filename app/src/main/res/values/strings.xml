@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ANBC-Teacher</string>
+    <string name="app_name">SKOOL 360 - Teacher (ANBC)</string>
 
 
     <!--App use String-->
@@ -9,7 +9,7 @@
     <string name="Login">Log In</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
-    <string name="totalstudent">Total Student</string>
+    <string name="totalstudent">Total Students</string>
     <string name="present">Present :</string>
     <string name="absent">Absent :</string>
     <string name="leave">Leave :</string>
@@ -19,6 +19,7 @@
     <string name="standard">Grade</string>
     <string name="classes">Section</string>
     <string name="subject">Subject</string>
+    <string name="date">Date</string>
     <string name="srno">Sr No.</string>
     <string name="testname">Test Name</string>
     <string name="grade">Grade</string>
@@ -28,7 +29,7 @@
     <string name="Marks">Marks</string>
     <string name="view"><u>View</u></string>
     <string name="testdate">Test Date</string>
-    <string name="standardsubject">Standard-Subject</string>
+    <string name="standardsubject">Grade-Subject</string>
     <string name="section">Section</string>
     <string name="test">Test</string>
     <string name="homeworkDate">Date</string>
@@ -45,6 +46,8 @@
     <string name="lessonchaptername">Chapter Name</string>
     <string name="lessonpdf">PDF</string>
     <string name="lessonword">WORD</string>
+    <string name="alert_msg">Alert Msg</string>
+
     <string name="workplanstandard">Standard</string>
     <string name="workplanmonth">Month</string>
     <string name="workstatus">Status</string>
@@ -55,11 +58,11 @@
     <string name="chaptername">Work Plan</string>
     <string name="objective">Class Work</string>
     <string name="leave_date">Leave Date</string>
-    <string name="approve_day">Approve Day</string>
+    <string name="approve_day">Approved Date</string>
     <string name="reason">Reason</string>
     <string name="cl">CL</string>
     <string name="pl">PL</string>
-    <string name="approve_by">Approve By</string>
+    <string name="approve_by">Approved By</string>
     <string name="teacher_permission">Sorry, you don\'t have permission for access. This is only for class teacher.</string>
 
     <string-array name="menuoption1">

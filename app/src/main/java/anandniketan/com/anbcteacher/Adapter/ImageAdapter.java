@@ -38,8 +38,8 @@ public class ImageAdapter extends BaseAdapter {
            AppConfiguration.DOMAIN_LIVE_IMAGES+"settings.png"
     };
 
-    public String[] mThumbNames = {"Schedule", "Subjects", "Time table", "Attendence", /*"Work Plan",*/ "Daily Work",
-            "Test/Syllabus", "Marks","Leave Details","Setting" /*"PTM"*/};
+    public String[] mThumbNames = {"Schedule", "Subjects", "Time table", "Attendance", /*"Work Plan",*/ "Daily Work",
+            "Test/Syllabus", "Marks","Leave Details","Settings" /*"PTM"*/};
 
     // Constructor
     public ImageAdapter(Context c) {

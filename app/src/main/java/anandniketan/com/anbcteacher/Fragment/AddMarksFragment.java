@@ -2,6 +2,7 @@ package anandniketan.com.anbcteacher.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -65,6 +68,8 @@ public class AddMarksFragment extends Fragment {
     private ListView student_list_rcv;
     private TextView total_mark_txt;
     private ImageView insert_attendance_img;
+    private static boolean keyboardHidden = true;
+    private static int reduceHeight = 0;
 
     public AddMarksFragment() {
     }
@@ -77,9 +82,10 @@ public class AddMarksFragment extends Fragment {
 
         initViews();
         setListners();
-
+        //getTermData();
         return rootView;
     }
+
 
     public void initViews() {
 
@@ -91,10 +97,46 @@ public class AddMarksFragment extends Fragment {
         student_list_rcv = (ListView) rootView.findViewById(R.id.student_list_rcv);
         total_mark_txt = (TextView) rootView.findViewById(R.id.total_mark_txt);
         insert_attendance_img = (ImageView) rootView.findViewById(R.id.insert_attendance_img);
+
+
         setUserVisibleHint(true);
+
+        //final View decorView = getActivity().getWindow().getDecorView();
+
+//        decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                Rect rect = new Rect();
+//                decorView.getWindowVisibleDisplayFrame(rect);
+//
+//                int displayHeight = rect.bottom - rect.top;
+//                int height = decorView.getHeight();
+//                boolean keyboardHiddenTemp = (double)displayHeight / height > 0.8 ;
+//                int mylistviewHeight = student_list_rcv.getMeasuredHeight();
+//
+//                if (keyboardHiddenTemp != keyboardHidden) {
+//                    keyboardHidden = keyboardHiddenTemp;
+//
+//                    if (!keyboardHidden) {
+//                        reduceHeight = height - displayHeight;
+//                        LinearLayout.LayoutParams mParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,mylistviewHeight - reduceHeight);
+//                        student_list_rcv.setLayoutParams(mParam);
+//                        student_list_rcv.requestLayout();
+//
+//                    } else {
+//                        LinearLayout.LayoutParams mParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,mylistviewHeight + reduceHeight);
+//                        student_list_rcv.setLayoutParams(mParam);
+//                        student_list_rcv.requestLayout();
+//                    }
+//                }
+//
+//            }
+//        });
+      //  student_list_rcv.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
 
     }
 
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && rootView != null) {
@@ -102,6 +144,11 @@ public class AddMarksFragment extends Fragment {
         }
         // execute your data loading logic.
     }
+
+
+    //...
+//...
+
 
     public void setListners() {
         term_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -192,27 +239,37 @@ public class AddMarksFragment extends Fragment {
 //                    for (int j = 0; j < studentInfoObj.; j++) {
                     LeaveFinalArray subObj = studentInfoObj;//.getFinalArray().get(j);
                     String status = subObj.getCheckStatus();
-                    if (status.equalsIgnoreCase("1")) {
-                        if (Float.parseFloat(marks) < Float.parseFloat(total_mark_txt.getText().toString())) {
-                            if (!isEnable) {
-                                studentString = String.valueOf(stuId) + "," + subObj.getMarkID() + "," + subObj.getMark() + "," + subObj.getGRNO();
-                                isEnable = true;
+                    try {
+
+
+//                    if(status != null) {
+                        if (status.equalsIgnoreCase("1")) {
+                            if (Float.parseFloat(marks) <= Float.parseFloat(total_mark_txt.getText().toString())) {
+                                if (!isEnable) {
+                                    studentString = String.valueOf(stuId) + "," + subObj.getMarkID() + "," + subObj.getMark() + "," + subObj.getGRNO();
+                                    isEnable = true;
+                                } else {
+                                    studentString = studentString + "|" + String.valueOf(stuId) + "," + subObj.getMarkID() + "," + subObj.getMark() + "," + subObj.getGRNO();
+                                }
                             } else {
-                                studentString = studentString + "|" + String.valueOf(stuId) + "," + subObj.getMarkID() + "," + subObj.getMark() + "," + subObj.getGRNO();
+                                Utility.ping(mContext, "Please enter proper marks");
+                                break;
                             }
-                        } else {
-                            Utility.ping(mContext, "Please enter proper marks");
-                            break;
                         }
-                    } else {
-                        Utility.ping(mContext, "Please Enter marks");
-                        break;
+                    }catch (Exception ex){
+
+                        ex.printStackTrace();
                     }
+//                    }else {
+//                        Utility.ping(mContext, "Please Enter marks");
+//                        break;
+//                    }
 //                    }
                     newArray.add(studentString);
                 }
                 if (newArray.size() > 0) {
-                    if (newArray.size()==marksResponse.getFinalArray().size()) {
+                    detailIdStr = "";
+                    if (newArray.size()== marksResponse.getFinalArray().size()) {
                         for (String s : newArray) {
                             if (!s.equals("")) {
                                 detailIdStr = detailIdStr + "|" + s;
@@ -221,7 +278,6 @@ public class AddMarksFragment extends Fragment {
                         }
                         detailIdStr = detailIdStr.substring(1, detailIdStr.length());
                         Log.d("detailIdStr ", detailIdStr);
-
 
                         getInsertMarksData();
                     }else{
@@ -573,7 +629,7 @@ public class AddMarksFragment extends Fragment {
                         params.put("SubjectID", testsubjectIdStr);
                         params.put("DetailID", detailIdStr);
                         params.put("SubjectName", testsubjectNameStr);
-                        params.put("TotalMarks", total_mark_txt.getText().toString());
+                        params.put("TotalMarks",total_mark_txt.getText().toString());
                         insertMarksAsyncTask = new InsertMarksAsyncTask(params);
                         testmarkssubjectResponse = insertMarksAsyncTask.execute().get();
                         getActivity().runOnUiThread(new Runnable() {

@@ -26,11 +26,11 @@ public class AddTestDetalisListAdapter extends BaseAdapter {
     private ArrayList<String> number;
     private ArrayList<TextModel> textData;
     // Constructor
+
     public AddTestDetalisListAdapter(Context c, ArrayList<String> number,ArrayList<TextModel> mDataList) {
         mContext = c;
         this.number = number;
         textData = mDataList;
-
     }
 
     private class ViewHolder {
@@ -84,19 +84,25 @@ public class AddTestDetalisListAdapter extends BaseAdapter {
             viewHolder.syllbus_edt.setText(textData.get(position).getTextString());
 
         }
-        viewHolder.syllbus_edt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+        try {
+            viewHolder.syllbus_edt.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
 
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                textData.get(position).setTextString(s.toString());
-            }
-        });
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    textData.get(position).setTextString(s.toString());
+                }
+            });
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
 
         return convertView;
     }

@@ -162,7 +162,7 @@ public class ExpandableListAdapterHomeWork extends BaseExpandableListAdapter {
                             "|" + childData.get(childPosition).getClassName() +
                             "|" + childData.get(childPosition).getSubject() +
                             "|" + objective_txt.getText().toString() +
-                            "|" +  homwork_name_txt.getText().toString());
+                            "|" +  homwork_name_txt.getText().toString()+"|" +"1");
                 }
 
                 onWorkStatus.onWorkStatus();

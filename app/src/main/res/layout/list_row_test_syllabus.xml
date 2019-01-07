@@ -19,11 +19,12 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="wrap_content"
             android:padding="@dimen/_3sdp"
-            android:text="@string/srno"
+            android:text="@string/date"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/_9sdp" />
+
 
         <TextView
             android:id="@+id/test_name_txt"
