@@ -1,5 +1,6 @@
 package anandniketan.com.anbcteacher.Adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.IdRes;
@@ -62,10 +63,10 @@ public class HomeWorkStatusListAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.list_adapter_item, null);
-            viewHolder.homework_status_student_name_txt = (TextView) convertView.findViewById(R.id.homework_status_student_name_txt);
-            viewHolder.done_chk = (RadioButton) convertView.findViewById(R.id.done_chk);
-            viewHolder.pendding_chk = (RadioButton) convertView.findViewById(R.id.pendding_chk);
-            viewHolder.homework_group = (RadioGroup) convertView.findViewById(R.id.homework_group);
+            viewHolder.homework_status_student_name_txt = convertView.findViewById(R.id.homework_status_student_name_txt);
+            viewHolder.done_chk = convertView.findViewById(R.id.done_chk);
+            viewHolder.pendding_chk = convertView.findViewById(R.id.pendding_chk);
+            viewHolder.homework_group = convertView.findViewById(R.id.homework_group);
 
             final FinalArrayhomeworkstatus subjObj = studentsubjectarrayList.getFinalArray().get(position);
 
@@ -73,9 +74,10 @@ public class HomeWorkStatusListAdapter extends BaseAdapter {
                 viewHolder.homework_status_student_name_txt.setText(subjObj.getStudentName());
 
                 viewHolder.homework_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @SuppressLint("ResourceType")
                     @Override
                     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                        RadioButton rb = (RadioButton) group.findViewById(checkedId);
+                        RadioButton rb = group.findViewById(checkedId);
                         if (null != rb && checkedId > -1) {
 
                             // checkedId is the RadioButton selected
@@ -92,6 +94,7 @@ public class HomeWorkStatusListAdapter extends BaseAdapter {
                         }
                     }
                 });
+
                 switch (Integer.parseInt(subjObj.getHomeWorkStatus())) {
                     case 0:
                         viewHolder.pendding_chk.setChecked(true);

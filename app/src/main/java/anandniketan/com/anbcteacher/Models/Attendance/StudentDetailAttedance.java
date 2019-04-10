@@ -27,6 +27,10 @@ public class StudentDetailAttedance {
     @Expose
     private String comment;
 
+    @SerializedName("RowEnable")
+    @Expose
+    private String rowenable;
+
     public Integer getStudentID() {
         return studentID;
     }
@@ -73,5 +77,13 @@ public class StudentDetailAttedance {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getRowenable() {
+        return rowenable;
+    }
+
+    public void setRowenable(String rowenable) {
+        this.rowenable = rowenable;
     }
 }

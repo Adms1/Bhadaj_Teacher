@@ -504,12 +504,12 @@ public class AddMarksFragment extends Fragment {
         ArrayList<String> firstValueId = new ArrayList<>();
         firstValueId.add("0");
 
-        ArrayList<String> testsubjectId = new ArrayList<String>();
+        ArrayList<Integer> testsubjectId = new ArrayList<Integer>();
         ArrayList<String> testsubjectname = new ArrayList<String>();
         for (int m = 0; m < firstValueId.size(); m++) {
-            testsubjectId.add(firstValueId.get(m));
+            testsubjectId.add(Integer.valueOf(firstValueId.get(m)));
             for (int j = 0; j < testmarkssubjectResponse.getFinalArray().size(); j++) {
-                testsubjectId.add(testmarkssubjectResponse.getFinalArray().get(j).getSubjectID());
+                testsubjectId.add(Integer.valueOf(testmarkssubjectResponse.getFinalArray().get(j).getSubjectID()));
             }
         }
 

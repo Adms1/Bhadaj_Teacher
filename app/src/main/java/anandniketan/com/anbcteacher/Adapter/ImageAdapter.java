@@ -79,7 +79,7 @@ public class ImageAdapter extends BaseAdapter {
                 .load(url)
                 .apply(new RequestOptions()
                         .fitCenter()
-                        .placeholder(R.drawable.profile_pic_holder)
+
                 )
                 .into(imgGridOptions);
         txtGridOptionsName.setText(mThumbNames[position]);

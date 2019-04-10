@@ -12,6 +12,7 @@ public class LeaveMainModel {
     @SerializedName("Success")
     @Expose
     private String success;
+
     @SerializedName("TermID")
     @Expose
     private Integer termID;
@@ -35,6 +36,8 @@ public class LeaveMainModel {
     public void setSuccess(String success) {
         this.success = success;
     }
+
+
 
     public List<LeaveFinalArray> getFinalArray() {
         return finalArray;

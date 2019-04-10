@@ -81,10 +81,19 @@ public class AttendanceListAdapter extends BaseAdapter {
             viewHolder.leave_chk = (RadioButton) convertView.findViewById(R.id.leave_chk);
             viewHolder.attendance_group = (RadioGroup) convertView.findViewById(R.id.attendance_group);
 
-
-
             final StudentDetailAttedance detail = staffNewAttendenceModel.getFinalArray().get(0).getStudentDetail().get(position);
             try {
+
+                if(detail.getRowenable().equalsIgnoreCase("true")){
+                    viewHolder.present_chk.setClickable(true);
+                    viewHolder.absent_chk.setClickable(true);
+                    viewHolder.leave_chk.setClickable(true);
+                }else {
+                    viewHolder.present_chk.setClickable(false);
+                    viewHolder.absent_chk.setClickable(false);
+                    viewHolder.leave_chk.setClickable(false);
+                }
+
 //                DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
 //                        .cacheInMemory(true)
 //                        .cacheOnDisk(true)

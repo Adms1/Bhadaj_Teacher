@@ -1,5 +1,6 @@
 package anandniketan.com.anbcteacher.Fragment;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,9 +9,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,14 +30,12 @@ import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import anandniketan.com.anbcteacher.Activities.AddHwCwActivity;
 import anandniketan.com.anbcteacher.Activities.LoginActivity;
 import anandniketan.com.anbcteacher.Adapter.ExpandableListAdapterHomeWork;
 import anandniketan.com.anbcteacher.Adapter.HomeWorkStatusListAdapter;
@@ -90,6 +90,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
     //use for fillstudentlist listview
     private TeacherStudentHomeworkStatusAsynctask teacherStudentHomeworkStatusAsynctask = null;
     //use for inserthomeworkstatus
+    private FloatingActionButton floatingActionButton;
     private TeacherStudentHomeworkStatusInsertUpdateAsyncTask teacherStudentHomeworkStatusInsertUpdateAsyncTask = null;
 
     public HomeworkFragment() {
@@ -111,21 +112,23 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
         AppConfiguration.position = 6;
         AppConfiguration.firsttimeback = true;
 
-        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
-        fromDate = (TextView) rootView.findViewById(R.id.fromDate);
-        toDate = (TextView) rootView.findViewById(R.id.toDate);
-        btnFilterHomework = (Button) rootView.findViewById(R.id.btnFilterHomework);
-        txtNoRecordshomework = (TextView) rootView.findViewById(R.id.txtNoRecordshomework);
-        btnBacktest_homework = (Button) rootView.findViewById(R.id.btnBacktest_homework);
-        lvExpHomework = (ExpandableListView) rootView.findViewById(R.id.lvExpHomework);
-        date_rel = (RelativeLayout) rootView.findViewById(R.id.date_rel);
-        homework_header = (LinearLayout) rootView.findViewById(R.id.homework_header);
+        btnLogout = rootView.findViewById(R.id.btnLogout);
+        fromDate = rootView.findViewById(R.id.fromDate);
+        toDate = rootView.findViewById(R.id.toDate);
+        btnFilterHomework = rootView.findViewById(R.id.btnFilterHomework);
+        txtNoRecordshomework = rootView.findViewById(R.id.txtNoRecordshomework);
+        btnBacktest_homework = rootView.findViewById(R.id.btnBacktest_homework);
+        lvExpHomework = rootView.findViewById(R.id.lvExpHomework);
+        date_rel = rootView.findViewById(R.id.date_rel);
+        homework_header = rootView.findViewById(R.id.homework_header);
+        floatingActionButton = rootView.findViewById(R.id.add_hw_fab_btn);
 
         calendar = Calendar.getInstance();
         Year = calendar.get(Calendar.YEAR);
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
         Bundle args = getArguments();
+
         if (args != null) {
             HWStartDate = getArguments().getString("HWStartDate");
             HWEndDate = getArguments().getString("HWEndDate");
@@ -134,6 +137,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
             HWStandardName = getArguments().getString("HWStandardName");
             HWClassName = getArguments().getString("HWClassName");
         }
+
         if (HWStartDate.equalsIgnoreCase("") && HWEndDate.equalsIgnoreCase("")) {
             fromDate.setText(Utility.getTodaysDate());
             toDate.setText(Utility.getTodaysDate());
@@ -143,11 +147,19 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
         }
 
         //load today's data first
-
         getHomeworkData(fromDate.getText().toString(), toDate.getText().toString());
     }
 
     public void setListners() {
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddHwCwActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,10 +292,10 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
                                     lvExpHomework.setVisibility(View.VISIBLE);
                                     progressDialog.dismiss();
                                     prepaareList();
-                                    listAdapter = new ExpandableListAdapterHomeWork(getActivity(), listDataHeader,listDataChild,new onWorkStatus() {
+                                    listAdapter = new ExpandableListAdapterHomeWork(getActivity(), listDataHeader, listDataChild, new onWorkStatus() {
                                         @Override
                                         public void onWorkStatus() {
-                                            DateStr = listAdapter.getDate().toString();
+                                            DateStr = listAdapter.getDate();
                                             ArrayList<String> arrayList = listAdapter.getdaybookId();
 
                                             for (int i = 0; i < arrayList.size(); i++) {
@@ -301,15 +313,15 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
                                             AppConfiguration.firsttimeback = true;
                                             Fragment fragment = new AddDailyWorkFragment();
                                             Bundle bundle = new Bundle();
-                                            bundle.putString("daybookIdStr",daybookIdStr);
-                                            bundle.putString("homework",homeworkStr);
-                                            bundle.putString("classwork",classworkStr);
-                                            bundle.putString("HWClassName",classNameStr);
-                                            bundle.putString("HWStandardName",standardNameStr);
-                                            bundle.putString("HWSubjectName",subjectNameStr);
-                                            bundle.putString("HWDate",DateStr);
-                                            bundle.putString("HWStartDate",fromDate);
-                                            bundle.putString("HWEndDate",toDate);
+                                            bundle.putString("daybookIdStr", daybookIdStr);
+                                            bundle.putString("homework", homeworkStr);
+                                            bundle.putString("classwork", classworkStr);
+                                            bundle.putString("HWClassName", classNameStr);
+                                            bundle.putString("HWStandardName", standardNameStr);
+                                            bundle.putString("HWSubjectName", subjectNameStr);
+                                            bundle.putString("HWDate", DateStr);
+                                            bundle.putString("HWStartDate", fromDate);
+                                            bundle.putString("HWEndDate", toDate);
                                             fragment.setArguments(bundle);
                                             FragmentManager fragmentManager = getFragmentManager();
                                             fragmentManager.beginTransaction()
@@ -320,7 +332,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
                                         @Override
                                         public void getStudentHomeWorkStatus() {
                                             //Dialog();
-                                            DateStr = listAdapter.getDate().toString();
+                                            DateStr = listAdapter.getDate();
                                             ArrayList<String> arrayList = listAdapter.getAllId();
 
                                             for (int i = 0; i < arrayList.size(); i++) {
@@ -408,11 +420,6 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
 
     }
 
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        populateSetDate(year, monthOfYear + 1, dayOfMonth);
-    }
-
     public void populateSetDate(int year, int month, int day) {
         String d, m, y;
         d = Integer.toString(day);
@@ -454,12 +461,12 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
         window.setAttributes(wlp);
         alertDialogAndroid.show();
 
-        close_btn = (Button) layout.findViewById(R.id.close_btn);
-        insert_homework_status_img = (ImageView) layout.findViewById(R.id.insert_homework_status_img);
-        header_linear = (LinearLayout) layout.findViewById(R.id.header_linear);
-        student_homework_status_list = (ListView) layout.findViewById(R.id.student_homework_status_list);
-        txtNoRecordshomeworkstatus = (TextView) layout.findViewById(R.id.txtNoRecordshomeworkstatus);
-        standard_txt = (TextView) layout.findViewById(R.id.standard_txt);
+        close_btn = layout.findViewById(R.id.close_btn);
+        insert_homework_status_img = layout.findViewById(R.id.insert_homework_status_img);
+        header_linear = layout.findViewById(R.id.header_linear);
+        student_homework_status_list = layout.findViewById(R.id.student_homework_status_list);
+        txtNoRecordshomeworkstatus = layout.findViewById(R.id.txtNoRecordshomeworkstatus);
+        standard_txt = layout.findViewById(R.id.standard_txt);
         getStudentHomeworkStatus();
         close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -477,7 +484,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
 
     public void getStudentHomeworkStatus() {
 
-        DateStr = listAdapter.getDate().toString();
+        DateStr = listAdapter.getDate();
         ArrayList<String> arrayList = listAdapter.getAllId();
 
         for (int i = 0; i < arrayList.size(); i++) {
@@ -511,7 +518,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
                         params.put("StandardID", StandardIdStr);//StandardIdStr
                         params.put("ClassID", ClassIdStr);
                         params.put("SubjectID", SubjectIdStr);
-                        params.put("TeacherID",Utility.getPref(getActivity(),"StaffID"));
+                        params.put("TeacherID", Utility.getPref(getActivity(), "StaffID"));
                         teacherStudentHomeworkStatusAsynctask = new TeacherStudentHomeworkStatusAsynctask(params);
                         teacherStudentHomeworkStatusResponse = teacherStudentHomeworkStatusAsynctask.execute().get();
                         getActivity().runOnUiThread(new Runnable() {
@@ -589,7 +596,7 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
         for (String s : newArray) {
             homeworkdetailidstr = homeworkdetailidstr + "," + s;
         }
-        homeworkdetailidstr = homeworkdetailidstr.substring(1, homeworkdetailidstr.length());
+        homeworkdetailidstr = homeworkdetailidstr.substring(1);
 
         Log.d("homeworkdetailidstr", "" + homeworkdetailidstr);
 
@@ -634,5 +641,15 @@ public class HomeworkFragment extends Fragment implements DatePickerDialog.OnDat
         } else {
             Utility.ping(mContext, "Network not available");
         }
+    }
+
+//    @Override
+//    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//        populateSetDate(year, month + 1, dayOfMonth);
+//    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        populateSetDate(year, monthOfYear + 1, dayOfMonth);
     }
 }

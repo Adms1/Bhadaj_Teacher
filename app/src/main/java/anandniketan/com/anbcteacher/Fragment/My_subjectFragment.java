@@ -53,9 +53,9 @@ public class My_subjectFragment extends Fragment {
     public void init() {
 
 
-        header_linear = (LinearLayout) rootView.findViewById(R.id.header_linear);
-        txtNoRecords = (TextView) rootView.findViewById(R.id.txtNoRecords);
-        subject_list = (ListView) rootView.findViewById(R.id.subject_list);
+        header_linear = rootView.findViewById(R.id.header_linear);
+        txtNoRecords = rootView.findViewById(R.id.txtNoRecords);
+        subject_list = rootView.findViewById(R.id.subject_list);
 
         setUserVisibleHint(true);
     }

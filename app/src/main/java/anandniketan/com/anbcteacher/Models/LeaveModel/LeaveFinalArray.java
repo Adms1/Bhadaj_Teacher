@@ -1,10 +1,25 @@
 package anandniketan.com.anbcteacher.Models.LeaveModel;
 
+import android.renderscript.Sampler;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LeaveFinalArray {
-//    ==============Get Head==============
+
+    @SerializedName("CheckedStatus")
+    @Expose
+    private String checkedStatus;
+
+    public String getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(String checkedStatus) {
+        this.checkedStatus = checkedStatus;
+    }
+
+    //    ==============Get Head==============
     @SerializedName("EmployeeName")
     @Expose
     private String employeeName;
@@ -220,12 +235,13 @@ private Integer termId;
     }
 
 //    ================= GetStandardSection Detail=================='
-@SerializedName("ClassName")
-@Expose
-private String className;
+
+    @SerializedName("ClassName")
+    @Expose
+    private String className;
     @SerializedName("ClassID")
     @Expose
-    private String classID;
+    private int classID;
 
     public String getClassName() {
         return className;
@@ -235,16 +251,41 @@ private String className;
         this.className = className;
     }
 
-    public String getClassID() {
+    public int getClassID() {
         return classID;
     }
 
-    public void setClassID(String classID) {
+    public void setClassID(int classID) {
         this.classID = classID;
     }
 
-//    ================== GetTestMarks=======================
-@SerializedName("SubjectName")
+//    ================================== GetGrade======================================
+
+    @SerializedName("Standard")
+    @Expose
+    private String standard;
+    @SerializedName("StandardID")
+    @Expose
+    private int standard_id;
+
+    public String getStandard() {
+        return standard;
+    }
+
+    public void setStandard(String standard) {
+        this.standard = standard;
+    }
+
+    public int getStandard_id() {
+        return standard_id;
+    }
+
+    public void setStandard_id(int standard_id) {
+        this.standard_id = standard_id;
+    }
+
+    //    ================== GetTestMarks=======================
+@SerializedName(value = "subject", alternate = {"Subject", "SubjectName"})
 @Expose
 private String subjectName;
     @SerializedName("SubjectID")

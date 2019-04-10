@@ -147,7 +147,7 @@ public class HomeFragment extends Fragment implements UserBirthdayListAdapter.On
         initViews();
         setListners();
 
-        onNotificationCountRef = (UserBirthdayListAdapter.OnNotificationCount)this;
+        onNotificationCountRef = this;
         if (Utility.isNetworkConnected(mContext)) {
             getVersionUpdateInfo();
            // getUserProfile();
@@ -166,19 +166,19 @@ public class HomeFragment extends Fragment implements UserBirthdayListAdapter.On
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        menu_linear = (Button) rootView.findViewById(R.id.menu_linear);
-        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
-        grid_view = (GridView) rootView.findViewById(R.id.grid_view);
+        menu_linear = rootView.findViewById(R.id.menu_linear);
+        btnLogout = rootView.findViewById(R.id.btnLogout);
+        grid_view = rootView.findViewById(R.id.grid_view);
         grid_view.setAdapter(new ImageAdapter(mContext));
-        student_name_txt = (TextView) rootView.findViewById(R.id.student_name_txt);
-        student_classname_txt = (TextView) rootView.findViewById(R.id.student_classname_txt);
-        header = (LinearLayout) rootView.findViewById(R.id.LL_header);
-        mRvNotificationList = (RecyclerView)rootView.findViewById(R.id.rv_notificationlist);
-        mTvNotificationEmptyMsg = (TextView)rootView.findViewById(R.id.tv_notification_empty_view);
-        btn_notification = (Button)rootView.findViewById(R.id.btn_notification);
-        badge = (NotificationBadge)rootView.findViewById(R.id.notification_badge);
-        profile_image = (CircleImageView) rootView.findViewById(R.id.profile_image);
-        mHeaderView = (View)rootView.findViewById(R.id.view_transparent);
+        student_name_txt = rootView.findViewById(R.id.student_name_txt);
+        student_classname_txt = rootView.findViewById(R.id.student_classname_txt);
+        header = rootView.findViewById(R.id.LL_header);
+        mRvNotificationList = rootView.findViewById(R.id.rv_notificationlist);
+        mTvNotificationEmptyMsg = rootView.findViewById(R.id.tv_notification_empty_view);
+        btn_notification = rootView.findViewById(R.id.btn_notification);
+        badge = rootView.findViewById(R.id.notification_badge);
+        profile_image = rootView.findViewById(R.id.profile_image);
+        mHeaderView = rootView.findViewById(R.id.view_transparent);
 
         imageLoader = ImageLoader.getInstance();
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
@@ -195,7 +195,7 @@ public class HomeFragment extends Fragment implements UserBirthdayListAdapter.On
                 .denyCacheImageMultipleSizesInMemory()
                 .tasksProcessingOrder(QueueProcessingType.LIFO)// .enableLogging()
                 .build();
-        imageLoader.init(config.createDefault(mContext));
+        imageLoader.init(ImageLoaderConfiguration.createDefault(mContext));
 
         final Animation myAnim = AnimationUtils.loadAnimation(mContext,R.anim.bounce);
 
@@ -485,7 +485,7 @@ public class HomeFragment extends Fragment implements UserBirthdayListAdapter.On
 
         }
         for (int j = 0; j < userProfileModel.getClassDetail().size(); j++) {
-            AppConfiguration.rows.add((ClassDetailModel) userProfileModel.getClassDetail().get(j));
+            AppConfiguration.rows.add(userProfileModel.getClassDetail().get(j));
         }
     }
 

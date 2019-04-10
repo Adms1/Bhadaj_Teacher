@@ -49,11 +49,12 @@ public class AppConfiguration {
         return url;
     }
 
-
     //Local
-    public static String DOMAIN_LOCAL = "http://192.168.1.19:8086/MobileApp_Service.asmx/";
+    public static String DOMAIN_LOCAL = "http://192.168.1.6:8086/MobileApp_Service.asmx/";
     //public static String DOMAIN_LIVE = "http://192.168.1.7:8086/MobileApp_Service.asmx/"; //use for only office
-    public static String LIVE_BASE_URL = Utility.getPref(BaseApp.getAppContext(), "live_base_url"); //use for client
+//    public static String LIVE_BASE_URL = Utility.getPref(BaseApp.getAppContext(), "live_base_url"); //use for client
+//
+    public static String LIVE_BASE_URL = "http://192.168.1.6:8086/";
 
     public static String DOMAIN_LIVE = LIVE_BASE_URL + "MobileApp_Service.asmx/"; //use for client
 
@@ -107,6 +108,10 @@ public class AppConfiguration {
     public static String GetStandardSectionForMarks = "GetStandardSectionForMarks";
     public static String GetTestForMarks = "GetTestForMarks";
     public static String GetTerm = "GetTerm";
+    public static String GetGrade = "GetTeacherStandardList";
+    public static String GetSection = "GetTeacherClassList";
+    public static String GetSubject = "GetTeacherSubjectList";
+    public static String InsertDailyEntry = "InsertDailyEntry";
     public static String GetMarks = "GetMarks";
     public static String InsertMarks = "InsertMarks";
     public static String ForgetIDPasswordStaff = "ForgetIDPasswordStaff";

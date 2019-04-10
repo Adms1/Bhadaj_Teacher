@@ -4,41 +4,29 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import anandniketan.com.anbcteacher.Activities.LoginActivity;
-import anandniketan.com.anbcteacher.Adapter.HomeWorkStatusListAdapter;
 import anandniketan.com.anbcteacher.AsyncTasks.InsertHWCWAsyncTask;
-import anandniketan.com.anbcteacher.AsyncTasks.TeacherStudentHomeworkStatusAsynctask;
-import anandniketan.com.anbcteacher.AsyncTasks.TeacherStudentHomeworkStatusInsertUpdateAsyncTask;
 import anandniketan.com.anbcteacher.Models.HomeWorkResponse.HomeworkStatusInsertUpdateModel;
-import anandniketan.com.anbcteacher.Models.HomeWorkResponse.TeacherStudentHomeworkStatusModel;
 import anandniketan.com.anbcteacher.R;
-import anandniketan.com.anbcteacher.Utility.AppConfiguration;
 import anandniketan.com.anbcteacher.Utility.Utility;
 
 
 public class AddDailyWorkFragment extends Fragment {
     EditText classwork_add_edt, homework_add_edt;
-    TextView standard_txt,subject_txt;
+    TextView standard_txt, subject_txt;
     String daybookIdStr, homeworkStr = "", classworkStr = "", HWClassName, HWStandardName, HWDate, HWStartDate, HWEndDate, HWSubjectName;
     InsertHWCWAsyncTask insertHWCWAsyncTask = null;
     HomeworkStatusInsertUpdateModel insertHWCWResponse;
@@ -68,8 +56,8 @@ public class AddDailyWorkFragment extends Fragment {
         btnsubmitHWCW = (Button) rootView.findViewById(R.id.btnsubmitHWCW);
         classwork_add_edt = (EditText) rootView.findViewById(R.id.classwork_add_edt);
         homework_add_edt = (EditText) rootView.findViewById(R.id.homework_add_edt);
-        standard_txt=(TextView)rootView.findViewById(R.id.standard_txt) ;
-        subject_txt=(TextView)rootView.findViewById(R.id.subject_txt);
+        standard_txt = (TextView) rootView.findViewById(R.id.standard_txt);
+        subject_txt = (TextView) rootView.findViewById(R.id.subject_txt);
         daybookIdStr = getArguments().getString("daybookIdStr");
         HWClassName = getArguments().getString("HWClassName");
         HWStandardName = getArguments().getString("HWStandardName");
@@ -78,7 +66,7 @@ public class AddDailyWorkFragment extends Fragment {
         HWEndDate = getArguments().getString("HWEndDate");
         HWSubjectName = getArguments().getString("HWSubjectName");
 
-        standard_txt.setText(HWStandardName + " - "+HWClassName);
+        standard_txt.setText(HWStandardName + " - " + HWClassName);
         subject_txt.setText(HWSubjectName);
         Bundle args = getArguments();
         if (args != null) {
@@ -155,18 +143,18 @@ public class AddDailyWorkFragment extends Fragment {
                 homeworkStr = homework_add_edt.getText().toString();
                 classworkStr = classwork_add_edt.getText().toString();
                 if (!classworkStr.equalsIgnoreCase("")) {
-                    if(!homeworkStr.equalsIgnoreCase("")){
+                    if (!homeworkStr.equalsIgnoreCase("")) {
 
-                        if(!classworkStr.contains("\\|")){
-                            if(!homeworkStr.contains("\\|")){
+                        if (!classworkStr.contains("\\|")) {
+                            if (!homeworkStr.contains("\\|")) {
                                 getInsertdailywork();
-                            }else{
+                            } else {
                                 homework_add_edt.setError("Character | not allowed in homework");
                             }
-                        }else{
+                        } else {
                             classwork_add_edt.setError("Character | not allowed in classwork");
                         }
-                    }else{
+                    } else {
                         homework_add_edt.setError("Please enter homework");
                     }
 

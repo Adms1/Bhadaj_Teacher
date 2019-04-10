@@ -4,44 +4,27 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 import anandniketan.com.anbcteacher.Activities.LoginActivity;
-import anandniketan.com.anbcteacher.Adapter.ExpandableListAdapterHomeWork;
 import anandniketan.com.anbcteacher.Adapter.HomeWorkStatusListAdapter;
-import anandniketan.com.anbcteacher.AsyncTasks.GetTeacherDailyWorkAsyncTask;
 import anandniketan.com.anbcteacher.AsyncTasks.TeacherStudentHomeworkStatusAsynctask;
 import anandniketan.com.anbcteacher.AsyncTasks.TeacherStudentHomeworkStatusInsertUpdateAsyncTask;
-import anandniketan.com.anbcteacher.Interfacess.onStudentHomeWorkStatus;
-import anandniketan.com.anbcteacher.Models.HomeWorkResponse.HomeworkModel;
 import anandniketan.com.anbcteacher.Models.HomeWorkResponse.HomeworkStatusInsertUpdateModel;
 import anandniketan.com.anbcteacher.Models.HomeWorkResponse.TeacherStudentHomeworkStatusModel;
 import anandniketan.com.anbcteacher.R;
@@ -54,7 +37,7 @@ public class DailyWorkStatusFragment extends Fragment {
     HomeworkStatusInsertUpdateModel homeworkStatusInsertUpdateModelResponse;
     String homeworkIdstr;
     String homeworkdetailidstr = "";
-    String HWTermId, HWStandardId, HWClassId, HWSubjectId, HWClassName, HWStandardName,HWDate,HWStartDate,HWEndDate,HWSubjectName;
+    String HWTermId, HWStandardId, HWClassId, HWSubjectId, HWClassName, HWStandardName, HWDate, HWStartDate, HWEndDate, HWSubjectName;
     private View rootView;
     private Button btnBacktest_homework, btnLogout;
     private Context mContext;
@@ -63,7 +46,7 @@ public class DailyWorkStatusFragment extends Fragment {
     private ImageView insert_homework_status_img;
     private LinearLayout header_linear;
     private ListView student_homework_status_list;
-    private TextView txtNoRecordshomeworkstatus, standard_txt,subject_txt;
+    private TextView txtNoRecordshomeworkstatus, standard_txt, subject_txt;
     //use for fillstudentlist listview
     private TeacherStudentHomeworkStatusAsynctask teacherStudentHomeworkStatusAsynctask = null;
     //use for inserthomeworkstatus
@@ -91,10 +74,10 @@ public class DailyWorkStatusFragment extends Fragment {
         HWSubjectId = getArguments().getString("HWSubjectId");
         HWClassName = getArguments().getString("HWClassName");
         HWStandardName = getArguments().getString("HWStandardName");
-        HWDate=getArguments().getString("HWDate");
-        HWStartDate= getArguments().getString("HWStartDate");
-        HWEndDate=getArguments().getString("HWEndDate");
-        HWSubjectName=getArguments().getString("HWSubjectName");
+        HWDate = getArguments().getString("HWDate");
+        HWStartDate = getArguments().getString("HWStartDate");
+        HWEndDate = getArguments().getString("HWEndDate");
+        HWSubjectName = getArguments().getString("HWSubjectName");
 
         btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
         btnBacktest_homework = (Button) rootView.findViewById(R.id.btnBacktest_homework);
@@ -104,7 +87,7 @@ public class DailyWorkStatusFragment extends Fragment {
         student_homework_status_list = (ListView) rootView.findViewById(R.id.student_homework_status_list);
         txtNoRecordshomeworkstatus = (TextView) rootView.findViewById(R.id.txtNoRecordshomeworkstatus);
         standard_txt = (TextView) rootView.findViewById(R.id.standard_txt);
-        subject_txt=(TextView)rootView.findViewById(R.id.subject_txt);
+        subject_txt = (TextView) rootView.findViewById(R.id.subject_txt);
 
         standard_txt.setText(HWStandardName + " - " + HWClassName);
         subject_txt.setText(HWSubjectName);
@@ -148,13 +131,13 @@ public class DailyWorkStatusFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new HomeworkFragment();
-                Bundle arg=new Bundle();
-                arg.putString("HWStartDate",HWStartDate);
-                arg.putString("HWEndDate",HWEndDate);
-                arg.putString("SelectDate",HWDate);
-                arg.putString("HWStandardName",HWStandardName);
-                arg.putString("HWClassName",HWClassName);
-                arg.putString("HWSubjectName",HWSubjectName);
+                Bundle arg = new Bundle();
+                arg.putString("HWStartDate", HWStartDate);
+                arg.putString("HWEndDate", HWEndDate);
+                arg.putString("SelectDate", HWDate);
+                arg.putString("HWStandardName", HWStandardName);
+                arg.putString("HWClassName", HWClassName);
+                arg.putString("HWSubjectName", HWSubjectName);
                 fragment.setArguments(arg);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
@@ -187,7 +170,7 @@ public class DailyWorkStatusFragment extends Fragment {
                         params.put("StandardID", HWStandardId);//StandardIdStr
                         params.put("ClassID", HWClassId);
                         params.put("SubjectID", HWSubjectId);
-                        params.put("TeacherID",Utility.getPref(getActivity(),"StaffID"));
+                        params.put("TeacherID", Utility.getPref(getActivity(), "StaffID"));
 
                         teacherStudentHomeworkStatusAsynctask = new TeacherStudentHomeworkStatusAsynctask(params);
                         teacherStudentHomeworkStatusResponse = teacherStudentHomeworkStatusAsynctask.execute().get();
@@ -280,7 +263,7 @@ public class DailyWorkStatusFragment extends Fragment {
                 @Override
                 public void run() {
                     try {
-                        HashMap<String, String> params = new HashMap<String, String>();
+                        HashMap<String, String> params = new HashMap<>();
                         params.put("HomeWorkID", homeworkIdstr);
                         params.put("HomeWorkDetailID", homeworkdetailidstr);
                         params.put("StandardID", HWStandardId);
@@ -297,13 +280,13 @@ public class DailyWorkStatusFragment extends Fragment {
                                 if (homeworkStatusInsertUpdateModelResponse.getFinalArray().size() >= 0) {
                                     Utility.ping(mContext, "Save Succesfully");
                                     Fragment fragment = new HomeworkFragment();
-                                    Bundle arg=new Bundle();
-                                    arg.putString("HWStartDate",HWStartDate);
-                                    arg.putString("HWEndDate",HWEndDate);
-                                    arg.putString("SelectDate",HWDate);
-                                    arg.putString("HWStandardName",HWStandardName);
-                                    arg.putString("HWClassName",HWClassName);
-                                    arg.putString("HWSubjectName",HWSubjectName);
+                                    Bundle arg = new Bundle();
+                                    arg.putString("HWStartDate", HWStartDate);
+                                    arg.putString("HWEndDate", HWEndDate);
+                                    arg.putString("SelectDate", HWDate);
+                                    arg.putString("HWStandardName", HWStandardName);
+                                    arg.putString("HWClassName", HWClassName);
+                                    arg.putString("HWSubjectName", HWSubjectName);
                                     fragment.setArguments(arg);
                                     FragmentManager fragmentManager = getFragmentManager();
                                     fragmentManager.beginTransaction()

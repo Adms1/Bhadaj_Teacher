@@ -28,7 +28,7 @@ public class BaseApp extends Application {
 //        FontsOverride.setDefaultFont(this, "SANS_SERIF", "fonts/TitilliumWeb-Regular.ttf");
 
         try {
-            new GetAPIURLTask(mAppcontext).execute();
+//            new GetAPIURLTask(mAppcontext).execute();
         }catch (Exception ex){
             ex.printStackTrace();
         }
