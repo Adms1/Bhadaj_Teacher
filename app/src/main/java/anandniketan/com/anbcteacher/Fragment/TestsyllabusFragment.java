@@ -89,9 +89,9 @@ public class TestsyllabusFragment extends Fragment implements DatePickerDialog.O
     }
 
     public void initViews() {
-        txtNoRecordstest = (TextView) rootView.findViewById(R.id.txtNoRecordstest);
-        test_syllabus_list = (ListView) rootView.findViewById(R.id.test_syllabus_list);
-        test_header = (LinearLayout) rootView.findViewById(R.id.test_header);
+        txtNoRecordstest = rootView.findViewById(R.id.txtNoRecordstest);
+        test_syllabus_list = rootView.findViewById(R.id.test_syllabus_list);
+        test_header = rootView.findViewById(R.id.test_header);
 
         setUserVisibleHint(true);
     }
@@ -178,13 +178,13 @@ public class TestsyllabusFragment extends Fragment implements DatePickerDialog.O
         alertDialogAndroid.show();
 
 
-        close_btn = (Button) layout.findViewById(R.id.close_btn);
-        Edit_btn = (Button) layout.findViewById(R.id.Edit_btn);
-        edit_test_txt = (TextView) layout.findViewById(R.id.edit_test_txt);
-        edit_test_date_txt = (TextView) layout.findViewById(R.id.edit_test_date_txt);
-        edit_test_grade_txt = (TextView) layout.findViewById(R.id.edit_test_grade_txt);
-        edit_test_subject_txt = (TextView) layout.findViewById(R.id.edit_test_subject_txt);
-        listData = (ListView) layout.findViewById(R.id.listData);
+        close_btn = layout.findViewById(R.id.close_btn);
+        Edit_btn = layout.findViewById(R.id.Edit_btn);
+        edit_test_txt = layout.findViewById(R.id.edit_test_txt);
+        edit_test_date_txt = layout.findViewById(R.id.edit_test_date_txt);
+        edit_test_grade_txt = layout.findViewById(R.id.edit_test_grade_txt);
+        edit_test_subject_txt = layout.findViewById(R.id.edit_test_subject_txt);
+        listData = layout.findViewById(R.id.listData);
 
         calendar = Calendar.getInstance();
         Year = calendar.get(Calendar.YEAR);
@@ -259,7 +259,7 @@ public class TestsyllabusFragment extends Fragment implements DatePickerDialog.O
                 text = new ArrayList<String>();
                 for (int i = 0; i < listData.getChildCount(); i++) {
                     View mView = listData.getChildAt(i);
-                    EditText myEditText = (EditText) mView.findViewById(R.id.syllabus_txt);
+                    EditText myEditText = mView.findViewById(R.id.syllabus_txt);
                     if (!myEditText.getText().toString().trim().equalsIgnoreCase("")) {
                         txtstr = txtstr + myEditText.getText().toString() + "|&";
                     }

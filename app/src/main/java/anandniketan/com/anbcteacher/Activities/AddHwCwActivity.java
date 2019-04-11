@@ -1,14 +1,22 @@
 package anandniketan.com.anbcteacher.Activities;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Spinner;
@@ -19,13 +27,14 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
-import anandniketan.com.anbcteacher.Adapter.SectionAdapter;
 import anandniketan.com.anbcteacher.AsyncTasks.GetGradeAsyncTask;
 import anandniketan.com.anbcteacher.AsyncTasks.GetSectionAsyncTask;
 import anandniketan.com.anbcteacher.AsyncTasks.GetSubjectAsyncTask;
 import anandniketan.com.anbcteacher.AsyncTasks.GetTermAsyncTask;
 import anandniketan.com.anbcteacher.AsyncTasks.InsertDailyEntryAsyncTask;
+import anandniketan.com.anbcteacher.Models.LeaveModel.LeaveFinalArray;
 import anandniketan.com.anbcteacher.Models.LeaveModel.LeaveMainModel;
 import anandniketan.com.anbcteacher.R;
 import anandniketan.com.anbcteacher.Utility.Utility;
@@ -34,7 +43,7 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
 
     private static String dateFinal;
     HashMap<Integer, String> spinnerTermIdNameMap, spinnerGradeIdNameMap, spinnerSubjectIdNameMap;
-    String termNameStr, termIdStr, gradeNameStr, gradeIdStr, subjectIdStr;
+    String termNameStr, termIdStr, gradeNameStr, gradeIdStr = "0", subjectIdStr;
     private Spinner spTerm, spGrade, spSubject;
     private GridView sectionGridView;
     private TextView etDate;
@@ -51,6 +60,7 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
     private SectionAdapter sectionAdapter;
     private Calendar calendar;
     private int Year, Month, Day;
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +75,7 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
         etDate = findViewById(R.id.etdate_txt);
         etHw = findViewById(R.id.homework_add_edt);
         etCw = findViewById(R.id.classwork_add_edt);
+        btnBack = findViewById(R.id.btnBack_homework);
 
         setListener();
         getTermData();
@@ -78,12 +89,18 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         spTerm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String termName = spTerm.getSelectedItem().toString();
                 String termId = spinnerTermIdNameMap.get(spTerm.getSelectedItemPosition());
-
 
                 Log.d("value", termName + " " + termId);
                 termIdStr = termId.toString();
@@ -129,7 +146,6 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
                 subjectIdStr = gsubjectId.toString();
 //                sub = gradeName;
                 Log.d("termIdStr", gradeIdStr);
-                getSectionData();
 
             }
 
@@ -156,10 +172,50 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertHwCw();
+
+                if(isValid()) {
+                    if (!etCw.getText().toString().contains("\\|")) {
+                        if (!etHw.getText().toString().contains("\\|")) {
+                            insertHwCw();
+                        } else {
+                            etCw.setError("Character | not allowed in homework");
+                        }
+                    } else {
+                        etHw.setError("Character | not allowed in homework");
+                    }
+                }
             }
         });
 
+    }
+
+    public boolean isValid() {
+
+        boolean isvalid = true;
+
+        if (TextUtils.isEmpty(etDate.getText().toString())) {
+            etDate.setError("Please select proper date");
+            isvalid = false;
+        }
+
+        if (TextUtils.isEmpty(etCw.getText().toString())) {
+            etCw.setError("Please enter classwork");
+            isvalid = false;
+        }
+
+        if (TextUtils.isEmpty(etHw.getText().toString())) {
+            etHw.setError("Please enter homework");
+            isvalid = false;
+        }
+
+        if (spGrade.getSelectedItem().toString().equalsIgnoreCase("") || spSubject.getSelectedItem().toString().equalsIgnoreCase("")
+        || sectionDetailResponse.getFinalArray().size() < 0) {
+
+            Utility.ping(AddHwCwActivity.this, "Please select another term");
+            isvalid = false;
+        }
+
+        return isvalid;
     }
 
     public void getTermData() {
@@ -257,6 +313,9 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
                                     ArrayAdapter<String> adaptertest = new ArrayAdapter<>(AddHwCwActivity.this, R.layout.spinner_layout, new ArrayList<String>());
                                     spGrade.setAdapter(adaptertest);
                                     progressDialog.dismiss();
+
+                                    getSectionData();
+
                                 }
 
                             }
@@ -330,15 +389,24 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
                                     sectionAdapter = new SectionAdapter(AddHwCwActivity.this, sectionDetailResponse.getFinalArray());
 
                                     sectionGridView.setAdapter(sectionAdapter);
-                                    getSubjectData();
 
+                                    String selectedGradeIds = "";
+                                    if (sectionAdapter != null) {
+                                        selectedGradeIds = TextUtils.join("|", sectionAdapter.getCheckedStandards());
+                                    }
+
+                                    getSubjectData(selectedGradeIds);
 
                                 } else {
 
                                     ArrayAdapter<String> adaptertest = new ArrayAdapter<>(AddHwCwActivity.this, R.layout.spinner_layout, new ArrayList<String>());
                                     sectionGridView.setAdapter(adaptertest);
                                     progressDialog.dismiss();
+
+                                    getSubjectData("0");
+
                                 }
+
 
                             }
                         });
@@ -352,7 +420,7 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
         }
     }
 
-    public void getSubjectData() {
+    public void getSubjectData(final String clsId) {
         if (Utility.isNetworkConnected(AddHwCwActivity.this)) {
             progressDialog = new ProgressDialog(AddHwCwActivity.this);
             progressDialog.setMessage("Please Wait...");
@@ -367,7 +435,9 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
                         params.put("EmployeeID", Utility.getPref(AddHwCwActivity.this, "StaffID"));
                         params.put("TermID", termIdStr);
                         params.put("StandardID", gradeIdStr);
-                        params.put("ClassIDs", "5|6|7");
+//                        params.put("ClassIDs", "5|6|7");
+                        params.put("ClassIDs", clsId);
+
                         subjectAsyncTask = new GetSubjectAsyncTask(params);
                         subjectDetailResponse = subjectAsyncTask.execute().get();
                         runOnUiThread(new Runnable() {
@@ -464,7 +534,8 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
                         params.put("EmployeeID", Utility.getPref(AddHwCwActivity.this, "StaffID"));
                         params.put("TermID", termIdStr);
                         params.put("StandardID", gradeIdStr);
-                        params.put("ClassIDs", "5|6|7");
+                        String selectedGradeIds = TextUtils.join("|", sectionAdapter.getCheckedStandards());
+                        params.put("ClassIDs", selectedGradeIds);
                         params.put("SubjectID", subjectIdStr);
                         params.put("Date", etDate.getText().toString());
                         params.put("HomeWork", etHw.getText().toString());
@@ -476,8 +547,12 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
                             public void run() {
                                 progressDialog.dismiss();
 
-                                Utility.ping(AddHwCwActivity.this, insertDetailResponse.getMessage());
-
+                                if (insertDetailResponse.getSuccess().equalsIgnoreCase("true")) {
+                                    Utility.ping(AddHwCwActivity.this, insertDetailResponse.getMessage());
+                                    onBackPressed();
+                                } else {
+                                    Utility.ping(AddHwCwActivity.this, insertDetailResponse.getMessage());
+                                }
                             }
                         });
                     } catch (Exception e) {
@@ -490,4 +565,124 @@ public class AddHwCwActivity extends AppCompatActivity implements DatePickerDial
         }
     }
 
+    public class SectionAdapter extends BaseAdapter {
+        private Context mContext;
+        private List<LeaveFinalArray> standardModel;
+        private ArrayList<LeaveFinalArray> arrayList = new ArrayList<>();
+        private ArrayList<String> checkedItemsIds;
+
+        // Constructor
+        public SectionAdapter(Context c, List<LeaveFinalArray> standardModel) {
+            mContext = c;
+            this.standardModel = standardModel;
+        }
+
+        @Override
+        public int getCount() {
+            return standardModel.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return standardModel.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            final ViewHolder viewHolder;
+            View view = null;
+            convertView = null;
+            if (convertView == null) {
+                viewHolder = new ViewHolder();
+                LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+                convertView = mInflater.inflate(R.layout.list_row_standard_checkbox, null);
+                viewHolder.check_standard = convertView.findViewById(R.id.check_standard);
+                final LeaveFinalArray standarObj = standardModel.get(position);
+
+                try {
+                    viewHolder.check_standard.setText(standarObj.getClassName());
+                    viewHolder.check_standard.setTag(standarObj.getClassID());
+
+                    if (standarObj.getCheckedStatus().equalsIgnoreCase("1")) {
+                        viewHolder.check_standard.setChecked(true);
+                    } else {
+                        viewHolder.check_standard.setChecked(false);
+                    }
+
+                    viewHolder.check_standard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                            String selectedGradeIds = TextUtils.join("|", sectionAdapter.getCheckedStandards());
+                            Log.e("ClassIDs", selectedGradeIds);
+
+                            getSubjectData(selectedGradeIds);
+
+                            if (isChecked) {
+                                standarObj.setCheckedStatus("1");
+                                standardModel.get(position).setCheckedStatus("1");
+                            } else {
+                                standarObj.setCheckedStatus("0");
+                                standardModel.get(position).setCheckedStatus("0");
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return convertView;
+        }
+
+        public List<LeaveFinalArray> getDatas() {
+            return standardModel;
+        }
+
+        public ArrayList<String> getCheckedStandards() {
+            checkedItemsIds = new ArrayList<String>();
+            if (standardModel != null) {
+                if (standardModel.size() > 0) {
+                    for (int count = 0; count < standardModel.size(); count++) {
+                        if (standardModel.get(count).getCheckedStatus().equalsIgnoreCase("1")) {
+                            checkedItemsIds.add(String.valueOf(standardModel.get(count).getClassID()));
+                        }
+                    }
+                }
+            }
+            return checkedItemsIds;
+        }
+
+        public void disableSelection() {
+            try {
+                ViewHolder viewHolder = new ViewHolder();
+
+                if (viewHolder != null) {
+                    viewHolder.check_standard.setEnabled(false);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        public void enableSelection() {
+            try {
+                ViewHolder viewHolder = new ViewHolder();
+
+                if (viewHolder != null) {
+                    viewHolder.check_standard.setEnabled(true);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        private class ViewHolder {
+            CheckBox check_standard;
+        }
+    }
 }

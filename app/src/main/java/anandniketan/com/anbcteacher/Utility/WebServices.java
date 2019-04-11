@@ -1,5 +1,6 @@
 package anandniketan.com.anbcteacher.Utility;
 
+import com.google.gson.JsonObject;
 import com.squareup.okhttp.ResponseBody;
 
 import java.util.Map;
@@ -14,6 +15,7 @@ import retrofit.http.POST;
 import retrofit2.Call;
 import retrofit2.http.Multipart;
 import retrofit2.http.Part;
+import retrofit2.http.Url;
 
 /**
  * Created by admsandroid on 11/20/2017.
@@ -30,7 +32,8 @@ public interface WebServices {
     @POST("/GetTerm")
     public void getTerm(@FieldMap Map<String, String> map, Callback<TermModel> callback);
 
-
+    @retrofit2.http.GET()
+    Call<JsonObject> getBaseUrl(@Url String url);
 
 
 }

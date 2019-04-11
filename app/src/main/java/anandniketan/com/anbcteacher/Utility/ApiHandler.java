@@ -18,6 +18,7 @@ import retrofit.converter.GsonConverter;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static anandniketan.com.anbcteacher.Utility.AppConfiguration.GET_API_URL;
 
 
 /**
@@ -26,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiHandler {
 
-    public static String BASE_URL = AppConfiguration.getBaseUrl();
+//    public static String BASE_URL = AppConfiguration.getBaseUrl();
 
 
     private static final long HTTP_TIMEOUT = TimeUnit.SECONDS.toMillis(6000);
@@ -52,7 +53,7 @@ public class ApiHandler {
 
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setLogLevel(RestAdapter.LogLevel.FULL)
-                    .setEndpoint(BASE_URL)
+                    .setEndpoint(GET_API_URL)
                     .setClient(new OkClient(myOkHttpClient()))
                     .setConverter(new GsonConverter(new Gson()))
                     .build();

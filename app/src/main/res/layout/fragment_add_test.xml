@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/txtNoRecordstest"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_gravity="center"
+        android:background="@drawable/norecordfound"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/_11sdp"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/editTextcolor"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/txtNoRecordstest"
-            android:layout_width="@dimen/_180sdp"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_below="@+id/date_rel"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/norecordfound"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="@dimen/_11sdp"
-            android:textStyle="bold"
-            android:visibility="gone"  />
 
         <LinearLayout
             android:id="@+id/main_linear_add"
@@ -250,4 +249,4 @@
                 android:textSize="@dimen/_11sdp" />
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

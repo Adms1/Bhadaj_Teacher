@@ -51,13 +51,13 @@ public class AddDailyWorkFragment extends Fragment {
     }
 
     public void initViews() {
-        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
-        btnBacktest_homework = (Button) rootView.findViewById(R.id.btnBacktest_homework);
-        btnsubmitHWCW = (Button) rootView.findViewById(R.id.btnsubmitHWCW);
-        classwork_add_edt = (EditText) rootView.findViewById(R.id.classwork_add_edt);
-        homework_add_edt = (EditText) rootView.findViewById(R.id.homework_add_edt);
-        standard_txt = (TextView) rootView.findViewById(R.id.standard_txt);
-        subject_txt = (TextView) rootView.findViewById(R.id.subject_txt);
+        btnLogout = rootView.findViewById(R.id.btnLogout);
+        btnBacktest_homework = rootView.findViewById(R.id.btnBacktest_homework);
+        btnsubmitHWCW = rootView.findViewById(R.id.btnsubmitHWCW);
+        classwork_add_edt = rootView.findViewById(R.id.classwork_add_edt);
+        homework_add_edt = rootView.findViewById(R.id.homework_add_edt);
+        standard_txt = rootView.findViewById(R.id.standard_txt);
+        subject_txt = rootView.findViewById(R.id.subject_txt);
         daybookIdStr = getArguments().getString("daybookIdStr");
         HWClassName = getArguments().getString("HWClassName");
         HWStandardName = getArguments().getString("HWStandardName");

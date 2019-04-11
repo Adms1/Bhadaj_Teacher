@@ -1,6 +1,5 @@
 package anandniketan.com.anbcteacher.Utility;
 
-
 import java.util.ArrayList;
 
 import anandniketan.com.anbcteacher.Models.ClassDetailModel;
@@ -12,12 +11,42 @@ import anandniketan.com.anbcteacher.base.BaseApp;
  */
 public class AppConfiguration {
 
+    //Local
+    public static String DOMAIN_LOCAL = "http://192.168.1.6:8086/MobileApp_Service.asmx/";
+    public static String GET_API_URL = "http://anandniketanbhadaj.org/appService/5b9a72856992e144c74fc836ed6e76a2/appsUrl";
+
+    public static String LIVE_BASE_URL = "http://192.168.1.6:8086/";
+
+//    public static String BASEURL = GET_API_URL + "MobileApp_Service.asmx/";
+
+    public static String BASEURL = LIVE_BASE_URL + "MobileApp_Service.asmx/";
+
+    // public static String DOMAIN_LIVE = "http://192.168.1.11:8086/MobileApp_Service.asmx/";//use for office only
+//   public static String DOMAIN_LIVE = "http://192.168.1.187:8089/MobileApp_Service.asmx/";//client for office only
+    //public static String DOMAIN_LIVE = "http://103.24.183.28:8085/MobileApp_Service.asmx/";//use for client
+
+    //public static String LIVE_BASE_URL = Utility.getPref(MyApp.getAppContext(), "live_base_url");
+
+    public static String DOMAIN_LIVE = "";//use for client
+
+    //Image Url
+    //Local
+    //public static String DOMAIN_LIVE_IMAGES = "http://192.168.1.19:8086/skool360-Category-Images/Teacher/";
+    //Live
+    public static String DOMAIN_LIVE_IMAGES = LIVE_BASE_URL+"skool360-Category-Images/Teacher/";
+
+    //ICONS URL
+    //Local
+    //public static String DOMAIN_LIVE_ICONS = "http://192.168.1.19:8086/skool360-Design-Icons/Teacher/";
+    //Live
+    public static String DOMAIN_LIVE_ICONS = LIVE_BASE_URL+"skool360-Design-Icons/Teacher/";
+
+
     public enum Domain {
         LIVE, LOCAL
     }
 
-    static Domain domain = Domain.LOCAL;//only Change this for changing environment
-
+    static Domain domain = Domain.LOCAL ;//only Change this for changing environment
 
     public static String getBaseUrl() {
         String url = "";
@@ -38,38 +67,32 @@ public class AppConfiguration {
         String url = "";
         switch (domain) {
             case LIVE:
+                LIVE_BASE_URL = Utility.getPref(BaseApp.getAppContext(), "live_base_url");
+
+                DOMAIN_LIVE_IMAGES = LIVE_BASE_URL + "SKOOL360-Category-Images/Teacher/";
+
+//                GALLARY_LIVE = LIVE_BASE_URL;
+
+                AppConfiguration.DOMAIN_LIVE = LIVE_BASE_URL + "MobileApp_Service.asmx/";
+
                 url = DOMAIN_LIVE + methodName;
+
                 break;
+
             case LOCAL:
                 url = DOMAIN_LOCAL + methodName;
+
+                DOMAIN_LIVE_IMAGES = "http://192.168.1.6:8086/SKOOL360-Category-Images/Teacher/";
+//
+//                GALLARY_LIVE = "http://192.168.1.6:8086/";
+
                 break;
+
             default:
                 break;
         }
         return url;
     }
-
-    //Local
-    public static String DOMAIN_LOCAL = "http://192.168.1.6:8086/MobileApp_Service.asmx/";
-    //public static String DOMAIN_LIVE = "http://192.168.1.7:8086/MobileApp_Service.asmx/"; //use for only office
-//    public static String LIVE_BASE_URL = Utility.getPref(BaseApp.getAppContext(), "live_base_url"); //use for client
-//
-    public static String LIVE_BASE_URL = "http://192.168.1.6:8086/";
-
-    public static String DOMAIN_LIVE = LIVE_BASE_URL + "MobileApp_Service.asmx/"; //use for client
-
-    //Image Url
-    //Local
-    //public static String DOMAIN_LIVE_IMAGES = "http://192.168.1.19:8086/skool360-Category-Images/Teacher/";
-    //Live
-    public static String DOMAIN_LIVE_IMAGES = LIVE_BASE_URL+"skool360-Category-Images/Teacher/";
-
-    //ICONS URL
-    //Local
-    //public static String DOMAIN_LIVE_ICONS = "http://192.168.1.19:8086/skool360-Design-Icons/Teacher/";
-    //Live
-    public static String DOMAIN_LIVE_ICONS = LIVE_BASE_URL+"skool360-Design-Icons/Teacher/";
-
 
     public static String GetStaffLogin = "StaffLogin";
     public static String GetStaffAttendence = "StaffAttendence";

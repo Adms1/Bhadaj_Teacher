@@ -79,14 +79,14 @@ public class ExpandableListAdapterHomeWork extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_item_home_work, null);
         }
 
-        homwork_name_txt = (TextView) convertView.findViewById(R.id.homwork_name_txt);
-        chapter_name_txt = (TextView) convertView.findViewById(R.id.chapter_name_txt);
-        objective_txt = (TextView) convertView.findViewById(R.id.objective_txt);
-        StudentHomeWorkStatus_btn = (Button) convertView.findViewById(R.id.StudentHomeWorkStatus_btn);
-        add_hw_cw_btn = (Button) convertView.findViewById(R.id.add_hw_cw_btn);
+        homwork_name_txt = convertView.findViewById(R.id.homwork_name_txt);
+        chapter_name_txt = convertView.findViewById(R.id.chapter_name_txt);
+        objective_txt = convertView.findViewById(R.id.objective_txt);
+        StudentHomeWorkStatus_btn = convertView.findViewById(R.id.StudentHomeWorkStatus_btn);
+        add_hw_cw_btn = convertView.findViewById(R.id.add_hw_cw_btn);
 
-        classwork_linear = (LinearLayout) convertView.findViewById(R.id.classwork_linear);
-        homework_linear = (LinearLayout) convertView.findViewById(R.id.homework_linear);
+        classwork_linear = convertView.findViewById(R.id.classwork_linear);
+        homework_linear = convertView.findViewById(R.id.homework_linear);
 
         FontStyle = "";
         splitFont1 = "";
@@ -119,6 +119,7 @@ public class ExpandableListAdapterHomeWork extends BaseExpandableListAdapter {
         } else {
             classwork_linear.setVisibility(View.VISIBLE);
         }
+
         StudentHomeWorkStatus_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +130,6 @@ public class ExpandableListAdapterHomeWork extends BaseExpandableListAdapter {
                 _onStudentHomeWorkStatus.getStudentHomeWorkStatus();
             }
         });
-
 
         add_hw_cw_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,11 +210,11 @@ public class ExpandableListAdapterHomeWork extends BaseExpandableListAdapter {
         TextView Date_txt, Standard_txt, Class_txt, Subject_txt;
         ImageView arrow_txt;
 
-        Date_txt = (TextView) convertView.findViewById(R.id.Date_txt);
-        Standard_txt = (TextView) convertView.findViewById(R.id.Standard_txt);
-        Class_txt = (TextView) convertView.findViewById(R.id.Class_txt);
-        Subject_txt = (TextView) convertView.findViewById(R.id.Subject_txt);
-        arrow_txt = (ImageView) convertView.findViewById(R.id.arrow_txt);
+        Date_txt = convertView.findViewById(R.id.Date_txt);
+        Standard_txt = convertView.findViewById(R.id.Standard_txt);
+        Class_txt = convertView.findViewById(R.id.Class_txt);
+        Subject_txt = convertView.findViewById(R.id.Subject_txt);
+        arrow_txt = convertView.findViewById(R.id.arrow_txt);
 
         Date_txt.setText(headerTitle1);
         Standard_txt.setText(headerTitle2);

@@ -153,7 +153,7 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_25sdp"
                 android:background="@drawable/round_button"
-                android:text="Add HW/CW"
+                android:text="Edit HW/CW"
                 android:textAllCaps="false"
                 android:textColor="@color/editTextcolor"
                 android:textSize="@dimen/_9sdp" />

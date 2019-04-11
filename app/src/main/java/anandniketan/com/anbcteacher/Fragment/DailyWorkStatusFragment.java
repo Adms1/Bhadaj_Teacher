@@ -79,15 +79,15 @@ public class DailyWorkStatusFragment extends Fragment {
         HWEndDate = getArguments().getString("HWEndDate");
         HWSubjectName = getArguments().getString("HWSubjectName");
 
-        btnLogout = (Button) rootView.findViewById(R.id.btnLogout);
-        btnBacktest_homework = (Button) rootView.findViewById(R.id.btnBacktest_homework);
+        btnLogout = rootView.findViewById(R.id.btnLogout);
+        btnBacktest_homework = rootView.findViewById(R.id.btnBacktest_homework);
 
-        insert_homework_status_img = (ImageView) rootView.findViewById(R.id.insert_homework_status_img);
-        header_linear = (LinearLayout) rootView.findViewById(R.id.header_linear);
-        student_homework_status_list = (ListView) rootView.findViewById(R.id.student_homework_status_list);
-        txtNoRecordshomeworkstatus = (TextView) rootView.findViewById(R.id.txtNoRecordshomeworkstatus);
-        standard_txt = (TextView) rootView.findViewById(R.id.standard_txt);
-        subject_txt = (TextView) rootView.findViewById(R.id.subject_txt);
+        insert_homework_status_img = rootView.findViewById(R.id.insert_homework_status_img);
+        header_linear = rootView.findViewById(R.id.header_linear);
+        student_homework_status_list = rootView.findViewById(R.id.student_homework_status_list);
+        txtNoRecordshomeworkstatus = rootView.findViewById(R.id.txtNoRecordshomeworkstatus);
+        standard_txt = rootView.findViewById(R.id.standard_txt);
+        subject_txt = rootView.findViewById(R.id.subject_txt);
 
         standard_txt.setText(HWStandardName + " - " + HWClassName);
         subject_txt.setText(HWSubjectName);
@@ -249,14 +249,14 @@ public class DailyWorkStatusFragment extends Fragment {
         for (String s : newArray) {
             homeworkdetailidstr = homeworkdetailidstr + "," + s;
         }
-        homeworkdetailidstr = homeworkdetailidstr.substring(1, homeworkdetailidstr.length());
+        homeworkdetailidstr = homeworkdetailidstr.substring(1);
 
         Log.d("homeworkdetailidstr", "" + homeworkdetailidstr);
 
-        progressDialog = new ProgressDialog(mContext);
-        progressDialog.setMessage("Please Wait...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+//        progressDialog = new ProgressDialog(mContext);
+//        progressDialog.setMessage("Please Wait...");
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
 
         if (Utility.isNetworkConnected(mContext)) {
             new Thread(new Runnable() {
